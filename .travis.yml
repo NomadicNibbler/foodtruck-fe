@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+- node
+notifications:
+  email: false
+deploy:
+  provider: heroku
+  api_key:
+    secure: i9XrL/kHdv+Z/JjWbMjl3LNdVozAFNoXYinQ9/ccqhnynh/CJrd8wUlL3e/DCRJFWd7o+mWagIa6uMOXBk/p3JcFCv1aZfbHSxd9VNxPwNXey9+h1oN31jAIh4WGIgokkI/+OZcCzGZErnl30Kc/Ei4eGZLFYDeJtOy19y4dVzbjGuMoxI180NLmxphkOYKUHH1dERfwTNtCSQf+uWTkyHBmJCAu1bUXeslPJ6zjQdehDrd8fTd2h+3pe4Hj8e87Gi5ixagKPxhF8i0e9c+8JTdumFtbCDyLEq/PLp6UcfGSHgj07v0gmQ63a+xYTq0a4+ENjOwtpgnsD0y0j9phRlseUTH60o9C3hqAnH0OoIIF9lbf1wn9McCoi4lzp8zDgSrsxh26/yHxrLx0UcRHgBBTZNk9ZAtDzU1TC9JlFt3gXuF3R9oDOkm+AbMAaRraGY4lSJTEf1dxJxXVbbmzpkLluL3rAnyXvz2Q8fAn3jVuaQm6LMvDUWc/1rqE0jkVai89bCloNC0mXkDfZOLz2/ei4hKYbw3sClYwKplFkH2GFhGTFJ+cLKN0GJx1amruj55UoQ5VABCcZrc92x2+Ld5iXL6ZsyGn5QQxoxHeBO8Gc5QIqfoJVOOyzXIAz1Yc1YUfOZ0QJqF0t5uc99tQROF2TBMbef/zrTNr9iEg6pU=
+  app: pure-lowlands-37491
+  skip_cleanup: true
