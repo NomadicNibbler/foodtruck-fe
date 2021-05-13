@@ -5,8 +5,7 @@ notifications:
   email: false
 deploy:
   provider: heroku
-  api_key:
-    secure: d4QcFKnGSqs66eCA+tur1oRiX3e3LQQuQJGVNafF3faXd/pfa70PkS4MqBBEJT0n3G0WrL2XOBsmQp0XKUBBiySA1faXWKMluIiBNz9p6RJKmEUV9MwxORse3hDagnRBEljfgqZ3+g1g5UsQug4k9FfAQ/R8+VEgTMtWxnDLTkAy1PiCwa65MGdMHhNx6fOFV4hE7znGSATmGc6jP4gGR2qAcX4z3wDZmu+MEX/qdG/QAUNT5XyDk5c5hBQQ2xByTYsE+WQCaMyRTPeImvLWWSJ7z+TYGer7Ts/+oefVGuwWiPwr0+SSKyC6CawGCo2i+wRHlpiUtCZJvCLrd05t2qiphJtgCbP/5p4dueBrzA3WTxnOXOdllf7NtE/ywLuT3e73sJZGY/Y8xd1CH6z4ffFeyeLZ5Lv/2pww9CIJuWGz5onpJnQRprvmSrdzQx0k6tkanu5oj2yvIqmfJvrEpx44CxArx+nXLbY6Qv6L9z7N+IoT+++/FKZIc+3SPloXYpZ8Lt+jlwcapVFU7hmEXtY7CvR8dduEes3kyJpqqUn/WYAvmWK3AjCKsjAMEtapT6YfhH9cD0VdH3qNCYjmGQAUiBa9GIdHp6fiDHw6lagBrdPu4yM+cRXzFWqWgUoJT6PBu3Q9hnZPxHTg7++TaDNUefZj7L9zF+UMrHxcx20=
+  api_key: $HEROKU_API_KEY
   app: pure-lowlands-37491
   on:
     branch: main
