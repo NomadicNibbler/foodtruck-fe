@@ -1,5 +1,7 @@
-@import "normalize.css";
-@import "./components/App.scss";
+@import 'normalize.css';
+@import './partials/_variables.scss';
+@import './components/App.scss';
+@import './components/Header/Header.scss';
 
 body {
   font-size: 62.5%;
