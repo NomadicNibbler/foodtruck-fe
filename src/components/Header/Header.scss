@@ -1,15 +1,87 @@
 .header {
+  padding: 15px;  
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;  
   background-color: $dark-blue-green; 
 }
 
 .header-title {
+  padding-top: 5px;  
   margin: 0; 
-  padding: 25px 0px 15px 10px;
   color: $yellow; 
-  font-family: 'Lakki Reddy', cursive; 
+  font-family: 'Lakki Reddy', cursive;
+  font-size: 2.4em; 
+  text-shadow: 1px 1px 2px $light-blue-green;  
 }
 
 .header-color-bar {
   height: 15px; 
   background-color: $light-blue-green;  
+}
+
+.food-truck-img {
+  height: 100px;
+  width: 100px; 
+  animation: bobbing 0.3s infinite ease-in-out forwards alternate;
+}
+
+.speed-line {
+  position: absolute;
+  width: 20px;
+  border-radius: 10px;
+  height: 2px;
+  background: #fff;
+  right: 100px;
+  animation: speed 3s infinite ease forwards;
+  opacity: .5; 
+}
+
+.speed-line.second {
+  top: 12%;
+  animation-delay: 0.1s;
+}
+
+.shadow {
+  position: absolute; 
+  width: 115px;
+  border-radius: 100%;
+  height: 20px;
+  bottom: 82%;
+  right: 2%;
+  background: rgba(0,0,0,0.1);
+  animation: shadow 0.2s infinite ease-in-out forwards alternate;
+  transform-origin: right center;
+}
+
+@keyframes bobbing {
+  0%{
+      transform: rotate(0) translateY(0);
+  }
+  100%{
+      transform: rotate(0.1deg) translateY(3px);
+  }
+}
+
+@keyframes speed {
+  0%{
+      transform: translateX(0);
+      width: 0;
+      opacity: 0;
+  }
+  10%{
+      width: 10%;
+      opacity: 1;
+  }
+  30%, 100%{
+      transform: translateX(-50px);
+      width: 0;
+      opacity: 0;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .header-title {
+    width: 50%; 
+  }
 }
