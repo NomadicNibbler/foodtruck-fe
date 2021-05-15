@@ -1,4 +1,4 @@
-{
+const user = {
  "data": {
   "type": "users",
   "id": "1",
@@ -29,3 +29,5 @@
  }
 }
 
+
+export default user
