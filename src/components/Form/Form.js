@@ -5,6 +5,7 @@ class Form extends Component {
     constructor() {
         super()
         this.state = {
+            username: '',
             first: '',
             last: '',
             address: '',
@@ -14,7 +15,7 @@ class Form extends Component {
     }
 
     handleSubmit = e => {
-        if (this.state.first && this.state.last && this.state.address && this.state.city && this.state.zip) {
+        if (this.state.first && this.state.last && this.state.address && this.state.city && this.state.zip.length === 5) {
             this.clearInputs();
         } else {
             e.preventDefault();
@@ -32,6 +33,13 @@ class Form extends Component {
     render() {
         return (
             <form>
+                <input
+                    name='username'
+                    placeholder='User Name'
+                    type='text'
+                    value={this.state.username}
+                    onChange={this.handleChange}
+                />
                 <input
                     name='first'
                     placeholder='First Name'
