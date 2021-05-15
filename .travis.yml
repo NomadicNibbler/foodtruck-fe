@@ -6,7 +6,7 @@ notifications:
 deploy:
   provider: heroku
   api_key: $HEROKU_API_KEY
-  app: pure-lowlands-37491
+  app: the-nomadic-nibbler
   on:
     branch: main
   skip_cleanup: true
