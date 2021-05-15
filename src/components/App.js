@@ -3,6 +3,7 @@ import MapView from './MapView/MapView';
 import { Component } from 'react';
 import { Route } from 'react-router-dom';
 import user from  "../mockuser.js"
+import Form from './Form/Form';
 
 class App extends Component {
   constructor() {
