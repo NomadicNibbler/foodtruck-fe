@@ -1,4 +1,5 @@
-import Header from './Header/Header'
+import Header from './Header/Header';
+import Form from './Form/Form';
 
 function App() {
   return (
