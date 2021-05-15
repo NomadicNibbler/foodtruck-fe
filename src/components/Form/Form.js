@@ -13,7 +13,8 @@ class Form extends Component {
     }
 
     handleSubmit = e => {
-
+        e.preventDefault();
+        this.clearInputs();
     }
 
     handleChange = e => {
@@ -32,9 +33,9 @@ class Form extends Component {
                 <input />
                 <input />
                 <input />
-                <button>login</button>
+                <button>Login</button>
                 <button>New User?</button>
-                <button></button>
+                <button>Let's Eat!</button>
             </form>
         )
     }
