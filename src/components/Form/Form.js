@@ -15,7 +15,12 @@ class Form extends Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        this.clearInputs();
+        if (this.state.first && this.state.last && this.state.address && this.state.city && this.state.zip) {
+            this.clearInputs();
+            console.log('meow')
+        } else {
+            console.log('you\'re trash')
+        }
     }
 
     handleChange = e => {
@@ -66,7 +71,7 @@ class Form extends Component {
                     onChange={this.handleChange}
                 />
                 <Link to='/map'>
-                    <button>Login</button>
+                    <button onClick={this.handleSubmit}>Login</button>
                 </Link>
                 <Link to='/newuser'>
                     <button>New User?</button>
