@@ -1,11 +1,9 @@
-import './App.css';
+import Header from './Header/Header'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>The Nomadic Nibbler</h1>
-      </header>
+      <Header/>
     </div>
   );
 }
