@@ -7,9 +7,7 @@ const Header = () => {
     <>
     <header className="header">
       <h1 className="header-title">The Nomadic Nibbler</h1>
-      <Link to='/'>
-        <FoodTruck className="food-truck-img"/>
-      </Link>
+      <FoodTruck className="food-truck-img"/>
       <div className="speed-line"></div>
       <div className="speed-line second"></div>
       <div className="shadow"></div>
