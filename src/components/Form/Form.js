@@ -22,7 +22,7 @@ class Form extends Component {
     }
 
     clearInputs = () => {
-
+        this.setState({ first: '', last: '', address: '', city: '', zip: ''})
     }
 
     render() {
