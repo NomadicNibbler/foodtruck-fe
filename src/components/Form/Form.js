@@ -53,6 +53,13 @@ const Form = () => {
 
             {location === '/newuser' &&
                 <input
+                    name='username'
+                    placeholder='User Name'
+                    type='text'
+                    value={this.state.username}
+                    onChange={this.handleChange}
+                />
+                <input
                     name='first'
                     placeholder='First Name'
                     type='text'
