@@ -14,12 +14,10 @@ class Form extends Component {
     }
 
     handleSubmit = e => {
-        e.preventDefault();
         if (this.state.first && this.state.last && this.state.address && this.state.city && this.state.zip) {
             this.clearInputs();
-            console.log('meow')
         } else {
-            console.log('you\'re trash')
+            e.preventDefault();
         }
     }
 
