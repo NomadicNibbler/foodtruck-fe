@@ -12,12 +12,12 @@ class Form extends Component {
         }
     }
 
-    handleSubmit = () => {
+    handleSubmit = e => {
 
     }
 
-    handleChange = (e) => {
-
+    handleChange = e => {
+        
     }
 
     clearInputs = () => {
@@ -27,7 +27,14 @@ class Form extends Component {
     render() {
         return (
             <form>
-                <input
+                <input />
+                <input />
+                <input />
+                <input />
+                <input />
+                <button>login</button>
+                <button>New User?</button>
+                <button></button>
             </form>
         )
     }
