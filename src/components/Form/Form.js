@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Form extends Component {
     constructor() {
@@ -64,9 +65,15 @@ class Form extends Component {
                     value={this.state.zip}
                     onChange={this.handleChange}
                 />
-                <button>Login</button>
-                <button>New User?</button>
-                <button>Let's Eat!</button>
+                <Link to='/map'>
+                    <button>Login</button>
+                </Link>
+                <Link to='/newuser'>
+                    <button>New User?</button>
+                </Link>
+                <Link to='/map'>
+                    <button>Let's Eat!</button>
+                </Link>
             </form>
         )
     }
