@@ -1,7 +1,7 @@
 import React from 'react'
 import { GoogleMap, LoadScript, MarkerClusterer, Marker } from '@react-google-maps/api'
 import user from  "../../mockuser.js"
-
+const apiKey = process.env.REACT_APP_API_KEY
 
 const containerStyle = {
   height: '400px',
@@ -26,7 +26,7 @@ const truckLocations = createLocationList(user)
 const centerLocation = {lat: Number(user.data.attributes.lat), lng: Number(user.data.attributes.long)}
   return (
     <LoadScript
-      googleMapsApiKey="AIzaSyDhhYY1cdPqk1Uqa5xMhF2g_1evSW_J4RQ"
+      googleMapsApiKey={apiKey}
     >
       <GoogleMap
         mapContainerStyle={containerStyle}

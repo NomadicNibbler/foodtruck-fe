@@ -1,6 +1,5 @@
 import Header from './Header/Header'
 import MapView from './MapView/MapView'
-
 function App() {
   return (
     <div className="App">
