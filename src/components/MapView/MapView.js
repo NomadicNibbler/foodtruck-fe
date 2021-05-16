@@ -1,6 +1,7 @@
 import React from 'react'
 import { GoogleMap, LoadScript, MarkerClusterer, Marker } from '@react-google-maps/api'
 import user from  "../../mockuser.js"
+import truckIcon from '../../assets/food-truck.svg';
 const apiKey = process.env.REACT_APP_API_KEY
 
 const containerStyle = {
@@ -31,18 +32,24 @@ const centerLocation = {lat: Number(user.data.attributes.lat), lng: Number(user.
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={centerLocation}
-        zoom={12}
+        zoom={13}
       >
         <>
         <Marker
           position={centerLocation}
         />
-        <MarkerClusterer
-          averageCenter={centerLocation}
-        >
+        <MarkerClusterer>
             {(clusterer) =>
             truckLocations.map((location) => (
-              <Marker key={createKey(location)} position={location} clusterer={clusterer} />
+              <Marker 
+                key={createKey(location)} 
+                position={location} 
+                clusterer={clusterer}
+                icon={{
+                  url: truckIcon,
+                  scaledSize: new window.google.maps.Size(40, 40)
+                }} 
+              />
             ))
           }
         </MarkerClusterer>

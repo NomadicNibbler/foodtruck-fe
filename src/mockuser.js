@@ -11,14 +11,14 @@ const user = {
       {
         "id": "1",
         "lat": " 49.246292",
-        "long": "-123.116827",
+        "long": "-123.126827",
         "name": "truck_1",
         "distance": "2.4",
         "logo_small": "https:\/\/cdn.streetfoodapp.com\/images\/bc-taco\/logo\/90w_square.png"
       },
       {
         "id": "2",
-        "lat": "49.246292",
+        "lat": "49.243292",
         "long": "-123.116527",
         "name": "truck_2",
         "distance": "1.2",
