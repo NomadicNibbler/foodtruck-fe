@@ -1,13 +1,50 @@
-import Header from './Header/Header';
-import Form from './Form/Form';
+import Header from './Header/Header'
+import MapView from './MapView/MapView';
+import { Component } from 'react';
+import { Route } from 'react-router-dom';
+import user from  "../mockuser.js"
 
-function App() {
-  return (
-    <div className="App">
-      <Header/>
-      <Form />
-    </div>
-  );
+class App extends Component {
+  constructor() {
+    super() 
+    this.state = {
+      lat: 0, 
+      lng: 0, 
+      truckList: [],
+      radius: 5,
+    }
+  }
+  
+  // this will change to a method later when we connect the user form
+  componentDidMount() {
+    const lat =  Number(user.data.attributes.lat)
+    const lng = Number(user.data.attributes.long)
+    const truckList = this.createLocationList(user)
+    this.setState({lat: lat, lng: lng, truckList:[...this.state.truckList, ...truckList ]})
+  }
+
+  createLocationList = (user)  => {
+    const trucks = user.data.attributes.trucks
+    const truckList = trucks.map(truck => {
+      return {lat: Number(truck.lat), lng: Number(truck.long) }
+    });
+    return truckList
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <Header/>
+        <Route path="/map">
+          <MapView
+            truckList={this.state.truckList}
+            center={{lat: this.state.lat, lng: this.state.lng}}
+          />
+        </Route>
+      </div>
+    );
+  }
+  
 }
 
 export default App;
