@@ -24,6 +24,25 @@ class App extends Component {
     this.setState({lat: lat, lng: lng, truckList:[...this.state.truckList, ...truckList ]})
   }
 
+  createNewUser = (userName, first, last, address, city, zip) => {
+    const newUser = {
+      username: userName, 
+      first_name: first, 
+      last_name: last, 
+      address: address, 
+      city: city, 
+      zipcode: zip
+    }
+    console.log(newUser)
+    fetch("https://warm-scrubland-95764.herokuapp.com/api/v1/users", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(newUser)
+    }) 
+    .then(response => response.json())
+    .then(data => console.log(data))
+  }
+
   createLocationList = (user)  => {
     const trucks = user.data.attributes.trucks
     const truckList = trucks.map(truck => {
@@ -44,7 +63,9 @@ class App extends Component {
             <Form />
           </Route>
           <Route exact path="/newuser">
-            <Form/>
+            <Form
+              createNewUser={this.createNewUser}
+            />
           </Route>
           <Route exact path="/newlocation">
             <Form/>
