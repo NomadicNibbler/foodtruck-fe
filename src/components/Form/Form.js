@@ -15,6 +15,8 @@ const Form = () => {
             clearInputs()
         } else if (location === '/login' && userName) {
             clearInputs()
+        } else if (location === '/newlocation' && address && city && zip.length === 5) {
+            clearInputs()
         } else {
             e.preventDefault()
         }
@@ -31,7 +33,7 @@ const Form = () => {
 
     return (
         <form>
-            {location === '/login' && 
+            {location === '/login' &&
                 <input
                     name='username'
                     placeholder='User Name'
@@ -41,12 +43,13 @@ const Form = () => {
                 />
             }
 
-            {location === '/newuser' && <input
-                name='first'
-                placeholder='First Name'
-                type='text'
-                value={first}
-                onChange={ e => setFirst(e.target.value) }
+            {location === '/newuser' &&
+                <input
+                    name='first'
+                    placeholder='First Name'
+                    type='text'
+                    value={first}
+                    onChange={ e => setFirst(e.target.value) }
                 />
             }
 
@@ -61,7 +64,7 @@ const Form = () => {
                 />
             }
 
-            {location === '/newuser' &&
+            {(location === '/newuser' || location === '/newlocation') &&
                 <input
                     name='address'
                     placeholder='Address'
@@ -71,7 +74,7 @@ const Form = () => {
                 />
             }
 
-            {location === '/newuser' &&
+            {(location === '/newuser' || location === '/newlocation') &&
                 <input 
                     name='city'
                     placeholder='City'
@@ -80,7 +83,8 @@ const Form = () => {
                     onChange={ e => setCity(e.target.value) }
                 />
             }
-            {location === '/newuser' &&
+
+            {(location === '/newuser' || location === '/newlocation') &&
                 <input 
                     name='zip'
                     placeholder='Zip Code'
@@ -89,17 +93,20 @@ const Form = () => {
                     onChange={ e => setZip(e.target.value) }
                 />
             }
+
             {location === '/login' &&
                 <Link to='/map'>
                     <button onClick={handleSubmit}>Login</button>
                 </Link>
             }
+
             {location === '/login' &&
                 <Link to='/newuser'>
                     <button>New User?</button>
                 </Link>
             }
-            {location === '/newuser' &&
+
+            {(location === '/newuser' || location === '/newlocation') &&
                 <Link to='/map'>
                     <button onClick={handleSubmit}>Let's Eat!</button>
                 </Link>
