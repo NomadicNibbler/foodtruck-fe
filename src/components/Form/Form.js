@@ -34,14 +34,15 @@ const Form = () => {
     return (
         <form>
             {location === '/newuser' &&
-            <h2 className='form-prompt'>Please enter your user information</h2>}
+            <h2 className='form-prompt' data-cy='newuser-prompt'>Please enter your user information</h2>}
             {location === '/login' &&
-            <h2 className='form-prompt'>Please enter your username</h2>}
+                <h2 className='form-prompt' data-cy='login-prompt'>Please enter your username</h2>}
             {location === '/newlocation' &&
-            <h2 className='form-prompt'>Please enter your desired location</h2>}
+            <h2 className='form-prompt' data-cy='location-prompt'>Please enter your desired location</h2>}
 
             {(location === '/login' || location === '/newuser') &&
                 <input
+                    data-cy='username-input'
                     name='username'
                     placeholder='User Name'
                     type='text'
@@ -53,6 +54,7 @@ const Form = () => {
 
             {location === '/newuser' &&
                 <input
+                    data-cy='first-name-input'
                     name='first'
                     placeholder='First Name'
                     type='text'
@@ -63,6 +65,7 @@ const Form = () => {
 
             {location === '/newuser' &&
                 <input 
+                    data-cy='last-name-input'
                     name='last'
                     placeholder='Last Name'
                     type='text'
@@ -74,6 +77,7 @@ const Form = () => {
 
             {(location === '/newuser' || location === '/newlocation') &&
                 <input
+                    data-cy='address-input'
                     name='address'
                     placeholder='Address'
                     type='text'
@@ -84,6 +88,7 @@ const Form = () => {
 
             {(location === '/newuser' || location === '/newlocation') &&
                 <input 
+                    data-cy='city-input'
                     name='city'
                     placeholder='City'
                     type='text'
@@ -94,6 +99,7 @@ const Form = () => {
 
             {(location === '/newuser' || location === '/newlocation') &&
                 <input 
+                    data-cy='zip-input'
                     name='zip'
                     placeholder='Zip Code'
                     type='text'
@@ -104,7 +110,7 @@ const Form = () => {
 
             {location === '/login' &&
                 <Link to='/map'>
-                    <button className="button" onClick={handleSubmit}>Login</button>
+                <button className="button" data-cy='login-button' onClick={handleSubmit}>Login</button>
                 </Link>
             }
 
@@ -113,13 +119,13 @@ const Form = () => {
 
             {location === '/login' &&
                 <Link to='/newuser'>
-                    <button className='button'>New User?</button>
+                <button className='button' data-cy='new-user-button'>New User?</button>
                 </Link>
             }
 
             {(location === '/newuser' || location === '/newlocation') &&
                 <Link to='/map'>
-                    <button className='button' onClick={handleSubmit}>Let's Eat!</button>
+                <button className='button' data-cy='lets-eat-button' onClick={handleSubmit}>Let's Eat!</button>
                 </Link>
             }
         </form>

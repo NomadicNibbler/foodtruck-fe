@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <>
     <header className="header">
-      <h1 className="header-title">The Nomadic Nibbler</h1>
+      <h1 className="header-title" data-cy='title'>The Nomadic Nibbler</h1>
       <Link to='/'>
         <FoodTruck className="food-truck-img"/>
       </Link>
