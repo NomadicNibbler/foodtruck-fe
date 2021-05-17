@@ -16,9 +16,17 @@ describe('The Nomadic Nibbler landing page', () => {
     it('Should allow user to go to the the new user page', () => {
         cy.get('[data-cy=new-user-button]').click().url().should('eq', 'http://localhost:3000/newuser')
     })
+
+    it('Should not allow a user to login without entering information in the username field', () => {
+        cy.get('[data-cy=login-button]').click().url().should('eq', 'http://localhost:3000/login')
+    })
 })
 
 describe('New user page', () => {
+    beforeEach(() => {
+        cy.visit('http://localhost:3000/newuser')
+    })
+
     it('should not allow a user to click the let\'s eat button without entering all of the fields', () => {
         cy.get('[data-cy=title]').contains('The Nomadic Nibbler')
         cy.get('[data-cy=newuser-prompt]').contains('Please enter your user information')
