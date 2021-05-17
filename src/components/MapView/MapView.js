@@ -16,7 +16,7 @@ return (
         <Link to="/trucklist">
           <button className="button">Truck List</button>
         </Link>
-        <Link to="/userform">
+        <Link to="/newlocation">
           <button className="button">Change Location</button>
         </Link>
       </div>

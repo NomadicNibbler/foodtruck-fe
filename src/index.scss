@@ -2,7 +2,9 @@
 @import './partials/_variables.scss';
 @import './components/App.scss';
 @import './components/Header/Header.scss';
+@import './components/Form/Form.scss';
 @import './components/MapView/MapView.scss';
+@import './components/Form/Form.scss';
 
 body {
   font-size: 62.5%;
@@ -22,4 +24,5 @@ body {
   border-radius: 5px;  
   font-size: 1.4em; 
   font-weight: 600;
+  cursor: pointer;
 }

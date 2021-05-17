@@ -1,8 +1,9 @@
 import Header from './Header/Header'
 import MapView from './MapView/MapView';
 import { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import user from  "../mockuser.js"
+import Form from './Form/Form';
 
 class App extends Component {
   constructor() {
@@ -35,12 +36,29 @@ class App extends Component {
     return (
       <div className="App">
         <Header/>
-        <Route path="/map">
-          <MapView
-            truckList={this.state.truckList}
-            center={{lat: this.state.lat, lng: this.state.lng}}
-          />
-        </Route>
+        <Switch>
+          <Route exact path='/'>
+            <Redirect to='/login'/>
+          </Route>
+          <Route exact path='/login'>
+            <Form />
+          </Route>
+          <Route exact path="/newuser">
+            <Form/>
+          </Route>
+          <Route exact path="/newlocation">
+            <Form/>
+          </Route>
+          <Route exact path="/trucklist">
+            <h2>Truck List</h2>
+          </Route>
+          <Route exact path="/map">
+            <MapView
+              truckList={this.state.truckList}
+              center={{lat: this.state.lat, lng: this.state.lng}}
+            />
+          </Route>
+        </Switch>
       </div>
     );
   }

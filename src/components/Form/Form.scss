@@ -1,0 +1,45 @@
+form {
+    background: $dark-blue-green;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+    width: 50%;
+    box-shadow: 10px 10px $yellow;
+    min-height: 500px;
+    border-radius: 10px;
+    margin: 80px;
+    min-width: 300px;
+    text-align: center;
+}
+
+.filler-text {
+    font-size: 1.5em;
+}
+
+.form-prompt {
+    // font-family: 'Lakki Reddy', cursive;
+    font-size: 2em;
+    justify-self: start;
+}
+
+.form-prompt {
+    // font-family: 'Lakki Reddy', cursive;
+    font-size: 2em;
+    justify-self: start;
+}
+
+input {
+    background: $light-blue-green;
+    text-decoration-color: $yellow;
+    border-radius: 5px;
+    height: 30px;
+    width: 200px;
+    font-size: 1.5em;
+}
+
+input::placeholder {
+    // font-family: 'Lakki Reddy', cursive;
+    font-size: 1em;
+}
