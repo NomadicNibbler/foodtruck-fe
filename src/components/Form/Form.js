@@ -33,7 +33,7 @@ const Form = () => {
 
     return (
         <form>
-            {location === '/login' &&
+            {(location === '/login' || location === '/newuser') &&
                 <input
                     name='username'
                     placeholder='User Name'
