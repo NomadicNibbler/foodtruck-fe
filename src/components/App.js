@@ -4,7 +4,7 @@ import { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import user from  "../mockuser.js"
 import Form from './Form/Form';
-import { fetchUserName } from '../apiCalls.js'
+import { fetchUserName, fetchNewUser } from '../apiCalls.js'
 
 class App extends Component {
   constructor() {
@@ -28,7 +28,7 @@ class App extends Component {
   loginUser = (userName) => {
     fetchUserName(userName)
     .then(data => console.log(data))
-    .catch(error => console.log(error))
+    .catch(error => console.log("error"))
   }
 
   createNewUser = (userName, first, last, address, city, zip) => {
@@ -40,13 +40,9 @@ class App extends Component {
       city: city, 
       zipcode: zip
     }
-    fetch("https://warm-scrubland-95764.herokuapp.com/api/v1/users", {
-      method: "POST",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify(newUser)
-    }) 
-    .then(response => response.json())
+    fetchNewUser(newUser)
     .then(data => console.log(data))
+    .catch(error => console.log("error"))
   }
 
   createLocationList = (user)  => {
