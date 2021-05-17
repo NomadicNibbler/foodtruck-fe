@@ -46,7 +46,7 @@ class App extends Component {
             <Route exact path="/newuser">
               <Form/>
             </Route>
-            <Route exact path="/location">
+            <Route exact path="/newlocation">
               <Form/>
             </Route>
             <Route exact path="/trucklist">

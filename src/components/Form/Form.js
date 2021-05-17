@@ -11,10 +11,12 @@ const Form = () => {
     const [zip, setZip] = useState('')
    
     const handleSubmit = e => {
-        if (first && last && address && city && zip.length === 5) {
-            clearInputs();
+        if (location === '/newuser' && first && last && address && city && zip.length === 5) {
+            clearInputs()
+        } else if (location === '/login' && userName) {
+            clearInputs()
         } else {
-            e.preventDefault();
+            e.preventDefault()
         }
     }
 
@@ -99,7 +101,7 @@ const Form = () => {
             }
             {location === '/newuser' &&
                 <Link to='/map'>
-                    <button>Let's Eat!</button>
+                    <button onClick={handleSubmit}>Let's Eat!</button>
                 </Link>
             }
         </form>
