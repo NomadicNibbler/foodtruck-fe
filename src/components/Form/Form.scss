@@ -11,10 +11,15 @@ form {
     border-radius: 10px;
     margin: 80px;
     min-width: 300px;
+    text-align: center;
+}
+
+.filler-text {
+    font-size: 1.5em;
 }
 
 .form-prompt {
-    font-family: 'Lakki Reddy', cursive;
+    // font-family: 'Lakki Reddy', cursive;
     font-size: 2em;
     justify-self: start;
 }
@@ -29,6 +34,6 @@ input {
 }
 
 input::placeholder {
-    font-family: 'Lakki Reddy', cursive;
+    // font-family: 'Lakki Reddy', cursive;
     font-size: 1em;
 }

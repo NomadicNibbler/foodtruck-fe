@@ -109,6 +109,9 @@ const Form = () => {
             }
 
             {location === '/login' &&
+            <p className='filler-text'>or are you a</p>}
+
+            {location === '/login' &&
                 <Link to='/newuser'>
                     <button className='button'>New User?</button>
                 </Link>
