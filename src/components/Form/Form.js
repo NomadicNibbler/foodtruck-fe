@@ -1,93 +1,94 @@
-import { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { useState } from 'react';
+const Form = () => {
 
-class Form extends Component {
-    constructor() {
-        super()
-        this.state = {
-            username: '',
-            first: '',
-            last: '',
-            address: '',
-            city: '',
-            zip: ''
-        }
-    }
-
-    handleSubmit = e => {
-        if (this.state.first && this.state.last && this.state.address && this.state.city && this.state.zip.length === 5) {
-            this.clearInputs();
+    const location = useLocation().pathname
+    const [userName, setUserName] = useState('')
+    const [first, setFirst] = useState('')
+    const [last, setLast] = useState('')
+    const [address, setAddress] = useState('')
+    const [city, setCity] = useState('')
+    const [zip, setZip] = useState('')
+   
+    const handleSubmit = e => {
+        if (first && last && address && city && zip.length === 5) {
+            clearInputs();
         } else {
             e.preventDefault();
         }
     }
 
-    handleChange = e => {
-        this.setState({ [e.target.name]: e.target.value })
+    // handleChange = e => {
+    //     this.setState({ [e.target.name]: e.target.value })
+    // }
+
+    const clearInputs = () => {
+        setUserName('')
+        setFirst('')
+        setLast('')
+        setAddress('')
+        setCity('')
+        setZip('')
     }
 
-    clearInputs = () => {
-        this.setState({ first: '', last: '', address: '', city: '', zip: ''})
-    }
-
-    render() {
-        return (
-            <form>
+    return (
+        <form>
+            {location === '/login' && 
                 <input
                     name='username'
                     placeholder='User Name'
                     type='text'
-                    value={this.state.username}
-                    onChange={this.handleChange}
+                    value={userName}
+                    onChange={ e => setUserName(e.target.value) }
                 />
-                <input
-                    name='first'
-                    placeholder='First Name'
-                    type='text'
-                    value={this.state.first}
-                    onChange={this.handleChange}
-                 />
-                <input 
-                    name='last'
-                    placeholder='Last Name'
-                    type='text'
-                    value={this.state.last}
-                    onChange={this.handleChange}
+            }
+            <input
+                name='first'
+                placeholder='First Name'
+                type='text'
+                value={first}
+                onChange={ e => setFirst(e.target.value) }
+                />
+            <input 
+                name='last'
+                placeholder='Last Name'
+                type='text'
+                value={last}
+                onChange={ e => setLast(e.target.value) }
 
+            />
+            <input
+                name='address'
+                placeholder='Address'
+                type='text'
+                value={address}
+                onChange={ e => setAddress(e.target.value) }
                 />
-                <input
-                    name='address'
-                    placeholder='Address'
-                    type='text'
-                    value={this.state.address}
-                    onChange={this.handleChange}
-                 />
-                <input 
-                    name='city'
-                    placeholder='City'
-                    type='text'
-                    value={this.state.city}
-                    onChange={this.handleChange}
-                />
-                <input 
-                    name='zip'
-                    placeholder='Zip Code'
-                    type='text'
-                    value={this.state.zip}
-                    onChange={this.handleChange}
-                />
-                <Link to='/map'>
-                    <button onClick={this.handleSubmit}>Login</button>
-                </Link>
-                <Link to='/newuser'>
-                    <button>New User?</button>
-                </Link>
-                <Link to='/map'>
-                    <button>Let's Eat!</button>
-                </Link>
-            </form>
-        )
-    }
+            <input 
+                name='city'
+                placeholder='City'
+                type='text'
+                value={city}
+                onChange={ e => setCity(e.target.value) }
+            />
+            <input 
+                name='zip'
+                placeholder='Zip Code'
+                type='text'
+                value={zip}
+                onChange={ e => setZip(e.target.value) }
+            />
+            <Link to='/map'>
+                <button onClick={handleSubmit}>Login</button>
+            </Link>
+            <Link to='/newuser'>
+                <button>New User?</button>
+            </Link>
+            <Link to='/map'>
+                <button>Let's Eat!</button>
+            </Link>
+        </form>
+    )
 }
 
 export default Form;
