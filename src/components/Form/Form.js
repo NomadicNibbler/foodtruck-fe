@@ -54,6 +54,7 @@ const Form = () => {
 
             {location === '/newuser' &&
                 <input
+                    data-cy='first-name-input'
                     name='first'
                     placeholder='First Name'
                     type='text'
@@ -64,6 +65,7 @@ const Form = () => {
 
             {location === '/newuser' &&
                 <input 
+                    data-cy='last-name-input'
                     name='last'
                     placeholder='Last Name'
                     type='text'
@@ -75,6 +77,7 @@ const Form = () => {
 
             {(location === '/newuser' || location === '/newlocation') &&
                 <input
+                    data-cy='address-input'
                     name='address'
                     placeholder='Address'
                     type='text'
@@ -85,6 +88,7 @@ const Form = () => {
 
             {(location === '/newuser' || location === '/newlocation') &&
                 <input 
+                    data-cy='city-input'
                     name='city'
                     placeholder='City'
                     type='text'
@@ -95,6 +99,7 @@ const Form = () => {
 
             {(location === '/newuser' || location === '/newlocation') &&
                 <input 
+                    data-cy='zip-input'
                     name='zip'
                     placeholder='Zip Code'
                     type='text'
