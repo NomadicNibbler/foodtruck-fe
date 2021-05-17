@@ -36,29 +36,29 @@ class App extends Component {
     return (
       <div className="App">
         <Header/>
-          <Switch>
-            <Route exact path='/'>
-              <Redirect to='/login'/>
-            </Route>
-            <Route exact path='/login'>
-              <Form />
-            </Route>
-            <Route exact path="/newuser">
-              <Form/>
-            </Route>
-            <Route exact path="/newlocation">
-              <Form/>
-            </Route>
-            <Route exact path="/trucklist">
-              <h2>Truck List</h2>
-            </Route>
-            <Route exact path="/map">
-              <MapView
-                truckList={this.state.truckList}
-                center={{lat: this.state.lat, lng: this.state.lng}}
-              />
-            </Route>
-          </Switch>
+        <Switch>
+          <Route exact path='/'>
+            <Redirect to='/login'/>
+          </Route>
+          <Route exact path='/login'>
+            <Form />
+          </Route>
+          <Route exact path="/newuser">
+            <Form/>
+          </Route>
+          <Route exact path="/newlocation">
+            <Form/>
+          </Route>
+          <Route exact path="/trucklist">
+            <h2>Truck List</h2>
+          </Route>
+          <Route exact path="/map">
+            <MapView
+              truckList={this.state.truckList}
+              center={{lat: this.state.lat, lng: this.state.lng}}
+            />
+          </Route>
+        </Switch>
       </div>
     );
   }
