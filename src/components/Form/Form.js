@@ -18,10 +18,6 @@ const Form = () => {
         }
     }
 
-    // handleChange = e => {
-    //     this.setState({ [e.target.name]: e.target.value })
-    // }
-
     const clearInputs = () => {
         setUserName('')
         setFirst('')
@@ -42,51 +38,70 @@ const Form = () => {
                     onChange={ e => setUserName(e.target.value) }
                 />
             }
-            <input
+
+            {location === '/newuser' && <input
                 name='first'
                 placeholder='First Name'
                 type='text'
                 value={first}
                 onChange={ e => setFirst(e.target.value) }
                 />
-            <input 
-                name='last'
-                placeholder='Last Name'
-                type='text'
-                value={last}
-                onChange={ e => setLast(e.target.value) }
+            }
 
-            />
-            <input
-                name='address'
-                placeholder='Address'
-                type='text'
-                value={address}
-                onChange={ e => setAddress(e.target.value) }
+            {location === '/newuser' &&
+                <input 
+                    name='last'
+                    placeholder='Last Name'
+                    type='text'
+                    value={last}
+                    onChange={ e => setLast(e.target.value) }
+
                 />
-            <input 
-                name='city'
-                placeholder='City'
-                type='text'
-                value={city}
-                onChange={ e => setCity(e.target.value) }
-            />
-            <input 
-                name='zip'
-                placeholder='Zip Code'
-                type='text'
-                value={zip}
-                onChange={ e => setZip(e.target.value) }
-            />
-            <Link to='/map'>
-                <button onClick={handleSubmit}>Login</button>
-            </Link>
-            <Link to='/newuser'>
-                <button>New User?</button>
-            </Link>
-            <Link to='/map'>
-                <button>Let's Eat!</button>
-            </Link>
+            }
+
+            {location === '/newuser' &&
+                <input
+                    name='address'
+                    placeholder='Address'
+                    type='text'
+                    value={address}
+                    onChange={ e => setAddress(e.target.value) }
+                />
+            }
+
+            {location === '/newuser' &&
+                <input 
+                    name='city'
+                    placeholder='City'
+                    type='text'
+                    value={city}
+                    onChange={ e => setCity(e.target.value) }
+                />
+            }
+            {location === '/newuser' &&
+                <input 
+                    name='zip'
+                    placeholder='Zip Code'
+                    type='text'
+                    value={zip}
+                    onChange={ e => setZip(e.target.value) }
+                />
+            }
+            {location === '/login' &&
+                <Link to='/map'>
+                    <button onClick={handleSubmit}>Login</button>
+                </Link>
+            }
+            {location === '/login' &&
+                <Link to='/newuser'>
+                    <button>New User?</button>
+                </Link>
+            }
+            {location === '/newuser' &&
+                <Link to='/map'>
+                    <button>Let's Eat!</button>
+                </Link>
+            }
         </form>
     )
 }
