@@ -45,6 +45,13 @@ describe('New user page', () => {
     })
 
     it('Should only allow a 5 digit input for zip code', () => {
-
+        cy.get('[data-cy=newuser-prompt]').contains('Please enter your user information')
+        cy.get('[data-cy=username-input]').type('teddybare').should('have.value', 'teddybare')
+        cy.get('[data-cy=first-name-input]').type('tedd').should('have.value', 'tedd')
+        cy.get('[data-cy=last-name-input]').type('barely').should('have.value', 'barely')
+        cy.get('[data-cy=address-input]').type('123 fake street').should('have.value', '123 fake street')
+        cy.get('[data-cy=city-input]').type('nowhere').should('have.value', 'nowhere')
+        cy.get('[data-cy=zip-input]').type('1234').should('have.value', '1234')
+        cy.get('[data-cy=lets-eat-button]').click().url().should('eq', 'http://localhost:3000/newuser')
     })
 })
