@@ -120,7 +120,7 @@ const Form = () => {
 
             {(location === '/newuser' || location === '/newlocation') &&
                 <Link to='/map'>
-                    <button className='button' onClick={handleSubmit}>Let's Eat!</button>
+                <button className='button' data-cy='lets-eat-button' onClick={handleSubmit}>Let's Eat!</button>
                 </Link>
             }
         </form>
