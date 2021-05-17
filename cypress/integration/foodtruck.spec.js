@@ -69,3 +69,25 @@ describe('Map view', () => {
         cy.get('[data-cy=change-location-button]').click().url().should('eq', 'http://localhost:3000/newlocation')
     })
 })
+
+describe('New location view', () => {
+    beforeEach(() => {
+        cy.visit('http://localhost:3000/newlocation')
+    })
+
+    it('Should allow the user to enter a new location and navigate back to the map page', () => {
+        cy.get('[data-cy=location-prompt]').contains('Please enter your desired location')
+        cy.get('[data-cy=address-input').type('555 Jimmy Street').should('have.value', '555 Jimmy Street')
+        cy.get('[data-cy=city-input]').type('Barcelona').should('have.value', 'Barcelona')
+        cy.get('[data-cy=zip-input]').type('54321').should('have.value', '54321')
+        cy.get('[data-cy=lets-eat-button').click().url().should('eq', 'http://localhost:3000/map')
+    })
+
+    it('Should not allow a user to submit their information without entering all fields, and meeting the 5 character zip requirement', () => {
+        cy.get('[data-cy=location-prompt]').contains('Please enter your desired location')
+        cy.get('[data-cy=address-input').type('555 Jimmy Street').should('have.value', '555 Jimmy Street')
+        cy.get('[data-cy=city-input]').type('Barcelona').should('have.value', 'Barcelona')
+        cy.get('[data-cy=zip-input]').type('5432').should('have.value', '5432')
+        cy.get('[data-cy=lets-eat-button').click().url().should('eq', 'http://localhost:3000/newlocation')
+    })
+})
