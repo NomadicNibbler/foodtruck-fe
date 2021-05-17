@@ -56,8 +56,8 @@ const Form = () => {
                     name='username'
                     placeholder='User Name'
                     type='text'
-                    value={this.state.username}
-                    onChange={this.handleChange}
+                    value={userName}
+                    onChange={ e => setUserName(e.target.value) }
                 />
                 <input
                     name='first'
