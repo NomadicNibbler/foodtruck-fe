@@ -96,19 +96,19 @@ const Form = () => {
 
             {location === '/login' &&
                 <Link to='/map'>
-                    <button onClick={handleSubmit}>Login</button>
+                    <button className="button" onClick={handleSubmit}>Login</button>
                 </Link>
             }
 
             {location === '/login' &&
                 <Link to='/newuser'>
-                    <button>New User?</button>
+                    <button className='button'>New User?</button>
                 </Link>
             }
 
             {(location === '/newuser' || location === '/newlocation') &&
                 <Link to='/map'>
-                    <button onClick={handleSubmit}>Let's Eat!</button>
+                    <button className='button' onClick={handleSubmit}>Let's Eat!</button>
                 </Link>
             }
         </form>
