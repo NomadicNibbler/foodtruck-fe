@@ -24,6 +24,16 @@ class App extends Component {
     this.setState({lat: lat, lng: lng, truckList:[...this.state.truckList, ...truckList ]})
   }
 
+  loginUser = (userName) => {
+    fetch("https://warm-scrubland-95764.herokuapp.com/api/v1/sessions", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({username: userName})
+    }) 
+    .then(response => response.json())
+    .then(data => console.log(data))
+  }
+
   createNewUser = (userName, first, last, address, city, zip) => {
     const newUser = {
       username: userName, 
@@ -33,7 +43,6 @@ class App extends Component {
       city: city, 
       zipcode: zip
     }
-    console.log(newUser)
     fetch("https://warm-scrubland-95764.herokuapp.com/api/v1/users", {
       method: "POST",
       headers: {"Content-Type": "application/json"},
@@ -60,7 +69,9 @@ class App extends Component {
             <Redirect to='/login'/>
           </Route>
           <Route exact path='/login'>
-            <Form />
+            <Form 
+              loginUser={this.loginUser}
+            />
           </Route>
           <Route exact path="/newuser">
             <Form
