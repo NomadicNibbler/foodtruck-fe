@@ -43,6 +43,15 @@ class App extends Component {
             <Route exact path='/login'>
               <Form />
             </Route>
+            <Route exact path="/newuser">
+              <Form/>
+            </Route>
+            <Route exact path="/location">
+              <Form/>
+            </Route>
+            <Route exact path="/trucklist">
+              <h2>Truck List</h2>
+            </Route>
             <Route exact path="/map">
               <MapView
                 truckList={this.state.truckList}
