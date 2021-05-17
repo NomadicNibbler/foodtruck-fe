@@ -50,12 +50,13 @@ const Form = () => {
                 />
             }
 
-            {location === '/newuser' && <input
-                name='first'
-                placeholder='First Name'
-                type='text'
-                value={first}
-                onChange={ e => setFirst(e.target.value) }
+            {location === '/newuser' &&
+                <input
+                    name='first'
+                    placeholder='First Name'
+                    type='text'
+                    value={first}
+                    onChange={ e => setFirst(e.target.value) }
                 />
             }
 
@@ -70,7 +71,7 @@ const Form = () => {
                 />
             }
 
-            {location === '/newuser' &&
+            {(location === '/newuser' || location === '/newlocation') &&
                 <input
                     name='address'
                     placeholder='Address'
@@ -80,7 +81,7 @@ const Form = () => {
                 />
             }
 
-            {location === '/newuser' &&
+            {(location === '/newuser' || location === '/newlocation') &&
                 <input 
                     name='city'
                     placeholder='City'
@@ -89,7 +90,8 @@ const Form = () => {
                     onChange={ e => setCity(e.target.value) }
                 />
             }
-            {location === '/newuser' &&
+
+            {(location === '/newuser' || location === '/newlocation') &&
                 <input 
                     name='zip'
                     placeholder='Zip Code'
