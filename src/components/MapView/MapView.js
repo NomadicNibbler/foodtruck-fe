@@ -14,10 +14,10 @@ return (
     <main>
       <div className="map-buttons-container">
         <Link to="/trucklist">
-          <button className="button">Truck List</button>
+          <button className="button" data-cy='truck-list-button'>Truck List</button>
         </Link>
         <Link to="/newlocation">
-          <button className="button">Change Location</button>
+          <button className="button" data-cy='change-location-button'>Change Location</button>
         </Link>
       </div>
       <section className="map-container">

@@ -55,3 +55,17 @@ describe('New user page', () => {
         cy.get('[data-cy=lets-eat-button]').click().url().should('eq', 'http://localhost:3000/newuser')
     })
 })
+
+describe('Map view', () => {
+    beforeEach(() => {
+        cy.visit('http://localhost:3000/map')
+    })
+
+    it('Should allow the user to navigate to the truck list', () => {
+        cy.get('[data-cy=truck-list-button').click().url().should('eq', 'http://localhost:3000/trucklist')
+    })
+
+    it('Should allow the user to navigate to the new location page', () => {
+        cy.get('[data-cy=change-location-button]').click().url().should('eq', 'http://localhost:3000/newlocation')
+    })
+})
