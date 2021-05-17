@@ -33,6 +33,13 @@ const Form = () => {
 
     return (
         <form>
+            {location === '/newuser' &&
+            <h2 className='input-prompt'>Please enter your user information.</h2>}
+            {location === '/login' &&
+            <h2 className='input-prompt'>Please enter your username.</h2>}
+            {location === '/newlocation' &&
+            <h2 className='input-prompt'>Please enter your desired location.</h2>}
+
             {(location === '/login' || location === '/newuser') &&
                 <input
                     name='username'
@@ -42,6 +49,7 @@ const Form = () => {
                     onChange={ e => setUserName(e.target.value) }
                 />
             }
+
 
             {location === '/newuser' &&
                 <input
