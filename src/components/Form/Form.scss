@@ -17,8 +17,10 @@ input {
     border-radius: 5px;
     height: 30px;
     width: 200px;
+    font-size: 1.5em;
 }
 
 input::placeholder {
     font-family: 'Lakki Reddy', cursive;
+    font-size: 1em;
 }
