@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
-const Form = () => {
+const Form = ({ createNewUser, loginUser }) => {
 
     const location = useLocation().pathname
     const [userName, setUserName] = useState('')
@@ -12,8 +12,10 @@ const Form = () => {
    
     const handleSubmit = e => {
         if (location === '/newuser' && first && last && address && city && zip.length === 5) {
+            createNewUser(userName, first, last, address, city, zip)
             clearInputs()
         } else if (location === '/login' && userName) {
+            loginUser(userName)
             clearInputs()
         } else if (location === '/newlocation' && address && city && zip.length === 5) {
             clearInputs()

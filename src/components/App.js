@@ -4,6 +4,7 @@ import { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import user from  "../mockuser.js"
 import Form from './Form/Form';
+import { fetchUserName, fetchNewUser } from '../apiCalls.js'
 
 class App extends Component {
   constructor() {
@@ -24,6 +25,26 @@ class App extends Component {
     this.setState({lat: lat, lng: lng, truckList:[...this.state.truckList, ...truckList ]})
   }
 
+  loginUser = (userName) => {
+    fetchUserName(userName)
+    .then(data => console.log(data))
+    .catch(error => console.log("error"))
+  }
+
+  createNewUser = (userName, first, last, address, city, zip) => {
+    const newUser = {
+      username: userName, 
+      first_name: first, 
+      last_name: last, 
+      address: address, 
+      city: city, 
+      zipcode: zip
+    }
+    fetchNewUser(newUser)
+    .then(data => console.log(data))
+    .catch(error => console.log("error"))
+  }
+
   createLocationList = (user)  => {
     const trucks = user.data.attributes.trucks
     const truckList = trucks.map(truck => {
@@ -41,10 +62,14 @@ class App extends Component {
             <Redirect to='/login'/>
           </Route>
           <Route exact path='/login'>
-            <Form />
+            <Form 
+              loginUser={this.loginUser}
+            />
           </Route>
           <Route exact path="/newuser">
-            <Form/>
+            <Form
+              createNewUser={this.createNewUser}
+            />
           </Route>
           <Route exact path="/newlocation">
             <Form/>
