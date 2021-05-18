@@ -1,7 +1,6 @@
 import TruckCard from '../TruckCard/TruckCard';
 
 const TruckList = ({ truckList }) => {
-        console.log(truckList)
     return (
         <>
             <h2>Truck List</h2>
