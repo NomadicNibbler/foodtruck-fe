@@ -15,6 +15,7 @@ class App extends Component {
       lng: 0, 
       truckList: [],
       radius: 5,
+      trucks:[]
     }
   }
   
@@ -23,7 +24,7 @@ class App extends Component {
     const lat =  Number(user.data.attributes.lat)
     const lng = Number(user.data.attributes.long)
     const truckList = this.createLocationList(user)
-    this.setState({lat: lat, lng: lng, truckList:[...this.state.truckList, ...truckList ]})
+    this.setState({lat: lat, lng: lng, truckList:[...this.state.truckList, ...truckList ], trucks:[...this.state.trucks, ...user.data.attributes.trucks]})
   }
 
   loginUser = (userName) => {
@@ -76,7 +77,7 @@ class App extends Component {
             <Form/>
           </Route>
           <Route exact path="/trucklist">
-            <TruckList/>
+            <TruckList truckList={this.state.trucks}/>
           </Route>
           <Route exact path="/map">
             <MapView

@@ -1,10 +1,15 @@
 import TruckCard from '../TruckCard/TruckCard';
 
-const TruckList = () => {
+const TruckList = ({ truckList }) => {
+        console.log(truckList)
     return (
         <>
             <h2>Truck List</h2>
-            <TruckCard />
+            {truckList.map(truck => {
+                return <TruckCard
+                        key={truck.id}
+                />
+            })}
         </>
     )
 }

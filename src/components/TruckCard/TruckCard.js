@@ -1,5 +1,7 @@
 const TruckCard = () => {
-    return null
+    return (
+        <p>toots</p>
+    )
 }
 
 export default TruckCard;
