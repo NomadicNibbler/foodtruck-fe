@@ -1,5 +1,6 @@
 import React from 'react';
 import truck from '../../mocktruck.js';
+import SocialMediaLinks from '../SocialMediaLinks/SocialMediaLinks';
 
 const TruckDetails = () => {
   console.log(truck)
@@ -12,7 +13,9 @@ const TruckDetails = () => {
           <a href={truck.data.attributes.website} className="truck-website">{truck.data.attributes.website}</a>
         </div>
       </article>
-      <p>Come visit us!</p>
+      <SocialMediaLinks
+        links={truck.data.attributes.socials}
+      />
       <p className="truck-description-intro">About Us:</p>
       <p className="truck-description">{truck.data.attributes.description}</p>
     </section>
