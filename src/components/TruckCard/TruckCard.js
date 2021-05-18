@@ -1,6 +1,7 @@
-const TruckCard = () => {
+const TruckCard = ({ logo, distance, name, id }) => {
     return (
-        <p>toots</p>
+        
+        <p>{name}</p>
     )
 }
 

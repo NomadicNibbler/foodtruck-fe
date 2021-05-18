@@ -8,6 +8,10 @@ const TruckList = ({ truckList }) => {
             {truckList.map(truck => {
                 return <TruckCard
                         key={truck.id}
+                        id={truck.id}
+                        logo={truck.logo_small}
+                        distance={truck.distance}
+                        name={truck.name}
                 />
             })}
         </>
