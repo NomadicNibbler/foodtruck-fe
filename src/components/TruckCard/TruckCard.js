@@ -1,8 +1,8 @@
 const TruckCard = ({ logo, distance, name, id }) => {
     return (
-        <div id={id}>
+        <div className='truck-card' id={id}>
             <p>{name}</p>
-            <img src='logo'/>
+            <img src={logo}/>
             <p>{`${distance} miles`}</p>
         </div>
     )
