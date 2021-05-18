@@ -1,0 +1,12 @@
+.social-link-list {
+  display: flex; 
+  justify-content: space-around;
+  padding: 0px;  
+  list-style-type: none;
+}
+
+.social-media-icon {
+  color: $light-blue-green; 
+  height: 35px; 
+  width: 35px; 
+}
