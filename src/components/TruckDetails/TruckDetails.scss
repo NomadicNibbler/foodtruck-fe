@@ -1,24 +1,47 @@
 .truck-details-container {
   width: 95%; 
+  font-size: 1.4em;
   background-color: #FFF; 
   display: flex;
   flex-direction: column;  
-  margin: 5px;
+  margin: 10px 5px 5px 5px;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5); 
 }
 
 .truck-logo-container {
   display: flex; 
-  height: 50%;
-  width: 50%;
 }
 
 .truck-logo {
-  height: 200px;
-  width: 250px; 
-  object-fit: cover;  
+  width: 50%;
+  height: 220px;  
+  object-fit: cover;
+}
+
+.truck-name {
+  font-size: 1em; 
+}
+
+.truck-website {
+  color: $dark-blue-green;
+  text-decoration: none;  
+}
+
+.truck-links {
+  text-align: center; 
+  padding: 5px; 
+  width: 50%; 
+}
+
+.truck-description-intro {
+  border-top: thin solid $light-blue-green; 
+  padding: 5px 0px 0px 5px;
+  margin: 0px; 
+  color: $dark-blue-green;
+  font-weight: 600;  
 }
 
 .truck-description {
-  font-size: 1.4em;  
+  margin: 0px; 
+  padding: 5px;    
 }
