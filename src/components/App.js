@@ -1,10 +1,11 @@
-import Header from './Header/Header'
+import Header from './Header/Header';
 import MapView from './MapView/MapView';
 import { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import user from  "../mockuser.js"
+import user from  "../mockuser.js";
 import Form from './Form/Form';
 import { fetchUserName, fetchNewUser } from '../apiCalls.js'
+import TruckList from './TruckList/TruckList';
 
 class App extends Component {
   constructor() {
@@ -75,7 +76,7 @@ class App extends Component {
             <Form/>
           </Route>
           <Route exact path="/trucklist">
-            <h2>Truck List</h2>
+            <TruckList/>
           </Route>
           <Route exact path="/map">
             <MapView
