@@ -19,27 +19,27 @@ self.addEventListener('install', event => {
   );
 });
 
-//Cache and return requests
+// Cache and return requests
 self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request)
     .then(response => {
       if(response) {
-        return response;
+        return response 
       }
       return fetch(event.request);
     })
   );
 });
 
-//update a service worker
-self.addEventListener('activate', event => {
-  const cacheWhitelist = ['pwa-nomadic-nibbler'];
-  event.waitUntil(
-    caches.keys().then(cacheName => {
-      if(cacheWhitelist.indexOf(cacheName) === -1) {
-        return caches.delete(cacheName); 
-      }
-    })
-  )
-})
+// //update a service worker
+// self.addEventListener('activate', event => {
+//   const cacheWhitelist = ['pwa-nomadic-nibbler'];
+//   event.waitUntil(
+//     caches.keys().then(cacheName => {
+//       if(cacheWhitelist.indexOf(cacheName) === -1) {
+//         return caches.delete(cacheName); 
+//       }
+//     })
+//   )
+// })
