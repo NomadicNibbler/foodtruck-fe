@@ -29,8 +29,13 @@ class App extends Component {
 
   loginUser = (userName) => {
     fetchUserName(userName)
-    .then(data => console.log(data))
-    .catch(error => console.log("error"))
+    .then(data => {
+      console.log('id', data.data.id)
+      const id = data.data.id
+      fetchTrucks(id)
+      .then(trucks => console.log(trucks))
+    })
+    .catch(error => console.log(error))
   }
 
   createNewUser = (userName, first, last, address, city, zip) => {
