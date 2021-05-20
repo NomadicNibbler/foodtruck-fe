@@ -30,7 +30,7 @@ describe('New user page', () => {
     it('Should not allow a user to click the let\'s eat button without entering all of the fields', () => {
         cy.get('[data-cy=title]').contains('The Nomadic Nibbler')
         cy.get('[data-cy=newuser-prompt]').contains('Please enter your user information')
-        cy.get('[data-cy=lets-eat-button]').click().url().should('eq', 'http://localhost:3000/newuser')
+        cy.get('[data-cy=create-account]').click().url().should('eq', 'http://localhost:3000/newuser')
     })
 
     it('Should allow a new user to enter their information and click the let\'s eat button', () => {
@@ -41,7 +41,7 @@ describe('New user page', () => {
         cy.get('[data-cy=address-input]').type('123 fake street').should('have.value', '123 fake street')
         cy.get('[data-cy=city-input]').type('nowhere').should('have.value', 'nowhere')
         cy.get('[data-cy=zip-input]').type('12345').should('have.value', '12345')
-        cy.get('[data-cy=lets-eat-button]').click().url().should('eq', 'http://localhost:3000/map')
+        cy.get('[data-cy=create-account]').click().url().should('eq', 'http://localhost:3000/login')
     })
 
     it('Should only allow a 5 digit input for zip code', () => {
@@ -52,7 +52,7 @@ describe('New user page', () => {
         cy.get('[data-cy=address-input]').type('123 fake street').should('have.value', '123 fake street')
         cy.get('[data-cy=city-input]').type('nowhere').should('have.value', 'nowhere')
         cy.get('[data-cy=zip-input]').type('1234').should('have.value', '1234')
-        cy.get('[data-cy=lets-eat-button]').click().url().should('eq', 'http://localhost:3000/newuser')
+        cy.get('[data-cy=create-account]').click().url().should('eq', 'http://localhost:3000/newuser')
     })
 })
 
