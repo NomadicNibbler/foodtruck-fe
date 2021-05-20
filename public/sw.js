@@ -1,4 +1,8 @@
-const urlsToCache = [ 
+const urlsToCache = [
+  '/site.webmanifest',
+  '/main.chunk.js',
+  '/vendors~main.chunk.js',
+  'bundle.js',
   '/',
   '/login',
   '/newuser',
