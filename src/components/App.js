@@ -33,7 +33,10 @@ class App extends Component {
       console.log('id', data.data.id)
       const id = data.data.id
       fetchTrucks(id)
-      .then(trucks => console.log(trucks))
+      .then(trucks => {
+        console.log('trucks', trucks.data)
+        this.setState({ trucks: trucks.data})
+      })
     })
     .catch(error => console.log(error))
   }
@@ -48,8 +51,8 @@ class App extends Component {
       zipcode: zip
     }
     fetchNewUser(newUser)
-    .then(data => console.log(data))
-    .catch(error => console.log("error"))
+    .then(data => console.log('userData', data))
+    .catch(error => console.log(error))
   }
 
   createLocationList = (user)  => {
