@@ -1,4 +1,11 @@
-const urlsToCache = [ 
+const urlsToCache = [
+  '/site.webmanifest',
+  '/static/js/main.chunk.js',
+  '/static/js/vendors~main.chunk.js',
+  '/static/js/bundle.js',
+  '/favicon.ico',
+  '/mstile-144x144.png',
+  'static/media/artboard_1.b2705420.webp',
   '/',
   '/login',
   '/newuser',
