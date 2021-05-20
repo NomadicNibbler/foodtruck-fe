@@ -10,6 +10,7 @@ function createKey(location) {
 }
 
 const MapView = ({ truckList, center }) => {
+  console.log(truckList, center)
 return (
     <main>
       <div className="map-buttons-container">

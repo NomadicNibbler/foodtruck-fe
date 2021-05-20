@@ -2,10 +2,11 @@ import Header from './Header/Header';
 import MapView from './MapView/MapView';
 import TruckDetails from './TruckDetails/TruckDetails';
 import { Component } from 'react';
-import { Route, Switch, Redirect, Link } from 'react-router-dom';
-import user from  "../mockuser.js";
+import { Route, Switch, Redirect } from 'react-router-dom';
+// import user from  "../mockuser.js";
 import Form from './Form/Form';
-import { fetchUserName, fetchNewUser, fetchTrucks } from '../apiCalls.js'
+import { fetchUserName, fetchNewUser, fetchTrucks } from '../apiCalls.js';
+import { createLocationList } from '../utility.js';
 import TruckList from './TruckList/TruckList';
 
 class App extends Component {
@@ -14,7 +15,6 @@ class App extends Component {
     this.state = {
       lat: 0, 
       lng: 0, 
-      truckList: [],
       radius: 5,
       trucks:[],
       error:''
@@ -38,6 +38,8 @@ class App extends Component {
       .then(trucks => {
         console.log('trucks', trucks.data)
         this.sortByDistance(trucks.data)
+        const truckLocations = createLocationList(trucks.data)
+        this.setState({ lat: 42.346251, lng: -71.09817, trucks: trucks.data, truckLocations: truckLocations})
       })
     })
     .catch(error => this.setState({ error: error.message }))
@@ -60,14 +62,6 @@ class App extends Component {
     fetchNewUser(newUser)
     .then(data => console.log('userData', data))
     .catch(error => console.log(error))
-  }
-
-  createLocationList = (user)  => {
-    const trucks = user.data.attributes.trucks
-    const truckList = trucks.map(truck => {
-      return {lat: Number(truck.lat), lng: Number(truck.long) }
-    });
-    return truckList
   }
 
   render() {
@@ -96,7 +90,7 @@ class App extends Component {
           </Route>
           <Route exact path="/map">
             <MapView
-              truckList={this.state.truckList}
+              truckList={this.state.truckLocations}
               center={{lat: this.state.lat, lng: this.state.lng}}
             />
           </Route>
