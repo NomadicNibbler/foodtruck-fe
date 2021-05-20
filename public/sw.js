@@ -3,6 +3,8 @@ const urlsToCache = [
   '/main.chunk.js',
   '/vendors~main.chunk.js',
   'bundle.js',
+  '/favicon-16x16.png',
+  '/favicon-32x32.png',
   '/',
   '/login',
   '/newuser',
