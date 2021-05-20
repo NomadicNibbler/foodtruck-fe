@@ -4,7 +4,13 @@ const urlsToCache = [
   '/newuser',
   '/newlocatioin', 
   '/trucklist', 
-  '/map'
+  '/map',
+  '/static/js/vendors~main.chunk.js',
+  '/static/js/main.chunk.js',
+  '/mstile-144x144.png',
+  '/favicon.ico',
+  '/static/js/bundle.js',
+  '/static/media/artboard_1.b2705420.webp',
 ];
 
 //Install a service worker
