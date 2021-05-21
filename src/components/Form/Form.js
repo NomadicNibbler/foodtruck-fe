@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
+import { fetchTrucks } from '../../apiCalls';
 const Form = ({ createNewUser, loginUser }) => {
 
     const location = useLocation().pathname
@@ -125,9 +126,15 @@ const Form = ({ createNewUser, loginUser }) => {
                 </Link>
             }
 
-            {(location === '/newuser' || location === '/newlocation') &&
+            {location === '/newuser' &&
+                <Link to='/login'>
+                <button className='button' data-cy='create-account' onClick={handleSubmit}>Create Account</button>
+                </Link>
+            }
+
+            {location === '/newlocation' &&
                 <Link to='/map'>
-                <button className='button' data-cy='lets-eat-button' onClick={handleSubmit}>Let's Eat!</button>
+                    <button className='button' data-cy='lets-eat-button' onClick={handleSubmit}>Let's Eat!</button>
                 </Link>
             }
         </form>

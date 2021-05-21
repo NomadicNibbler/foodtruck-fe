@@ -23,3 +23,8 @@ export const fetchNewUser = (newUser) => {
   }) 
   .then(response => checkForError(response))
 }
+
+export const fetchTrucks = (id) => {
+  return fetch(`https://warm-scrubland-95764.herokuapp.com/api/v1/trucks?id=${id}`)
+  .then(response => checkForError(response))
+}

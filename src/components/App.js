@@ -1,10 +1,11 @@
-import Header from './Header/Header'
+import Header from './Header/Header';
 import MapView from './MapView/MapView';
 import { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import user from  "../mockuser.js"
+import user from  "../mockuser.js";
 import Form from './Form/Form';
-import { fetchUserName, fetchNewUser } from '../apiCalls.js'
+import { fetchUserName, fetchNewUser, fetchTrucks } from '../apiCalls.js'
+import TruckList from './TruckList/TruckList';
 
 class App extends Component {
   constructor() {
@@ -14,6 +15,7 @@ class App extends Component {
       lng: 0, 
       truckList: [],
       radius: 5,
+      trucks:[]
     }
   }
   
@@ -22,13 +24,21 @@ class App extends Component {
     const lat =  Number(user.data.attributes.lat)
     const lng = Number(user.data.attributes.long)
     const truckList = this.createLocationList(user)
-    this.setState({lat: lat, lng: lng, truckList:[...this.state.truckList, ...truckList ]})
+    this.setState({lat: lat, lng: lng, truckList:[...this.state.truckList, ...truckList ], trucks:[...this.state.trucks, ...user.data.attributes.trucks]})
   }
 
   loginUser = (userName) => {
     fetchUserName(userName)
-    .then(data => console.log(data))
-    .catch(error => console.log("error"))
+    .then(data => {
+      console.log('id', data.data.id)
+      const id = data.data.id
+      fetchTrucks(id)
+      .then(trucks => {
+        console.log('trucks', trucks.data)
+        this.setState({ trucks: trucks.data})
+      })
+    })
+    .catch(error => console.log(error))
   }
 
   createNewUser = (userName, first, last, address, city, zip) => {
@@ -41,8 +51,8 @@ class App extends Component {
       zipcode: zip
     }
     fetchNewUser(newUser)
-    .then(data => console.log(data))
-    .catch(error => console.log("error"))
+    .then(data => console.log('userData', data))
+    .catch(error => console.log(error))
   }
 
   createLocationList = (user)  => {
@@ -75,7 +85,7 @@ class App extends Component {
             <Form/>
           </Route>
           <Route exact path="/trucklist">
-            <h2>Truck List</h2>
+            <TruckList truckList={this.state.trucks}/>
           </Route>
           <Route exact path="/map">
             <MapView

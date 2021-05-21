@@ -11,7 +11,7 @@ const urlsToCache = [
   '/newuser',
   '/newlocatioin', 
   '/trucklist', 
-  '/map'
+  '/map',
 ];
 
 //Install a service worker
