@@ -15,7 +15,8 @@ class App extends Component {
       lng: 0, 
       truckList: [],
       radius: 5,
-      trucks:[]
+      trucks:[],
+      error:''
     }
   }
   
@@ -38,7 +39,7 @@ class App extends Component {
         this.setState({ trucks: trucks.data})
       })
     })
-    .catch(error => console.log(error))
+    .catch(error => this.setState({ error: error.message }))
   }
 
   createNewUser = (userName, first, last, address, city, zip) => {
@@ -73,16 +74,16 @@ class App extends Component {
           </Route>
           <Route exact path='/login'>
             <Form 
-              loginUser={this.loginUser}
+              loginUser={this.loginUser} error={this.state.error}
             />
           </Route>
           <Route exact path="/newuser">
             <Form
-              createNewUser={this.createNewUser}
+              createNewUser={this.createNewUser} error={this.state.error}
             />
           </Route>
           <Route exact path="/newlocation">
-            <Form/>
+            <Form error={this.state.error}/>
           </Route>
           <Route exact path="/trucklist">
             <TruckList truckList={this.state.trucks}/>
