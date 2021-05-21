@@ -4,7 +4,7 @@ import { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import user from  "../mockuser.js";
 import Form from './Form/Form';
-import { fetchUserName, fetchNewUser } from '../apiCalls.js'
+import { fetchUserName, fetchNewUser, fetchTrucks } from '../apiCalls.js'
 import TruckList from './TruckList/TruckList';
 
 class App extends Component {
