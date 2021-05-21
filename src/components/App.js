@@ -94,6 +94,7 @@ class App extends Component {
               center={{lat: this.state.lat, lng: this.state.lng}}
             />
           </Route>
+          <Route exact path='/trucks/:name'></Route>
           <Route render={() => <Link to='/'><h2> 404: You must be lost. Please click me</h2></Link>} />
         </Switch>
       </div>
