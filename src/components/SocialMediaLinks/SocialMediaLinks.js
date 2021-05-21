@@ -9,14 +9,14 @@ const SocialMediaLinks = ({ links }) => {
       const socialMediaOutlet = Object.keys(link);
       switch (true) {
         case socialMediaOutlet[0] === "facebook" :
-          return  <a href= {`https://facebook.com/${Object.values(link)}`}>
+          return  <a href= {`https://facebook.com/${Object.values(link)}`} data-cy="social-link">
                   <li>
                     <SiFacebook className="social-media-icon"/>
                     </li>
                   </a>
                 
         case socialMediaOutlet[0] === "twitter" :
-          return  <a href= {`https://twitter.com/${Object.values(link)}`}>
+          return  <a href= {`https://twitter.com/${Object.values(link)}`} data-cy="social-link">
                   <li>
                     <SiTwitter className="social-media-icon"/>
                   </li>
@@ -24,7 +24,7 @@ const SocialMediaLinks = ({ links }) => {
                 
 
         case socialMediaOutlet[0] === "instagram" :
-          return  <a href= {`https://instagram.com/${Object.values(link)}`}>
+          return  <a href= {`https://instagram.com/${Object.values(link)}`} data-cy="social-link">
                   <li>
                     <SiInstagram className="social-media-icon"/>
                     </li>
