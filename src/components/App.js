@@ -1,7 +1,7 @@
 import Header from './Header/Header';
 import MapView from './MapView/MapView';
 import { Component } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect, Link } from 'react-router-dom';
 import user from  "../mockuser.js";
 import Form from './Form/Form';
 import { fetchUserName, fetchNewUser, fetchTrucks } from '../apiCalls.js'
@@ -15,7 +15,8 @@ class App extends Component {
       lng: 0, 
       truckList: [],
       radius: 5,
-      trucks:[]
+      trucks:[],
+      error:''
     }
   }
   
@@ -24,21 +25,26 @@ class App extends Component {
     const lat =  Number(user.data.attributes.lat)
     const lng = Number(user.data.attributes.long)
     const truckList = this.createLocationList(user)
-    this.setState({lat: lat, lng: lng, truckList:[...this.state.truckList, ...truckList ], trucks:[...this.state.trucks, ...user.data.attributes.trucks]})
+    this.setState({ lat: lat, lng: lng, truckList:[...this.state.truckList, ...truckList ] })
   }
 
   loginUser = (userName) => {
     fetchUserName(userName)
     .then(data => {
-      console.log('id', data.data.id)
+      console.log('user', data.data)
       const id = data.data.id
       fetchTrucks(id)
       .then(trucks => {
         console.log('trucks', trucks.data)
-        this.setState({ trucks: trucks.data})
+        this.sortByDistance(trucks.data)
       })
     })
-    .catch(error => console.log(error))
+    .catch(error => this.setState({ error: error.message }))
+  }
+
+  sortByDistance = (trucks) => {
+    const sortedTrucks = trucks.sort((a, b) => a.attributes.distance - b.attributes.distance)
+    this.setState({ trucks: sortedTrucks })
   }
 
   createNewUser = (userName, first, last, address, city, zip) => {
@@ -73,19 +79,19 @@ class App extends Component {
           </Route>
           <Route exact path='/login'>
             <Form 
-              loginUser={this.loginUser}
+              loginUser={this.loginUser} error={this.state.error}
             />
           </Route>
           <Route exact path="/newuser">
             <Form
-              createNewUser={this.createNewUser}
+              createNewUser={this.createNewUser} error={this.state.error}
             />
           </Route>
           <Route exact path="/newlocation">
-            <Form/>
+            <Form error={this.state.error}/>
           </Route>
           <Route exact path="/trucklist">
-            <TruckList truckList={this.state.trucks}/>
+            <TruckList truckList={this.state.trucks} sortByDistance={this.sortByDistance}/>
           </Route>
           <Route exact path="/map">
             <MapView
@@ -93,6 +99,8 @@ class App extends Component {
               center={{lat: this.state.lat, lng: this.state.lng}}
             />
           </Route>
+          <Route exact path='/trucks/:name'></Route>
+          <Route render={() => <Link to='/'><h2> 404: You must be lost. Please click me</h2></Link>} />
         </Switch>
       </div>
     );
