@@ -1,7 +1,7 @@
 import Header from './Header/Header';
 import MapView from './MapView/MapView';
 import { Component } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect, Link } from 'react-router-dom';
 import user from  "../mockuser.js";
 import Form from './Form/Form';
 import { fetchUserName, fetchNewUser, fetchTrucks } from '../apiCalls.js'
@@ -94,6 +94,7 @@ class App extends Component {
               center={{lat: this.state.lat, lng: this.state.lng}}
             />
           </Route>
+          <Route render={() => <Link to='/'><h2> 404: You must be lost. Please click me</h2></Link>} />
         </Switch>
       </div>
     );
