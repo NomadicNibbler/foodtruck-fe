@@ -8,7 +8,16 @@ const TruckList = ({ truckList }) => {
                 <Link to='/map'>
                     <button className='button'>Truck Map</button>
                 </Link>
-                <button className='button'>Filter</button>
+                <div className='dropdown button'>
+                    <p>Filter</p>
+                    <div className='dropdown-content button'>
+                        <p onClick={() => console.log('distance')}>Distance</p>
+                        <p onClick={() => console.log('cash')}>Cash</p>
+                        <p onClick={() => console.log('credit')}>Credit</p>
+                        <p onClick={() => console.log('debit')}>Debit</p>
+                        <p onClick={() => console.log('apple')}>Apple Pay</p>
+                    </div>
+                </div>
             </div>
             {truckList.map(truck => {
                 return <TruckCard
