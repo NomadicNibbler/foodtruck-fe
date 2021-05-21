@@ -3,12 +3,37 @@
     align-self: center;
     flex-direction: column;
     background: $dark-blue-green;
-    height: 200px;
-    mind-width: 300px;
+    min-height: 200px;
+    width: 40%;
+    min-width: 300px;
     color: white;
+    margin-bottom: 10px;
+}
+
+.box1, .box2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+
+}
+
+.box2 {
+    font-size: 10px;
 }
 
 .truck-logo {
-    height: 100px;
-    width: 100px;
+    height: 75px;
+    width: 75px;
+    padding-right: 10px;
+}
+
+.truck-name {
+    padding-right: 10px;
+}
+
+a {
+    text-decoration: none;
 }
