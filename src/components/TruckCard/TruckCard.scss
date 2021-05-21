@@ -2,5 +2,13 @@
     display: flex;
     align-self: center;
     flex-direction: column;
-    background: $light-blue-green;
+    background: $dark-blue-green;
+    height: 200px;
+    mind-width: 300px;
+    color: white;
+}
+
+.truck-logo {
+    height: 100px;
+    width: 100px;
 }
