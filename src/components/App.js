@@ -36,15 +36,15 @@ class App extends Component {
       fetchTrucks(id)
       .then(trucks => {
         console.log('trucks', trucks.data)
-        const closestTrucks = this.filterByDistance(trucks.data)
-        this.setState({ trucks: closestTrucks})
+        this.sortByDistance(trucks.data)
       })
     })
     .catch(error => this.setState({ error: error.message }))
   }
 
-  filterByDistance = (trucks) => {
-    return trucks.sort((a, b) => a.attributes.distance - b.attributes.distance)
+  sortByDistance = (trucks) => {
+    const sortedTrucks = trucks.sort((a, b) => a.attributes.distance - b.attributes.distance)
+    this.setState({ trucks: sortedTrucks })
   }
 
   createNewUser = (userName, first, last, address, city, zip) => {
@@ -91,7 +91,7 @@ class App extends Component {
             <Form error={this.state.error}/>
           </Route>
           <Route exact path="/trucklist">
-            <TruckList truckList={this.state.trucks}/>
+            <TruckList truckList={this.state.trucks} sortByDistance={this.sortByDistance}/>
           </Route>
           <Route exact path="/map">
             <MapView

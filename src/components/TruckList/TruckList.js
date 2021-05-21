@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import TruckCard from '../TruckCard/TruckCard';
 
-const TruckList = ({ truckList }) => {
+const TruckList = ({ truckList, sortByDistance }) => {
     return (
         <>
             <div className='button-container'>
@@ -11,7 +11,7 @@ const TruckList = ({ truckList }) => {
                 <div className='dropdown button'>
                     <p>Filter</p>
                     <div className='dropdown-content button'>
-                        <p onClick={() => console.log('distance')}>Distance</p>
+                        <p onClick={() => sortByDistance(truckList)}>Distance</p>
                         <p onClick={() => console.log('cash')}>Cash</p>
                         <p onClick={() => console.log('credit')}>Credit</p>
                         <p onClick={() => console.log('debit')}>Debit</p>
