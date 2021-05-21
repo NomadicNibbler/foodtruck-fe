@@ -24,13 +24,13 @@ class App extends Component {
     const lat =  Number(user.data.attributes.lat)
     const lng = Number(user.data.attributes.long)
     const truckList = this.createLocationList(user)
-    this.setState({lat: lat, lng: lng, truckList:[...this.state.truckList, ...truckList ], trucks:[...this.state.trucks, ...user.data.attributes.trucks]})
+    this.setState({ lat: lat, lng: lng, truckList:[...this.state.truckList, ...truckList ] })
   }
 
   loginUser = (userName) => {
     fetchUserName(userName)
     .then(data => {
-      console.log('id', data.data.id)
+      console.log('user', data.data)
       const id = data.data.id
       fetchTrucks(id)
       .then(trucks => {
