@@ -13,8 +13,9 @@ class App extends Component {
   constructor() {
     super() 
     this.state = {
-      lat: 0, 
-      lng: 0, 
+      // lat: 0, 
+      // lng: 0,
+      userLocation: {}, 
       radius: 5,
       trucks:[],
       error:''
@@ -39,7 +40,7 @@ class App extends Component {
         console.log('trucks', trucks.data)
         this.sortByDistance(trucks.data)
         const truckLocations = createLocationList(trucks.data)
-        this.setState({ lat: 42.346251, lng: -71.09817, trucks: trucks.data, truckLocations: truckLocations})
+        this.setState({ userLocation: {lat: 42.346251, lng: -71.09817}, trucks: trucks.data, truckLocations: truckLocations})
       })
     })
     .catch(error => this.setState({ error: error.message }))
@@ -91,7 +92,7 @@ class App extends Component {
           <Route exact path="/map">
             <MapView
               truckList={this.state.truckLocations}
-              center={{lat: this.state.lat, lng: this.state.lng}}
+              center={this.state.userLocation}
             />
           </Route>
           <Route exact path="/truck">
