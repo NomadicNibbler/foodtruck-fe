@@ -36,10 +36,15 @@ class App extends Component {
       fetchTrucks(id)
       .then(trucks => {
         console.log('trucks', trucks.data)
-        this.setState({ trucks: trucks.data})
+        const closestTrucks = this.filterByDistance(trucks.data)
+        this.setState({ trucks: closestTrucks})
       })
     })
     .catch(error => this.setState({ error: error.message }))
+  }
+
+  filterByDistance = (trucks) => {
+    return trucks.sort((a, b) => a.attributes.distance - b.attributes.distance)
   }
 
   createNewUser = (userName, first, last, address, city, zip) => {
