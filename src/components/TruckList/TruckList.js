@@ -3,7 +3,8 @@ import TruckCard from '../TruckCard/TruckCard';
 const TruckList = ({ truckList }) => {
     return (
         <>
-            <h2>Truck List</h2>
+            <button className='button'>Truck Map</button>
+            <button className='button'>Filter</button>
             {truckList.map(truck => {
                 return <TruckCard
                         key={truck.attributes.name}
