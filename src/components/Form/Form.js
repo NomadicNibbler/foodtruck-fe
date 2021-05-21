@@ -1,6 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
-import { fetchTrucks } from '../../apiCalls';
 const Form = ({ createNewUser, loginUser }) => {
 
     const location = useLocation().pathname
