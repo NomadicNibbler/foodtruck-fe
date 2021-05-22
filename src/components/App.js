@@ -21,10 +21,11 @@ class App extends Component {
   loginUser = (userName) => {
     fetchUserName(userName)
     .then(data => {
+      console.log(data)
       const id = data.data.id
       fetchTrucks(id)
       .then(trucks => {
-        console.log('trucks', trucks.data)
+        console.log(trucks)
         this.sortByDistance(trucks.data)
         this.setState({ userLocation: {lat: 42.346251, lng: -71.09817}, trucks: trucks.data})
       })
@@ -83,7 +84,7 @@ class App extends Component {
               showTruckDetails={this.showTruckDetails}
             />
           </Route> 
-          <Route  exact path="/truck/:name" render={({ match }) => {
+          <Route  exact path="/trucks/:name" render={({ match }) => {
             const clickedTruck = this.state.trucks.find(truck => {
               const truckName = match.params.name.split('_').join(' ')
               return truckName === truck.attributes.name

@@ -16,6 +16,7 @@ const Form = ({ createNewUser, loginUser, error }) => {
             createNewUser(userName, first, last, address, city, zip)
             clearInputs()
         } else if (location === '/login' && userName && !error) {
+            console.log("test user login")
             loginUser(userName)
             clearInputs()
         } else if (location === '/newlocation' && address && city && zip.length === 5 && !error.length) {

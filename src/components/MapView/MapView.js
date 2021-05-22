@@ -52,7 +52,7 @@ const MapView = ({ trucks, center }) => {
                 >
                   <div>
                     <p>See more details about this truck</p>
-                    <Link to={`/truck/${clickedTruck.split(' ').join('_')}`}>
+                    <Link to={`/trucks/${clickedTruck.split(' ').join('_')}`}>
                       <p>Show me!</p>
                     </Link>
                   </div>
@@ -61,7 +61,6 @@ const MapView = ({ trucks, center }) => {
                 <MarkerClusterer>
                   {(clusterer) =>
                   trucks.map((truck) => (
-                  
                     <Marker 
                       key={createKey(truck)}
                       title={truck.attributes.name}

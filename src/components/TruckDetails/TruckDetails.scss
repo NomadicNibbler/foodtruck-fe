@@ -68,7 +68,7 @@
   background: $yellow;
 }
 
-.circle3 {
+.circle1 {
   border: 5px solid $light-blue-green;
   position: absolute;
   width: 10px;
@@ -78,7 +78,7 @@
   bottom: -10px;
 }
 
-.circle3:before {
+.circle1:before {
   content: "";
   position: absolute;
   width: 10px;
@@ -89,7 +89,7 @@
   background: $yellow;
 }
 
-.circle4 {
+.circle2 {
   border: 5px solid $light-blue-green;
   position: absolute;
   width: 5px;
@@ -99,7 +99,7 @@
   bottom: -20px;
 }
 
-.circle4:before {
+.circle2:before {
   content: "";
   position: absolute;
   width: 5px;
@@ -108,4 +108,12 @@
   right: 0px;
   bottom: 0px;
   background: $yellow;
+}
+
+@media screen and(min-width: 500px) {
+
+  .truck-details-name {
+    font-size: 1.6em;
+  }
+
 }

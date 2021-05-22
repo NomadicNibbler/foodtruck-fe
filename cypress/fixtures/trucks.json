@@ -1,0 +1,42 @@
+ {
+  "data": [ {
+    "id": "null",
+    "type": "truck",
+    "attributes": {
+      "description": "Arturo's unique recipes are a fusion of Spanish and traditional Mexican. Clean, simple and healthy Mexican food. Only 3 people prepare the food we serve to our clients, from the local produce and local butcher, there is not third parties when it comes to prepare our dishes. We closely follow Health Authority guidances and protocols to operate our business. We have been serving take out food at open spaces since 2010, and we will continue doing it, safety is our priority.",
+      "description_short": "", 
+      "display": "", 
+      "distance": 2.4, 
+      "lat": 42.36399198, 
+      "logo":"https://cdn.streetfoodapp.com/images/arturos-to-go/logo/1.90w@2x.png",
+      "long": -71.06748997,
+      "name": "arturos",
+      "payment_methods": ["cash", "credit_card", "debit_card", "apple_pay"],
+      "phone": "(617) 420-2079",
+      "socials": {"facebook": "arturosmexico2go", "twitter":"arturomexico2go", "instagram": "arturos2go"},
+      "website": "arturos2go.com"
+      }
+    },
+    {
+      "id": "null",
+      "type": "truck",
+      "attributes": {
+        "description": "Boston's freshest food truck devoted exclusively to cookies. Whether looking for a breakfast cookie to get you moving, an afternoon pick-me-up or a cookie dessert.",
+        "description_short": "Boston's freshest food truck devoted exclusively to cookies.", 
+        "display": "", 
+        "distance": 4.3, 
+        "lat": 42.36054745, 
+        "logo":"https://cdn.streetfoodapp.com/images/cookie-monstah/logo/90w@2x.png",
+        "long": -71.05276653,
+        "name": "Cookie Monstah",
+        "payment_methods": ["cash", "credit_card", "debit_card", "apple_pay"],
+        "phone": "(617) 615-6595",
+        "socials": {"twitter": "MonstahTruck", "facebook": "thecookiemonstah", "instagram": "thecookiemonstahboston"},
+        "website": ""
+      }
+    }
+  ]
+}
+    
+    
+  

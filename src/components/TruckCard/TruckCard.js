@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 
 const TruckCard = ({ logo, distance, name, description}) => {
-    const newName = name.split(' ').join('-')
+    const newName = name.split(' ').join('_')
     return (
-        <Link to={`/trucks/${newName}`} className='truck-card' id={name}>
+        <Link to={`/trucks/${newName}`} className='truck-card' id={name} data-cy='truck-card'>
             <div className='box1'>
                 <h2 className='truck-name'>{name}</h2>
                 <h2>{`${distance} miles`}</h2>

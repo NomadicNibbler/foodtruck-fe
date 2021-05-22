@@ -1,3 +1,12 @@
+if (window.navigator && navigator.serviceWorker) {
+    navigator.serviceWorker.getRegistrations()
+        .then((registrations) => {
+            registrations.forEach((registration) => {
+                registration.unregister();
+            });
+        });
+        }
+
 describe('The Nomadic Nibbler landing page', () => {
     beforeEach(() => {
         cy.visit('http://localhost:3000/')
@@ -92,27 +101,29 @@ describe('New location view', () => {
     })
 })
 
-describe.only('truck details', () => {
+describe('truck details', () => {
     beforeEach(() => {
-        cy.visit('http://localhost:3000/truck');
-        // if (window.navigator && navigator.serviceWorker) {
-        //     navigator.serviceWorker.getRegistrations()
-        //         .then((registrations) => {
-        //             registrations.forEach((registration) => {
-        //                 registration.unregister();
-        //             });
-        //         });
-        // }
+        cy.intercept("https://warm-scrubland-95764.herokuapp.com/api/v1/sessions", {fixture: 'user.json'})
+        cy.intercept("https://warm-scrubland-95764.herokuapp.com/api/v1/trucks?id=1", {fixture: 'trucks.json'}).as("truck-markers")
+        cy.visit('http://localhost:3000/login');
+        cy.get('[data-cy=username-input]').type('test').get('[data-cy=login-button]').click();
     });
 
     it("should display a picture, title and description of the truck", () => {
+        cy.get('[data-cy=truck-list-button]').click();
+        cy.get('[data-cy=truck-card]').first().click();
         cy.get('[data-cy=truck-info]').should('contain', 'arturosmexico2go')
-        .and('contain', 'arturos2go.com')
-        cy.get('[data-cy=truck-logo]').should('exist')
-        cy.fixture('/truck.json')
-        cy.get('[data-cy=social-link]').each(() => {
-
-        }).should('have.attr', 'href').and('contain', 'https://facebook.com/arturosmexico2go')
-        cy.get('[data-cy=truck-description]').contains("Arturo's unique recipes are a fusion of Spanish and traditional Mexican. Clean, simple and healthy Mexican food. Only 3 people prepare the food we serve to our clients, from the local produce and local butcher, there is not third parties when it comes to prepare our dishes. We closely follow Health Authority guidances and protocols to operate our business. We have been serving take out food at open spaces since 2010, and we will continue doing it, safety is our priority.")
-    })
-})
+        .and('contain', 'arturos2go.com');
+        cy.get('[data-cy=truck-details-logo]').should('exist');
+        cy.get('[data-cy=social-link]').first().invoke('attr', 'href').then(href => {
+            cy.request(href).its('status').should('eq', 200)
+        })
+        cy.get('[data-cy=social-link]').eq(1).invoke('attr', 'href').then(href => {
+            cy.request(href).its('status').should('eq', 200)
+        })
+        cy.get('[data-cy=social-link]').eq(2).invoke('attr', 'href').then(href => {
+            cy.request(href).its('status').should('eq', 200)
+        })
+        cy.get('[data-cy=truck-description]').contains("Arturo's unique recipes are a fusion of Spanish and traditional Mexican. Clean, simple and healthy Mexican food. Only 3 people prepare the food we serve to our clients, from the local produce and local butcher, there is not third parties when it comes to prepare our dishes. We closely follow Health Authority guidances and protocols to operate our business. We have been serving take out food at open spaces since 2010, and we will continue doing it, safety is our priority.");
+    });
+});

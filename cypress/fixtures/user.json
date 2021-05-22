@@ -1,0 +1,15 @@
+{
+  "data": {
+   "type": "users",
+   "id": "1",
+   "attributes": {
+     "first_name": "Beep",
+     "last_name": "Beeperson",
+     "address": "4",
+     "city": "Boston",
+     "zipcode": "02215",
+     "lat": "49.346251",
+     "long": "-71.09817"
+   }
+  }
+}

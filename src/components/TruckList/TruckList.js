@@ -26,6 +26,7 @@ const TruckList = ({ truckList, sortByDistance }) => {
                         distance={truck.attributes.distance}
                         name={truck.attributes.name}
                         description={truck.attributes.description_short}
+
                 />
             })}
         </>
