@@ -1,42 +1,33 @@
 import Header from './Header/Header';
 import MapView from './MapView/MapView';
+import TruckDetails from './TruckDetails/TruckDetails';
 import { Component } from 'react';
-import { Route, Switch, Redirect, Link } from 'react-router-dom';
-import user from  "../mockuser.js";
+import { Route, Switch, Redirect } from 'react-router-dom';
 import Form from './Form/Form';
-import { fetchUserName, fetchNewUser, fetchTrucks } from '../apiCalls.js'
+import { fetchUserName, fetchNewUser, fetchTrucks } from '../apiCalls.js';
 import TruckList from './TruckList/TruckList';
 
 class App extends Component {
   constructor() {
     super() 
     this.state = {
-      lat: 0, 
-      lng: 0, 
-      truckList: [],
+      userLocation: {}, 
       radius: 5,
       trucks:[],
       error:''
     }
   }
   
-  // this will change to a method later when we connect the user form
-  componentDidMount() {
-    const lat =  Number(user.data.attributes.lat)
-    const lng = Number(user.data.attributes.long)
-    const truckList = this.createLocationList(user)
-    this.setState({ lat: lat, lng: lng, truckList:[...this.state.truckList, ...truckList ] })
-  }
-
   loginUser = (userName) => {
     fetchUserName(userName)
     .then(data => {
-      console.log('user', data.data)
+      // console.log(data)
       const id = data.data.id
       fetchTrucks(id)
       .then(trucks => {
-        console.log('trucks', trucks.data)
-        this.sortByDistance(trucks.data)
+        // console.log(trucks)
+        const sortedTrucks = this.sortByDistance(trucks.data)
+        this.setState({ userLocation: {lat: 42.346251, lng: -71.09817}, trucks: sortedTrucks})
       })
     })
     .catch(error => this.setState({ error: error.message }))
@@ -44,7 +35,7 @@ class App extends Component {
 
   sortByDistance = (trucks) => {
     const sortedTrucks = trucks.sort((a, b) => a.attributes.distance - b.attributes.distance)
-    this.setState({ trucks: sortedTrucks })
+    return sortedTrucks
   }
 
   createNewUser = (userName, first, last, address, city, zip) => {
@@ -59,14 +50,6 @@ class App extends Component {
     fetchNewUser(newUser)
     .then(data => console.log('userData', data))
     .catch(error => console.log(error))
-  }
-
-  createLocationList = (user)  => {
-    const trucks = user.data.attributes.trucks
-    const truckList = trucks.map(truck => {
-      return {lat: Number(truck.lat), lng: Number(truck.long) }
-    });
-    return truckList
   }
 
   render() {
@@ -94,18 +77,28 @@ class App extends Component {
             <TruckList truckList={this.state.trucks} sortByDistance={this.sortByDistance}/>
           </Route>
           <Route exact path="/map">
+    
             <MapView
-              truckList={this.state.truckList}
-              center={{lat: this.state.lat, lng: this.state.lng}}
+              trucks={this.state.trucks}
+              center={this.state.userLocation}
+              showTruckDetails={this.showTruckDetails}
             />
-          </Route>
-          <Route exact path='/trucks/:name'></Route>
-          <Route render={() => <Link to='/'><h2> 404: You must be lost. Please click me</h2></Link>} />
+          </Route> 
+          <Route  exact path="/trucks/:name" render={({ match }) => {
+            const clickedTruck = this.state.trucks.find(truck => {
+              const truckName = match.params.name.split('_').join(' ')
+              return truckName === truck.attributes.name
+            })
+           
+             return <TruckDetails 
+                      truckDetails={clickedTruck}
+                    />
+          }}/>
+         
         </Switch>
       </div>
     );
-  }
-  
+  } 
 }
 
 export default App;

@@ -1,0 +1,125 @@
+.truck-details-container {
+  width: 95%; 
+  font-size: 1.4em;
+  background-color: #FFF; 
+  display: flex;
+  flex-direction: column;  
+  margin: 10px 5px 5px 5px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5); 
+  position: relative; 
+}
+
+.truck-details-logo {
+  width: 80%;
+  max-width: 400px; 
+  height: auto; 
+  margin: 0 auto; 
+}
+
+.truck-details-logo-default {
+  @extend .truck-details-logo;
+  background-color:black;
+  padding: 0px 25px;  
+}
+
+.truck-details-name {
+  font-size: 1.2em;
+  color: $dark-blue-green;
+  text-shadow: 1px 1px 4px $light-blue-green;   
+}
+
+.truck-details-website {
+  color: $dark-blue-green;
+  text-decoration: none;  
+}
+
+.truck-details-links {
+  padding: 10px;  
+}
+
+.truck-details-intro {
+  border-top: thin solid $light-blue-green; 
+  padding: 5px 0px 0px 5px;
+  margin: 0px; 
+  color: $dark-blue-green;
+  font-size: 1.4em; 
+  font-weight: 600;  
+}
+
+.truck-details-description {
+  font-size: 1.2em; 
+  margin: 0px; 
+  padding: 5px;    
+}
+
+.speech-bubble {
+  width: 20%; 
+  position: absolute;
+  right: 30px;
+  top: -10px;   
+}
+
+.circular-sb {
+  width: 60%;
+  border: 5px solid $light-blue-green;
+  padding: 20px 20px;
+  margin: 23px auto;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: 900;
+  font-family: arial;
+  position: relative;
+  color: #00bfb6;
+  background: $yellow;
+}
+
+.circle1 {
+  border: 5px solid $light-blue-green;
+  position: absolute;
+  width: 10px;
+  padding: 10px;
+  border-radius: 50%;
+  left: -15px;
+  bottom: -10px;
+}
+
+.circle1:before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  padding: 10px;
+  border-radius: 50%;
+  right: 0px;
+  bottom: 0px;
+  background: $yellow;
+}
+
+.circle2 {
+  border: 5px solid $light-blue-green;
+  position: absolute;
+  width: 5px;
+  padding: 5px 5px;
+  border-radius: 50%;
+  left: -26px;
+  bottom: -20px;
+}
+
+.circle2:before {
+  content: "";
+  position: absolute;
+  width: 5px;
+  padding: 5px 5px;
+  border-radius: 50%;
+  right: 0px;
+  bottom: 0px;
+  background: $yellow;
+}
+
+@media screen and(min-width: 500px) {
+
+  .truck-details-name {
+    font-size: 1.6em;
+  }
+
+}

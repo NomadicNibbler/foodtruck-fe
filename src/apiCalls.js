@@ -7,6 +7,7 @@ const checkForError = (response) => {
 }
 
 export const fetchUserName = (userName) => {
+  console.log("test login")
   return fetch("https://warm-scrubland-95764.herokuapp.com/api/v1/sessions", {
       method: "POST",
       headers: {"Content-Type": "application/json"},
