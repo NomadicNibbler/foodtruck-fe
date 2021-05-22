@@ -6,15 +6,12 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 // import user from  "../mockuser.js";
 import Form from './Form/Form';
 import { fetchUserName, fetchNewUser, fetchTrucks } from '../apiCalls.js';
-import { createLocationList } from '../utility.js';
 import TruckList from './TruckList/TruckList';
 
 class App extends Component {
   constructor() {
     super() 
     this.state = {
-      // lat: 0, 
-      // lng: 0,
       userLocation: {}, 
       radius: 5,
       trucks:[],
@@ -33,14 +30,13 @@ class App extends Component {
   loginUser = (userName) => {
     fetchUserName(userName)
     .then(data => {
-      console.log('user', data.data)
       const id = data.data.id
       fetchTrucks(id)
       .then(trucks => {
         console.log('trucks', trucks.data)
         this.sortByDistance(trucks.data)
         const truckLocations = createLocationList(trucks.data)
-        this.setState({ userLocation: {lat: 42.346251, lng: -71.09817}, trucks: trucks.data, truckLocations: truckLocations})
+        this.setState({ userLocation: {lat: 42.346251, lng: -71.09817}, trucks: trucks.data})
       })
     })
     .catch(error => this.setState({ error: error.message }))
@@ -90,19 +86,28 @@ class App extends Component {
             <TruckList truckList={this.state.trucks} sortByDistance={this.sortByDistance}/>
           </Route>
           <Route exact path="/map">
+    
             <MapView
-              truckList={this.state.truckLocations}
+              trucks={this.state.trucks}
               center={this.state.userLocation}
+              showTruckDetails={this.showTruckDetails}
             />
-          </Route>
-          <Route exact path="/truck">
-            <TruckDetails/>
-          </Route>
+          </Route> 
+          <Route  exact path="/truck/:name" render={({ match }) => {
+            const clickedTruck = this.state.trucks.find(truck => {
+              const truckName = match.params.name.split('_').join(' ')
+              return truckName === truck.attributes.name
+            })
+           
+             return <TruckDetails 
+                      truckDetails={clickedTruck}
+                    />
+          }}/>
+         
         </Switch>
       </div>
     );
-  }
-  
+  } 
 }
 
 export default App;
