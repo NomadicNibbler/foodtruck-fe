@@ -1,5 +1,4 @@
 import React from 'react';
-import truck from '../../mocktruck.js';
 import SocialMediaLinks from '../SocialMediaLinks/SocialMediaLinks';
 
 const TruckDetails = ({ truckDetails }) => {
@@ -7,7 +6,7 @@ const TruckDetails = ({ truckDetails }) => {
   return (
     <section className="truck-details-container" data-cy="truck-info">
       <div className="truck-details-links">
-        <h1 className="truck-details-name" data-cy="truck-name">{truck.data.attributes.name}</h1>
+        <h1 className="truck-details-name" data-cy="truck-name">{truckDetails.attributes.name}</h1>
         <a 
           href={truckDetails.attributes.website} className="truck-website"
           data-cy="truck-details-website"
@@ -22,12 +21,18 @@ const TruckDetails = ({ truckDetails }) => {
         <div className="circle2"></div>
       </div>
       </div>
-      <img 
-        src={truckDetails.attributes.logo} 
-        alt={`${truck.data.name} logo`} 
+      {!truckDetails.attributes.logo && <img 
+        src="../../assets/food-truck.svg" 
+        alt={`${truckDetails.attributes.name} logo`} 
         className="truck-details-logo"
         data-cy="truck-details-logo"
-      />
+      />}
+      {truckDetails.attributes.logo && <img 
+        src={truckDetails.attributes.logo} 
+        alt={`${truckDetails.attributes.name} logo`} 
+        className="truck-details-logo"
+        data-cy="truck-details-logo"
+      />}
       <SocialMediaLinks
         links={truckDetails.attributes.socials}
       />
