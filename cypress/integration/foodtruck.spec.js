@@ -71,10 +71,10 @@ describe('Map view', () => {
         cy.intercept("https://warm-scrubland-95764.herokuapp.com/api/v1/trucks?id=1", {fixture: 'trucks.json'}).as("truck-markers")
         cy.visit('http://localhost:3000/login');
         cy.get('[data-cy=username-input]').type('test').get('[data-cy=login-button]').click();
+        
     });
 
     it('Should allow the user to navigate to the truck list and new location', () => {
-        cy.wait('@truck-markers')
         cy.get('[data-cy=truck-list-button').click().url().should('eq', 'http://localhost:3000/trucklist')
         cy.go('back');
         cy.get('[data-cy=change-location-button]').click().url().should('eq', 'http://localhost:3000/newlocation')
@@ -104,7 +104,7 @@ describe('New location view', () => {
     })
 })
 
-describe.only('truck details', () => {
+describe('truck details', () => {
     beforeEach(() => {
         cy.intercept("https://warm-scrubland-95764.herokuapp.com/api/v1/sessions", {fixture: 'user.json'})
         cy.intercept("https://warm-scrubland-95764.herokuapp.com/api/v1/trucks?id=1", {fixture: 'trucks.json'}).as("truck-markers")
@@ -113,6 +113,8 @@ describe.only('truck details', () => {
     });
 
     it("should display a picture, title, links, and description of the truck", () => {
+        cy.wait('@truck-markers')
+        cy.get('[data-cy=truck-list-button]');
         cy.get('[data-cy=truck-list-button]').click();
         cy.get('[data-cy=truck-card]').first().click();
         cy.get('[data-cy=truck-info]').should('contain', 'arturos')
@@ -130,10 +132,11 @@ describe.only('truck details', () => {
         cy.get('[data-cy=truck-description]').contains("Arturo's unique recipes are a fusion of Spanish and traditional Mexican. Clean, simple and healthy Mexican food. Only 3 people prepare the food we serve to our clients, from the local produce and local butcher, there is not third parties when it comes to prepare our dishes. We closely follow Health Authority guidances and protocols to operate our business. We have been serving take out food at open spaces since 2010, and we will continue doing it, safety is our priority.");
     });
 
-    it('should display a default logo if there is no logo provided', () => {
-        cy.get('[data-cy=truck-list-button]').click();
-        cy.get('[data-cy=truck-card]').eq(1).click();
-        cy.get('[data-cy=truck-details-logo]').should('exist');
+    // it('should display a default logo if there is no logo provided', () => {
+    //     cy.wait('@truck-markers')
+    //     cy.get('[data-cy=truck-list-button]').click();
+    //     cy.get('[data-cy=truck-card]').eq(1).click();
+    //     cy.get('[data-cy=truck-details-logo]').should('have.attr', 'src').should('include', 'food-truck' );
 
-    })
+    // })
 });
