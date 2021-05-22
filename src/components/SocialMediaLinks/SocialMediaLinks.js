@@ -4,21 +4,27 @@ import { SiTwitter } from 'react-icons/si';
 import { SiInstagram } from 'react-icons/si';
 
 const SocialMediaLinks = ({ links }) => {
-  console.log(links)
   const socials = Object.keys(links).flat()
-  console.log(socials)
-    const linkList = socials.map(social => {
+    const linkList = socials.map((social, i) => {
       
       switch (true) {
         case social === "facebook" :
-          return  <a href= {`https://facebook.com/${links['facebook']}`} data-cy="social-link">
+          return  <a 
+                    href= {`https://facebook.com/${links['facebook']}`}
+                    key={i} 
+                    data-cy="social-link"
+                    >
                   <li>
                     <SiFacebook className="social-media-icon"/>
                     </li>
                   </a>
                 
         case social === "twitter" :
-          return  <a href= {`https://twitter.com/${links['twitter']}`} data-cy="social-link">
+          return  <a 
+                    href= {`https://twitter.com/${links['twitter']}`} 
+                    key={i}
+                    data-cy="social-link"
+                  >
                   <li>
                     <SiTwitter className="social-media-icon"/>
                   </li>
@@ -26,7 +32,11 @@ const SocialMediaLinks = ({ links }) => {
                 
 
         case social === "instagram" :
-          return  <a href= {`https://instagram.com/${links['instagram']}`} data-cy="social-link">
+          return  <a 
+                    href= {`https://instagram.com/${links['instagram']}`} 
+                    key={i}
+                    data-cy="social-link"
+                  >
                   <li>
                     <SiInstagram className="social-media-icon"/>
                     </li>

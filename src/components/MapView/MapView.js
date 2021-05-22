@@ -7,7 +7,6 @@ import truckIcon from '../../assets/food-truck.svg';
 const apiKey = process.env.REACT_APP_API_KEY;
 
 function createKey(truck) {
-  console.log(truck)
   return truck.attributes.lat + truck.attributes.long
 }
 
@@ -41,43 +40,43 @@ const MapView = ({ trucks, center }) => {
               zoom={13}
             >
               <>
-              <Marker
-                position={center}
-              />
-              
-              { selectedCenter && <InfoWindow
-                onCloseClick={() => {
-                    setSelectedCenter(null);
-                }}
-                position={selectedCenter}
-              >
-                <div>
-                  <p>See more details about this truck</p>
-                  <Link to={`/truck/${clickedTruck.split(' ').join('_')}`}>
-                    <p>Show me!</p>
-                  </Link>
-                </div>
-              </InfoWindow>}
-            
-              <MarkerClusterer>
-                {(clusterer) =>
-                trucks.map((truck) => (
+                <Marker
+                  position={center}
+                />
                 
-                  <Marker 
-                    key={createKey(truck)}
-                    title={truck.attributes.name}
-                    position={createTruckLocation(truck)} 
-                    clusterer={clusterer}
-                    icon={{
-                      url: truckIcon,
-                      scaledSize: new window.google.maps.Size(40, 40)
-                    }} 
+                { selectedCenter && <InfoWindow
+                  onCloseClick={() => {
+                      setSelectedCenter(null);
+                  }}
+                  position={selectedCenter}
+                >
+                  <div>
+                    <p>See more details about this truck</p>
+                    <Link to={`/truck/${clickedTruck.split(' ').join('_')}`}>
+                      <p>Show me!</p>
+                    </Link>
+                  </div>
+                </InfoWindow>}
+            
+                <MarkerClusterer>
+                  {(clusterer) =>
+                  trucks.map((truck) => (
+                  
+                    <Marker 
+                      key={createKey(truck)}
+                      title={truck.attributes.name}
+                      position={createTruckLocation(truck)} 
+                      clusterer={clusterer}
+                      icon={{
+                        url: truckIcon,
+                        scaledSize: new window.google.maps.Size(40, 40)
+                      }} 
 
-                    onClick={() => {setSelectedCenter(createTruckLocation(truck)); setClickedTruck(truck.attributes.name);}}
-                  /> 
-                ))
-                }
-              </MarkerClusterer>
+                      onClick={() => {setSelectedCenter(createTruckLocation(truck)); setClickedTruck(truck.attributes.name);}}
+                    /> 
+                  ))
+                  }
+                </MarkerClusterer>
               </>
             </GoogleMap>
           </LoadScript>

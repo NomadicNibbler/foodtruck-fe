@@ -3,7 +3,6 @@ import MapView from './MapView/MapView';
 import TruckDetails from './TruckDetails/TruckDetails';
 import { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-// import user from  "../mockuser.js";
 import Form from './Form/Form';
 import { fetchUserName, fetchNewUser, fetchTrucks } from '../apiCalls.js';
 import TruckList from './TruckList/TruckList';
@@ -19,14 +18,6 @@ class App extends Component {
     }
   }
   
-  // this will change to a method later when we connect the user form
-  componentDidMount() {
-    const lat =  Number(user.data.attributes.lat)
-    const lng = Number(user.data.attributes.long)
-    const truckList = this.createLocationList(user)
-    this.setState({ lat: lat, lng: lng, truckList:[...this.state.truckList, ...truckList ] })
-  }
-
   loginUser = (userName) => {
     fetchUserName(userName)
     .then(data => {
@@ -35,7 +26,6 @@ class App extends Component {
       .then(trucks => {
         console.log('trucks', trucks.data)
         this.sortByDistance(trucks.data)
-        const truckLocations = createLocationList(trucks.data)
         this.setState({ userLocation: {lat: 42.346251, lng: -71.09817}, trucks: trucks.data})
       })
     })
