@@ -1,3 +1,4 @@
+// Another solution I found to possible disable service worker
 // describe('service worker disable', () => {
 //     it('disables it', function () {
 //         cy.visit('../../public/index.html', {
@@ -67,8 +68,10 @@ describe('New user page', () => {
     })
 })
 
-describe.only('Map view', () => {
+describe('Map view', () => {
     beforeEach(() => {
+        //possible code solutions to unregister the service worker
+
         // if (window.navigator && navigator.serviceWorker) {
         //     navigator.serviceWorker.getRegistrations()
         //         .then((registrations) => {
@@ -92,12 +95,18 @@ describe.only('Map view', () => {
     });
 
     it('Should allow the user to navigate to the truck list and new location', () => {
+        Cypress.on('uncaught:exception', (err, runnable) => {
+            return false
+          })
+        cy.wait('@truck-markers');
         cy.get('[data-cy=truck-list-button').click().url().should('eq', 'http://localhost:3000/trucklist')
-        cy.go('back');
-        cy.get('[data-cy=change-location-button]').click().url().should('eq', 'http://localhost:3000/newlocation')
+    });
 
-    })
-})
+    it('Should allow the user to navigate to the change location form', () => {
+        cy.wait('@truck-markers');
+        cy.get('[data-cy=change-location-button]').click().url().should('eq', 'http://localhost:3000/newlocation')
+    });
+});
 
 describe('New location view', () => {
     beforeEach(() => {
@@ -130,6 +139,9 @@ describe('truck details', () => {
     });
 
     it("should display a picture, title, links, and description of the truck", () => {
+        Cypress.on('uncaught:exception', (err, runnable) => {
+            return false
+          })
         cy.wait('@truck-markers')
         cy.get('[data-cy=truck-list-button]');
         cy.get('[data-cy=truck-list-button]').click();
@@ -149,11 +161,10 @@ describe('truck details', () => {
         cy.get('[data-cy=truck-description]').contains("Arturo's unique recipes are a fusion of Spanish and traditional Mexican. Clean, simple and healthy Mexican food. Only 3 people prepare the food we serve to our clients, from the local produce and local butcher, there is not third parties when it comes to prepare our dishes. We closely follow Health Authority guidances and protocols to operate our business. We have been serving take out food at open spaces since 2010, and we will continue doing it, safety is our priority.");
     });
 
-    // it('should display a default logo if there is no logo provided', () => {
-    //     cy.wait('@truck-markers')
-    //     cy.get('[data-cy=truck-list-button]').click();
-    //     cy.get('[data-cy=truck-card]').eq(1).click();
-    //     cy.get('[data-cy=truck-details-logo]').should('have.attr', 'src').should('include', 'food-truck' );
-
-    // })
+    it('should display a default logo if there is no logo provided', () => {
+        cy.wait('@truck-markers')
+        cy.get('[data-cy=truck-list-button]').click();
+        cy.get('[data-cy=truck-card]').eq(1).click();
+        cy.get('[data-cy=truck-details-logo]').should('have.attr', 'src').should('include', 'food-truck' );
+    })
 });

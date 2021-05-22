@@ -21,13 +21,13 @@ class App extends Component {
   loginUser = (userName) => {
     fetchUserName(userName)
     .then(data => {
-      console.log(data)
+      // console.log(data)
       const id = data.data.id
       fetchTrucks(id)
       .then(trucks => {
-        console.log(trucks)
-        this.sortByDistance(trucks.data)
-        this.setState({ userLocation: {lat: 42.346251, lng: -71.09817}, trucks: trucks.data})
+        // console.log(trucks)
+        const sortedTrucks = this.sortByDistance(trucks.data)
+        this.setState({ userLocation: {lat: 42.346251, lng: -71.09817}, trucks: sortedTrucks})
       })
     })
     .catch(error => this.setState({ error: error.message }))
@@ -35,7 +35,7 @@ class App extends Component {
 
   sortByDistance = (trucks) => {
     const sortedTrucks = trucks.sort((a, b) => a.attributes.distance - b.attributes.distance)
-    this.setState({ trucks: sortedTrucks })
+    return sortedTrucks
   }
 
   createNewUser = (userName, first, last, address, city, zip) => {

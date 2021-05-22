@@ -11,7 +11,6 @@ function createKey(truck) {
 }
 
 const MapView = ({ trucks, center }) => {
-
   const [selectedCenter, setSelectedCenter] = useState(null);
   const [clickedTruck, setClickedTruck] = useState('');
 
