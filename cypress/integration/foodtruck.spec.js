@@ -1,11 +1,13 @@
-if (window.navigator && navigator.serviceWorker) {
-    navigator.serviceWorker.getRegistrations()
-        .then((registrations) => {
-            registrations.forEach((registration) => {
-                registration.unregister();
-            });
-        });
-        }
+// describe('service worker disable', () => {
+//     it('disables it', function () {
+//         cy.visit('../../public/index.html', {
+//           onBeforeLoad (win) {
+//             delete win.navigator.__proto__.serviceWorker
+//           }
+//         })
+//       })
+// })
+
 
 describe('The Nomadic Nibbler landing page', () => {
     beforeEach(() => {
@@ -65,8 +67,23 @@ describe('New user page', () => {
     })
 })
 
-describe('Map view', () => {
+describe.only('Map view', () => {
     beforeEach(() => {
+        // if (window.navigator && navigator.serviceWorker) {
+        //     navigator.serviceWorker.getRegistrations()
+        //         .then((registrations) => {
+        //             registrations.forEach((registration) => {
+        //                 registration.unregister();
+        //             });
+        //         });
+        // }
+        // cy.visit('../../public/index.html', {
+        //     onBeforeLoad (win) {
+        //       delete win.navigator.__proto__.serviceWorker
+        //     }
+        //   })
+        
+    
         cy.intercept("https://warm-scrubland-95764.herokuapp.com/api/v1/sessions", {fixture: 'user.json'})
         cy.intercept("https://warm-scrubland-95764.herokuapp.com/api/v1/trucks?id=1", {fixture: 'trucks.json'}).as("truck-markers")
         cy.visit('http://localhost:3000/login');
