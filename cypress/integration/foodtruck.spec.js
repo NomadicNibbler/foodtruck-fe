@@ -80,11 +80,6 @@ describe('Map view', () => {
         cy.get('[data-cy=change-location-button]').click().url().should('eq', 'http://localhost:3000/newlocation')
 
     })
-
-    // it.only('Should allow the user to navigate to the new location page', () => {
-    //     cy.wait('@truck-markers')
-    //     cy.get('[data-cy=change-location-button]').click().url().should('eq', 'http://localhost:3000/newlocation')
-    // })
 })
 
 describe('New location view', () => {
@@ -109,7 +104,7 @@ describe('New location view', () => {
     })
 })
 
-describe('truck details', () => {
+describe.only('truck details', () => {
     beforeEach(() => {
         cy.intercept("https://warm-scrubland-95764.herokuapp.com/api/v1/sessions", {fixture: 'user.json'})
         cy.intercept("https://warm-scrubland-95764.herokuapp.com/api/v1/trucks?id=1", {fixture: 'trucks.json'}).as("truck-markers")
@@ -120,7 +115,7 @@ describe('truck details', () => {
     it("should display a picture, title, links, and description of the truck", () => {
         cy.get('[data-cy=truck-list-button]').click();
         cy.get('[data-cy=truck-card]').first().click();
-        cy.get('[data-cy=truck-info]').should('contain', 'arturosmexico2go')
+        cy.get('[data-cy=truck-info]').should('contain', 'arturos')
         .and('contain', 'arturos2go.com');
         cy.get('[data-cy=truck-details-logo]').should('exist');
         cy.get('[data-cy=social-link]').first().invoke('attr', 'href').then(href => {
@@ -134,4 +129,11 @@ describe('truck details', () => {
         })
         cy.get('[data-cy=truck-description]').contains("Arturo's unique recipes are a fusion of Spanish and traditional Mexican. Clean, simple and healthy Mexican food. Only 3 people prepare the food we serve to our clients, from the local produce and local butcher, there is not third parties when it comes to prepare our dishes. We closely follow Health Authority guidances and protocols to operate our business. We have been serving take out food at open spaces since 2010, and we will continue doing it, safety is our priority.");
     });
+
+    it('should display a default logo if there is no logo provided', () => {
+        cy.get('[data-cy=truck-list-button]').click();
+        cy.get('[data-cy=truck-card]').eq(1).click();
+        cy.get('[data-cy=truck-details-logo]').should('exist');
+
+    })
 });

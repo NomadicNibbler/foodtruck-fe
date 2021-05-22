@@ -26,7 +26,7 @@
         "display": "", 
         "distance": 4.3, 
         "lat": 42.36054745, 
-        "logo":"https://cdn.streetfoodapp.com/images/cookie-monstah/logo/90w@2x.png",
+        "logo":"",
         "long": -71.05276653,
         "name": "Cookie Monstah",
         "payment_methods": ["cash", "credit_card", "debit_card", "apple_pay"],

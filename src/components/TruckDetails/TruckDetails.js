@@ -1,5 +1,6 @@
 import React from 'react';
 import SocialMediaLinks from '../SocialMediaLinks/SocialMediaLinks';
+import truckIcon from '../../assets/food-truck.svg';
 
 const TruckDetails = ({ truckDetails }) => {
   console.log(truckDetails)
@@ -21,12 +22,14 @@ const TruckDetails = ({ truckDetails }) => {
         <div className="circle2"></div>
       </div>
       </div>
-      {!truckDetails.attributes.logo && <img 
-        src="../../assets/food-truck.svg" 
-        alt={`${truckDetails.attributes.name} logo`} 
-        className="truck-details-logo"
-        data-cy="truck-details-logo"
-      />}
+      {!truckDetails.attributes.logo && 
+        <img 
+      src={truckIcon} 
+      alt={`${truckDetails.attributes.name} logo`} 
+      className="truck-details-logo-default"
+      data-cy="truck-details-logo"
+        />
+      }
       {truckDetails.attributes.logo && <img 
         src={truckDetails.attributes.logo} 
         alt={`${truckDetails.attributes.name} logo`} 

@@ -16,6 +16,12 @@
   margin: 0 auto; 
 }
 
+.truck-details-logo-default {
+  @extend .truck-details-logo;
+  background-color:black;
+  padding: 0px 25px;  
+}
+
 .truck-details-name {
   font-size: 1.2em;
   color: $dark-blue-green;
