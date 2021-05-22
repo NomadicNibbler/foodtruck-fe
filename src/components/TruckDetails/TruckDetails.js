@@ -6,31 +6,33 @@ const TruckDetails = ({ truckDetails }) => {
   console.log(truckDetails)
   return (
     <section className="truck-details-container">
-      <article 
-        className="truck-logo-container"
-        data-cy="truck-info"
-      >
-        <img 
-          src={truckDetails.attributes.logo} 
-          alt={`${truck.data.name} logo`} 
-          className="truck-logo"
-          data-cy="truck-logo"
-        />
-        <div className="truck-links">
-          <h1 className="truck-name" data-cy="truck-name">{truck.data.attributes.name}</h1>
+       <div className="truck-details-links">
+          <h1 className="truck-details-name" data-cy="truck-name">{truck.data.attributes.name}</h1>
           <a 
             href={truckDetails.attributes.website} className="truck-website"
-            data-cy="truck-website"
+            data-cy="truck-details-website"
             >
               {truckDetails.attributes.website}
           </a>
         </div>
-      </article>
+       <div className="speech-bubble">
+         <div class="circular-sb">
+          Yum!
+          <div class="circle3"></div>
+          <div class="circle4"></div>
+         </div>
+       </div>
+        <img 
+          src={truckDetails.attributes.logo} 
+          alt={`${truck.data.name} logo`} 
+          className="truck-details-logo"
+          data-cy="truck-details-logo"
+        />
       <SocialMediaLinks
         links={truckDetails.attributes.socials}
       />
-      <p className="truck-description-intro" data-cy="truck-intro">About Us:</p>
-      <p className="truck-description" data-cy="truck-description">{truckDetails.attributes.description}</p>
+      <p className="truck-details-intro" data-cy="truck-intro">About Us:</p>
+      <p className="truck-details-description" data-cy="truck-description">{truckDetails.attributes.description}</p>
     </section>
   )
 }
