@@ -67,16 +67,24 @@ describe('New user page', () => {
 
 describe('Map view', () => {
     beforeEach(() => {
-        cy.visit('http://localhost:3000/map')
-    })
+        cy.intercept("https://warm-scrubland-95764.herokuapp.com/api/v1/sessions", {fixture: 'user.json'})
+        cy.intercept("https://warm-scrubland-95764.herokuapp.com/api/v1/trucks?id=1", {fixture: 'trucks.json'}).as("truck-markers")
+        cy.visit('http://localhost:3000/login');
+        cy.get('[data-cy=username-input]').type('test').get('[data-cy=login-button]').click();
+    });
 
-    it('Should allow the user to navigate to the truck list', () => {
+    it('Should allow the user to navigate to the truck list and new location', () => {
+        cy.wait('@truck-markers')
         cy.get('[data-cy=truck-list-button').click().url().should('eq', 'http://localhost:3000/trucklist')
+        cy.go('back');
+        cy.get('[data-cy=change-location-button]').click().url().should('eq', 'http://localhost:3000/newlocation')
+
     })
 
-    it('Should allow the user to navigate to the new location page', () => {
-        cy.get('[data-cy=change-location-button]').click().url().should('eq', 'http://localhost:3000/newlocation')
-    })
+    // it.only('Should allow the user to navigate to the new location page', () => {
+    //     cy.wait('@truck-markers')
+    //     cy.get('[data-cy=change-location-button]').click().url().should('eq', 'http://localhost:3000/newlocation')
+    // })
 })
 
 describe('New location view', () => {
@@ -109,7 +117,7 @@ describe('truck details', () => {
         cy.get('[data-cy=username-input]').type('test').get('[data-cy=login-button]').click();
     });
 
-    it("should display a picture, title and description of the truck", () => {
+    it("should display a picture, title, links, and description of the truck", () => {
         cy.get('[data-cy=truck-list-button]').click();
         cy.get('[data-cy=truck-card]').first().click();
         cy.get('[data-cy=truck-info]').should('contain', 'arturosmexico2go')
