@@ -1,5 +1,6 @@
 import Header from './Header/Header';
 import MapView from './MapView/MapView';
+import TruckDetails from './TruckDetails/TruckDetails';
 import { Component } from 'react';
 import { Route, Switch, Redirect, Link } from 'react-router-dom';
 import user from  "../mockuser.js";
@@ -99,8 +100,9 @@ class App extends Component {
               center={{lat: this.state.lat, lng: this.state.lng}}
             />
           </Route>
-          <Route exact path='/trucks/:name'></Route>
-          <Route render={() => <Link to='/'><h2> 404: You must be lost. Please click me</h2></Link>} />
+          <Route exact path="/truck">
+            <TruckDetails/>
+          </Route>
         </Switch>
       </div>
     );

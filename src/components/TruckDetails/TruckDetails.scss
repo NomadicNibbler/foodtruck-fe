@@ -1,0 +1,24 @@
+.truck-details-container {
+  width: 95%; 
+  background-color: #FFF; 
+  display: flex;
+  flex-direction: column;  
+  margin: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5); 
+}
+
+.truck-logo-container {
+  display: flex; 
+  height: 50%;
+  width: 50%;
+}
+
+.truck-logo {
+  height: 200px;
+  width: 250px; 
+  object-fit: cover;  
+}
+
+.truck-description {
+  font-size: 1.4em;  
+}
