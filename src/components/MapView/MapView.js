@@ -1,19 +1,16 @@
 import  React from 'react';
 import { useState } from 'react';
-import { createTruckLocation } from '../../utility.js';
+import { createTruckLocation, createKey, createTrucksByRadius } from '../../utility.js';
 import { GoogleMap, LoadScript, MarkerClusterer, Marker, InfoWindow } from '@react-google-maps/api';
 import { Link } from 'react-router-dom';
 import truckIcon from '../../assets/food-truck.svg';
 const apiKey = process.env.REACT_APP_API_KEY;
 
-function createKey(truck) {
-  return truck.attributes.lat + truck.attributes.long
-}
-
 const MapView = ({ trucks, center }) => {
   const [selectedCenter, setSelectedCenter] = useState(null);
   const [clickedTruck, setClickedTruck] = useState('');
-  const [radius, setRadius] = useState('');
+  const [radius, setRadius] = useState(40);
+  const trucksByRadius = createTrucksByRadius(trucks, radius);
 
   if(!Object.keys(center).length) {
     return (
@@ -29,21 +26,21 @@ const MapView = ({ trucks, center }) => {
           <Link to="/newlocation">
             <button className="button" data-cy='change-location-button'>Change Location</button>
           </Link>
-          <label for="set-radius">Set Radius:</label>
+          <label htmlFor="set-radius">Set Radius:</label>
           <select
             className="map-select-radius" 
             name="radius" 
             id="set-radius"
             value={radius}
-            onChange={e => setRadius(e.target.value)}
+            onChange={e => setRadius(Number(e.target.value))}
           >
               <option value="select-option">--Please choose an option--</option>
-              <option value="30 miles">30 miles</option>
-              <option value="20 miles">20 miles</option>
-              <option value="10 miles">10 miles</option>
-              <option value="5 miles">5 miles</option>
-              <option value="3 miles">3 miles</option>
-              <option value="1 mile">1 mile</option>
+              <option value="30">30 miles</option>
+              <option value="20">20 miles</option>
+              <option value="10">10 miles</option>
+              <option value="5">5 miles</option>
+              <option value="3">3 miles</option>
+              <option value="1">1 mile</option>
           </select>
         </div>
         <section className="map-container">
@@ -76,7 +73,7 @@ const MapView = ({ trucks, center }) => {
             
                 <MarkerClusterer>
                   {(clusterer) =>
-                  trucks.map((truck) => (
+                  trucksByRadius.map((truck) => (
                     <Marker 
                       key={createKey(truck)}
                       title={truck.attributes.name}
