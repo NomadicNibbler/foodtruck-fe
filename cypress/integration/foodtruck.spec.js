@@ -106,6 +106,15 @@ describe('Map view', () => {
         cy.wait('@truck-markers');
         cy.get('[data-cy=change-location-button]').click().url().should('eq', 'http://localhost:3000/newlocation')
     });
+
+    it('should allow the user to change the radius', () => {
+        cy.get('[data-cy=set-radius]').select('10').should('have.value', '10');
+    });
+
+    it('should allow the user to set the radius back to default', () => {
+        cy.get('[data-cy=set-radius]').select('10').should('have.value', '10');
+        cy.get('[data-cy=set-radius]').select('All Trucks').should('have.value', '40');
+    });
 });
 
 describe('New location view', () => {

@@ -29,13 +29,17 @@ const MapView = ({ trucks, center }) => {
             </Link>
           </div>
           <div>
-            <label className="map-radius-label" htmlFor="set-radius">Set Radius:</label>
+            <label 
+              className="map-radius-label" 
+              htmlFor="set-radius">Set Radius:
+            </label>
             <select
               className="map-select-radius" 
               name="radius" 
               id="set-radius"
               value={radius}
               onChange={e => setRadius(Number(e.target.value))}
+              data-cy="set-radius"
             >
             
               <option value="40">All Trucks</option>
