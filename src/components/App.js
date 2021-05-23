@@ -84,7 +84,7 @@ class App extends Component {
               showTruckDetails={this.showTruckDetails}
             />
           </Route> 
-          <Route  exact path="/trucks/:name" render={({ match }) => {
+          <Route  exact path="/trucks/:name" render={({ match, history }) => {
             const clickedTruck = this.state.trucks.find(truck => {
               const truckName = match.params.name.split('_').join(' ')
               return truckName === truck.attributes.name
@@ -92,6 +92,7 @@ class App extends Component {
            
              return <TruckDetails 
                       truckDetails={clickedTruck}
+                      history={history}
                     />
           }}/>
          

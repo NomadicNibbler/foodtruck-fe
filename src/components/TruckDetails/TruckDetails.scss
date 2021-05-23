@@ -1,4 +1,10 @@
 .truck-details-container {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;  
+}
+
+.truck-details-card {
   width: 95%; 
   font-size: 1.4em;
   background-color: #FFF; 
@@ -7,6 +13,20 @@
   margin: 10px 5px 5px 5px;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5); 
   position: relative; 
+}
+
+.truck-details-back-btn {
+  align-self: flex-start;  
+  border: none; 
+  background: none; 
+}
+
+.truck-details-back-icon {
+  align-self: flex-start; 
+  width: 35px;
+  height: 35px; 
+  margin: 5px; 
+  color: $dark-blue-green;  
 }
 
 .truck-details-logo {
@@ -42,14 +62,24 @@
   padding: 5px 0px 0px 5px;
   margin: 0px; 
   color: $dark-blue-green;
-  font-size: 1.4em; 
+  font-size: 1.2em; 
   font-weight: 600;  
 }
 
-.truck-details-description {
+.truck-details-info {
   font-size: 1.2em; 
   margin: 0px; 
-  padding: 5px;    
+  padding: 10px;    
+}
+
+.truck-details-payments-container {
+  display: flex; 
+  flex-wrap: wrap; 
+}
+
+.divider {
+  color: $light-blue-green;
+  font-weight: 600; 
 }
 
 .speech-bubble {
