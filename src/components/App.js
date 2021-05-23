@@ -10,7 +10,9 @@ import TruckList from './TruckList/TruckList';
 class App extends Component {
   constructor() {
     super() 
-    this.state = {
+    this.state = JSON.parse(localStorage.getItem('state')) 
+    ? JSON.parse(localStorage.getItem('state'))
+    : {
       userLocation: {}, 
       radius: 5,
       trucks:[],
@@ -27,7 +29,9 @@ class App extends Component {
       .then(trucks => {
         // console.log(trucks)
         const sortedTrucks = this.sortByDistance(trucks.data)
-        this.setState({ userLocation: {lat: 42.346251, lng: -71.09817}, trucks: sortedTrucks})
+        this.setState({ userLocation: {lat: 42.346251, lng: -71.09817}, trucks: sortedTrucks}, () => {
+          localStorage.setItem('state', JSON.stringify(this.state))
+        })
       })
     })
     .catch(error => this.setState({ error: error.message }))
