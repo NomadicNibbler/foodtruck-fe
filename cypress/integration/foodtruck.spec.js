@@ -1,20 +1,12 @@
-// Another solution I found to possible disable service worker
-// describe('service worker disable', () => {
-//     it('disables it', function () {
-//         cy.visit('../../public/index.html', {
-//           onBeforeLoad (win) {
-//             delete win.navigator.__proto__.serviceWorker
-//           }
-//         })
-//       })
-// })
-
-
 describe('The Nomadic Nibbler landing page', () => {
     beforeEach(() => {
-        cy.visit('http://localhost:3000/')
+        cy.visit('http://localhost:3000/', {
+            onBeforeLoad (win) {
+              delete win.navigator.__proto__.serviceWorker
+            }
+          })
     })
-
+    
     it('Should have a title', () => {
         cy.get('[data-cy=title]').contains('The Nomadic Nibbler')
     })
@@ -36,7 +28,11 @@ describe('The Nomadic Nibbler landing page', () => {
 
 describe('New user page', () => {
     beforeEach(() => {
-        cy.visit('http://localhost:3000/newuser')
+        cy.visit('http://localhost:3000/newuser', {
+            onBeforeLoad (win) {
+                delete win.navigator.__proto__.serviceWorker
+            }
+            });
     })
 
     it('Should not allow a user to click the let\'s eat button without entering all of the fields', () => {
@@ -70,26 +66,13 @@ describe('New user page', () => {
 
 describe('Map view', () => {
     beforeEach(() => {
-        //possible code solutions to unregister the service worker
-
-        // if (window.navigator && navigator.serviceWorker) {
-        //     navigator.serviceWorker.getRegistrations()
-        //         .then((registrations) => {
-        //             registrations.forEach((registration) => {
-        //                 registration.unregister();
-        //             });
-        //         });
-        // }
-        // cy.visit('../../public/index.html', {
-        //     onBeforeLoad (win) {
-        //       delete win.navigator.__proto__.serviceWorker
-        //     }
-        //   })
-        
-    
         cy.intercept("https://warm-scrubland-95764.herokuapp.com/api/v1/sessions", {fixture: 'user.json'})
         cy.intercept("https://warm-scrubland-95764.herokuapp.com/api/v1/trucks?id=1", {fixture: 'trucks.json'}).as("truck-markers")
-        cy.visit('http://localhost:3000/login');
+        cy.visit('http://localhost:3000/login', {
+            onBeforeLoad (win) {
+                delete win.navigator.__proto__.serviceWorker
+            }
+            });
         cy.get('[data-cy=username-input]').type('test').get('[data-cy=login-button]').click();
         
     });
@@ -110,7 +93,11 @@ describe('Map view', () => {
 
 describe('New location view', () => {
     beforeEach(() => {
-        cy.visit('http://localhost:3000/newlocation')
+        cy.visit('http://localhost:3000/newlocation', {
+            onBeforeLoad (win) {
+                delete win.navigator.__proto__.serviceWorker
+            }
+            });
     })
 
     it('Should allow the user to enter a new location and navigate back to the map page', () => {
@@ -133,8 +120,12 @@ describe('New location view', () => {
 describe('truck details', () => {
     beforeEach(() => {
         cy.intercept("https://warm-scrubland-95764.herokuapp.com/api/v1/sessions", {fixture: 'user.json'})
-        cy.intercept("https://warm-scrubland-95764.herokuapp.com/api/v1/trucks?id=1", {fixture: 'trucks.json'}).as("truck-markers")
-        cy.visit('http://localhost:3000/login');
+        cy.intercept("https://warm-scrubland-95764.herokuapp.com/api/v1/trucks?id=1", {fixture: 'trucks.json'}).as("truck-markers");
+        cy.visit('http://localhost:3000/login', {
+            onBeforeLoad (win) {
+                delete win.navigator.__proto__.serviceWorker
+            }
+            });
         cy.get('[data-cy=username-input]').type('test').get('[data-cy=login-button]').click();
     });
 
