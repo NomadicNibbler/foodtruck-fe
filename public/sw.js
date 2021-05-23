@@ -42,8 +42,8 @@ self.addEventListener('activate', (event) => {
         })
       );
     })
-  );
-});
+  )
+})
 
 // Cache and return requests
 self.addEventListener('fetch', event => {
