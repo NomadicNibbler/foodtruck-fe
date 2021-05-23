@@ -3,12 +3,20 @@ import SocialMediaLinks from '../SocialMediaLinks/SocialMediaLinks';
 import truckIcon from '../../assets/food-truck.svg';
 import { TiArrowBack } from 'react-icons/ti';
 
-const TruckDetails = ({ truckDetails }) => {
-  console.log(truckDetails)
+const TruckDetails = ({ truckDetails, history }) => {
+  const paymentTypes = truckDetails.attributes.payment_methods.map(method => {
+    return <p className="truck-details-info">{method.split('_').join(' ')} <span className="divider">|</span></p>
+  })
   return (
-    <section>
-      <TiArrowBack className="truck-details-back-btn"/>
-      <article className="truck-details-container" data-cy="truck-info">
+    <section className="truck-details-container">
+      <button
+        className="truck-details-back-btn" 
+        onClick={() => history.goBack()} 
+        alt="go-back"
+      >
+        <TiArrowBack className="truck-details-back-icon"/>
+      </button>
+      <article className="truck-details-card" data-cy="truck-info">
         <div className="truck-details-links">
           <h1 className="truck-details-name" data-cy="truck-name">{truckDetails.attributes.name}</h1>
           <a 
@@ -43,7 +51,11 @@ const TruckDetails = ({ truckDetails }) => {
           links={truckDetails.attributes.socials}
         />
         <p className="truck-details-intro" data-cy="truck-intro">About Us:</p>
-        <p className="truck-details-description" data-cy="truck-description">{truckDetails.attributes.description}</p>
+        <p className="truck-details-info" data-cy="truck-description">{truckDetails.attributes.description}</p>
+        <p className="truck-details-intro">Payment Types:</p>
+        <div className="truck-details-payments-container">
+          {paymentTypes}
+        </div>
       </article>
     </section>
   )
