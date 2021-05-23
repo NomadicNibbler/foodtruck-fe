@@ -20,20 +20,24 @@ const MapView = ({ trucks, center }) => {
   return (
       <main>
         <div className="map-buttons-container">
-          <Link to="/trucklist">
-            <button className="button" data-cy='truck-list-button'>Truck List</button>
-          </Link>
-          <Link to="/newlocation">
-            <button className="button" data-cy='change-location-button'>Change Location</button>
-          </Link>
-          <label htmlFor="set-radius">Set Radius:</label>
-          <select
-            className="map-select-radius" 
-            name="radius" 
-            id="set-radius"
-            value={radius}
-            onChange={e => setRadius(Number(e.target.value))}
-          >
+          <div>
+            <Link to="/trucklist">
+              <button className="button" data-cy='truck-list-button'>Truck List</button>
+            </Link>
+            <Link to="/newlocation">
+              <button className="button" data-cy='change-location-button'>Change Location</button>
+            </Link>
+          </div>
+          <div>
+            <label className="map-radius-label" htmlFor="set-radius">Set Radius:</label>
+            <select
+              className="map-select-radius" 
+              name="radius" 
+              id="set-radius"
+              value={radius}
+              onChange={e => setRadius(Number(e.target.value))}
+            >
+            
               <option value="40">All Trucks</option>
               <option value="30">30 miles</option>
               <option value="20">20 miles</option>
@@ -41,7 +45,8 @@ const MapView = ({ trucks, center }) => {
               <option value="5">5 miles</option>
               <option value="3">3 miles</option>
               <option value="1">1 mile</option>
-          </select>
+            </select>
+          </div>
         </div>
         <section className="map-container">
           <LoadScript
