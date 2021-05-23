@@ -14,11 +14,11 @@ const MapView = ({ trucks, center }) => {
   const [selectedCenter, setSelectedCenter] = useState(null);
   const [clickedTruck, setClickedTruck] = useState('');
 
-  if(!Object.keys(center).length) {
-    return (
-      <h1>Loading...</h1>
-    )
-} else {
+//   if(!Object.keys(center).length) {
+//     return (
+//       <h1>Loading...</h1>
+//     )
+// } else {
   return (
       <main>
         <div className="map-buttons-container">
@@ -29,7 +29,7 @@ const MapView = ({ trucks, center }) => {
             <button className="button" data-cy='change-location-button'>Change Location</button>
           </Link>
         </div>
-        <section className="map-container">
+      {!Object.keys(center).length? <h1>Loading...</h1> : <section className="map-container">
           <LoadScript
             googleMapsApiKey={apiKey}
           >
@@ -78,11 +78,11 @@ const MapView = ({ trucks, center }) => {
               </>
             </GoogleMap>
           </LoadScript>
-        </section>
+        </section>}
       </main>
     )
   }
-}
+// }
 
 
 export default React.memo(MapView)
