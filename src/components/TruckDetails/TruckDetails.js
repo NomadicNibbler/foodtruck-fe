@@ -13,6 +13,7 @@ const TruckDetails = ({ truckDetails, history }) => {
         className="truck-details-back-btn" 
         onClick={() => history.goBack()} 
         alt="go-back"
+        data-cy="truck-details-back-btn"
       >
         <TiArrowBack className="truck-details-back-icon"/>
       </button>
@@ -53,7 +54,7 @@ const TruckDetails = ({ truckDetails, history }) => {
         <p className="truck-details-intro" data-cy="truck-intro">About Us:</p>
         <p className="truck-details-info" data-cy="truck-description">{truckDetails.attributes.description}</p>
         <p className="truck-details-intro">Payment Types:</p>
-        <div className="truck-details-payments-container">
+        <div className="truck-details-payments-container" data-cy="payment-methods">
           {paymentTypes}
         </div>
       </article>

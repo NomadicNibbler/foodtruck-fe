@@ -159,6 +159,10 @@ describe('truck details', () => {
             cy.request(href).its('status').should('eq', 200)
         })
         cy.get('[data-cy=truck-description]').contains("Arturo's unique recipes are a fusion of Spanish and traditional Mexican. Clean, simple and healthy Mexican food. Only 3 people prepare the food we serve to our clients, from the local produce and local butcher, there is not third parties when it comes to prepare our dishes. We closely follow Health Authority guidances and protocols to operate our business. We have been serving take out food at open spaces since 2010, and we will continue doing it, safety is our priority.");
+        const payments = ['cash', 'credit card', 'debit card', 'apple pay']
+        cy.get('[data-cy=payment-methods]').children().each(($payment, i) => {
+           cy.wrap($payment).should('contain', payments[i])
+        })
     });
 
     it('should display a default logo if there is no logo provided', () => {
@@ -166,5 +170,16 @@ describe('truck details', () => {
         cy.get('[data-cy=truck-list-button]').click();
         cy.get('[data-cy=truck-card]').eq(1).click();
         cy.get('[data-cy=truck-details-logo]').should('have.attr', 'src').should('include', 'food-truck' );
+    });
+
+    it('should take a user back to their previouly viewed page', () => {
+        Cypress.on('uncaught:exception', (err, runnable) => {
+            return false
+          });
+        cy.get('[data-cy=truck-list-button]');
+        cy.get('[data-cy=truck-list-button]').click();
+        cy.get('[data-cy=truck-card]').first().click();
+        cy.get('[data-cy=truck-details-back-btn]').click();
+        cy.url().should('eq', 'http://localhost:3000/trucklist');
     })
 });
