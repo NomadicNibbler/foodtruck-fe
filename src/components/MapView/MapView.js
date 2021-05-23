@@ -34,7 +34,7 @@ const MapView = ({ trucks, center }) => {
             value={radius}
             onChange={e => setRadius(Number(e.target.value))}
           >
-              <option value="select-option">--Please choose an option--</option>
+              <option value="40">All Trucks</option>
               <option value="30">30 miles</option>
               <option value="20">20 miles</option>
               <option value="10">10 miles</option>
