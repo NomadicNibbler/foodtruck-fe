@@ -1,5 +1,5 @@
-const cacheName = 'version-1';
-const self = this;
+const cacheName = 'v1';
+// const self = this;
 
 const urlsToCache = [
   '/site.webmanifest',
@@ -21,13 +21,13 @@ const urlsToCache = [
 self.addEventListener('install', event => {
   //perform install steps
   event.waitUntil(
-    caches.open('v1')
+    caches.open(cacheName)
     .then(cache => {
-      console.log('Opened cache');
-      return cache.addAll(urlsToCache);
+      console.log('Opened cache')
+      return cache.addAll(urlsToCache)
     })
-  );
-});
+  )
+})
 
 // Cache and return requests
 self.addEventListener('fetch', event => {
@@ -37,10 +37,28 @@ self.addEventListener('fetch', event => {
       if(response) {
         return response 
       }
-      return fetch(event.request);
+
+      const requestToCache = event.request.clone();
+
+      return fetch(event.request)
+      .then(response => {
+        if (!response || response.status !== 200) {
+          return response;
+        }
+
+        const responseToCache = response.clone()
+
+        caches.open(cacheName)
+        .then(cache => {
+          cache.put(requestToCache, responseToCache)
+        })
+
+        return response
+
+      })
     })
-  );
-});
+  )
+})
 
 // //update a service worker
 // self.addEventListener('activate', event => {
@@ -57,60 +75,60 @@ self.addEventListener('fetch', event => {
 // const cacheName = 'version-1';
 // const self = this;
 
-self.addEventListener('install', (event) => {
-  console.log('Service Worker: Installed');
-});
+// self.addEventListener('install', (event) => {
+//   console.log('Service Worker: Installed');
+// });
 
 
-self.addEventListener('activate', (event) => {
-  console.log('Service Worker: Activated');
-  event.waitUntil(
-    caches.keys().then(cacheName => {
-      return Promise.all(
-        cacheName.map(cache => {
-          if (cache !== cacheName) {
-            console.log('Service Worker: clearing old cache');
-            return caches.delete(cache);
-          }
-        })
-      );
-    })
-  );
-});
+// self.addEventListener('activate', (event) => {
+//   console.log('Service Worker: Activated');
+//   event.waitUntil(
+//     caches.keys().then(cacheName => {
+//       return Promise.all(
+//         cacheName.map(cache => {
+//           if (cache !== cacheName) {
+//             console.log('Service Worker: clearing old cache');
+//             return caches.delete(cache);
+//           }
+//         })
+//       );
+//     })
+//   );
+// });
 
-// fetch event
-self.addEventListener('fetch', evt => {
-  // check if request is made by chrome extensions or web page
-  // if request is made for web page url must contains http.
-  if (!(evt.request.url.indexOf('http') === 0)) return; // skip the request. if request is not made with http protocol
+// // fetch event
+// self.addEventListener('fetch', evt => {
+//   // check if request is made by chrome extensions or web page
+//   // if request is made for web page url must contains http.
+//   if (!(evt.request.url.indexOf('http') === 0)) return; // skip the request. if request is not made with http protocol
 
-  evt.respondWith(
-    caches
-      .match(evt.request)
-      .then(
-        cacheRes =>
-          cacheRes ||
-          fetch(evt.request).then(fetchRes =>
-            caches.open(dynamicNames).then(cache => {
-              cache.put(evt.request.url, fetchRes.clone());
-              // check cached items size
-              limitCacheSize(dynamicNames, 75);
-              return fetchRes;
-            })
-          )
-      )
-      .catch(() => caches.match('/fallback'))
-  );
-});
+//   evt.respondWith(
+//     caches
+//       .match(evt.request)
+//       .then(
+//         cacheRes =>
+//           cacheRes ||
+//           fetch(evt.request).then(fetchRes =>
+//             caches.open(dynamicNames).then(cache => {
+//               cache.put(evt.request.url, fetchRes.clone());
+//               // check cached items size
+//               limitCacheSize(dynamicNames, 75);
+//               return fetchRes;
+//             })
+//           )
+//       )
+//       .catch(() => caches.match('/fallback'))
+//   );
+// });
 
-// cache size limit function
-const limitCacheSize = (name, size) => {
-  caches.open(name).then(cache => {
-    cache.keys().then(keys => {
-      if (keys.length > size) {
-        cache.delete(keys[0]).then(limitCacheSize(name, size));
-      }
-    });
-  });
-};
+// // cache size limit function
+// const limitCacheSize = (name, size) => {
+//   caches.open(name).then(cache => {
+//     cache.keys().then(keys => {
+//       if (keys.length > size) {
+//         cache.delete(keys[0]).then(limitCacheSize(name, size));
+//       }
+//     });
+//   });
+// };
 
