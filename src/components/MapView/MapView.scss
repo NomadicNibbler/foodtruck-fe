@@ -4,12 +4,36 @@
 }
 
 .map-buttons-container {
-  margin: 10px; 
+  margin: 10px;
+  display: flex;
+  flex-direction: column; 
+  align-items: center; 
 }
 
 .map {
   height: 400px;
   width: 100%; 
+}
+
+.map-radius-label {
+  font-size: 1.4em;
+  font-weight: 600;
+  margin-right: 10px;   
+}
+
+.map-select-radius {
+  font-size: 1.4em; 
+  width: 100px; 
+  border: thin solid $light-blue-green;
+  height: 30px; 
+  color: $dark-blue-green;  
+}
+
+@media screen and(min-width: 500px) {
+  .map-buttons-container {
+    flex-direction: row;
+    justify-content: space-around;  
+  }
 }
 
 @media screen and(min-width: 900px ) {
