@@ -30,9 +30,8 @@ export const fetchTrucks = (id) => {
   .then(response => checkForError(response))
 }
 
-export const updateUser = (updatedUser) => {
-  console.log(updatedUser)
-  return fetch("https://warm-scrubland-95764.herokuapp.com/api/v1/users", {
+export const updateUser = (updatedUser, id) => {
+  return fetch(`https://warm-scrubland-95764.herokuapp.com/api/v1/users/${id}`, {
     method: "PATCH",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify(updatedUser)

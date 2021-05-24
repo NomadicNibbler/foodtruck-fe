@@ -23,7 +23,7 @@ class App extends Component {
   loginUser = (userName) => {
     fetchUserName(userName)
     .then(data => {
-      // console.log(data)
+      console.log(data)
       const id = data.data.id
       fetchTrucks(id)
       .then(trucks => {
@@ -61,12 +61,11 @@ class App extends Component {
   updateLocation = (address, city, zip) => {
     const updatedUser = {
       id: this.state.userId, 
-      street: address, 
+      address: address, 
       city: city, 
-      zip: zip
+      zipcode: zip
     }
-    console.log(updatedUser)
-    updateUser(updatedUser)
+    updateUser(updatedUser, this.state.userId)
     .then(data => {
       console.log(data)
     })
