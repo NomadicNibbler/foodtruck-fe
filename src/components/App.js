@@ -93,7 +93,7 @@ class App extends Component {
           </Route>
           <Route exact path="/newuser">
             <Form
-              createNewUser={this.createNewUser} error={this.state.error} 
+              createNewUser={this.createNewUser} error={this.state.error} clearError={this.clearError}
             />
           </Route>
           <Route exact path="/newlocation">
