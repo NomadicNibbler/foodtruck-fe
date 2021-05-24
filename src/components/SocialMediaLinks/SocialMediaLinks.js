@@ -11,6 +11,7 @@ const SocialMediaLinks = ({ links }) => {
         case social === "facebook" :
           return  <li>
                     <a 
+                      className="social-link"
                       href= {`https://facebook.com/${links['facebook']}`}
                       key={i} 
                       data-cy="social-link"
@@ -26,6 +27,7 @@ const SocialMediaLinks = ({ links }) => {
         case social === "twitter" :
           return  <li>
                     <a 
+                      className="social-link"
                       href= {`https://twitter.com/${links['twitter']}`} 
                       key={i}
                       data-cy="social-link"
@@ -42,6 +44,7 @@ const SocialMediaLinks = ({ links }) => {
           
           return  <li>
                     <a 
+                      className="social-link"
                       href= {`https://instagram.com/${links['instagram']}`} 
                       key={i}
                       data-cy="social-link"
