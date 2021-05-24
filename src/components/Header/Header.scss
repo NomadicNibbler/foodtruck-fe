@@ -6,9 +6,26 @@
   background-color: $dark-blue-green; 
 }
 
+.log-out-icon {
+  width: 17px; 
+  height: 17px; 
+  color: $light-blue-green; 
+}
+
+.log-out-text {
+  display: inline-block;
+  margin: 0px 0px 0px 10px;
+  font-size: 1.4em;  
+  color: $light-blue-green;   
+}
+
+.log-out-link {
+  position: absolute;
+  top: 20px;
+}
+
 .header-title {
-  width: 50%; 
-  padding-top: 5px;  
+  padding-top: 15px;  
   margin: 0; 
   color: $yellow; 
   font-family: 'Lakki Reddy', cursive;
@@ -39,7 +56,7 @@
 }
 
 .speed-line.second {
-  top: 12%;
+  top: 10%;
   animation-delay: 0.1s;
 }
 
@@ -48,7 +65,7 @@
   width: 115px;
   border-radius: 100%;
   height: 20px;
-  bottom: 82%;
+  bottom: 85%;
   right: 20px;
   background: rgba(0,0,0,0.1);
   animation: shadow 0.2s infinite ease-in-out forwards alternate;

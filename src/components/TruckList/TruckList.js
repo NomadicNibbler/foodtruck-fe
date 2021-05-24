@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
 import TruckCard from '../TruckCard/TruckCard';
 
+
 const TruckList = ({ truckList, sortByDistance }) => {
+  
     return (
         <>
             <div className='button-container'>
@@ -26,7 +28,6 @@ const TruckList = ({ truckList, sortByDistance }) => {
                         distance={truck.attributes.distance}
                         name={truck.attributes.name}
                         description={truck.attributes.description_short}
-
                 />
             })}
         </>
