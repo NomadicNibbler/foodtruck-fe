@@ -9,11 +9,12 @@ const SocialMediaLinks = ({ links }) => {
       
       switch (true) {
         case social === "facebook" :
-          return  <li>
+          return  <li
+                    key={i} 
+                  >
                     <a 
                       className="social-link"
                       href= {`https://facebook.com/${links['facebook']}`}
-                      key={i} 
                       data-cy="social-link"
                       aria-label="facebook-link"
                       >
@@ -25,11 +26,12 @@ const SocialMediaLinks = ({ links }) => {
                   </li>
                 
         case social === "twitter" :
-          return  <li>
+          return  <li
+                    key={i} 
+                  >
                     <a 
                       className="social-link"
                       href= {`https://twitter.com/${links['twitter']}`} 
-                      key={i}
                       data-cy="social-link"
                       aria-label="twitter-link"
                     >
@@ -42,11 +44,12 @@ const SocialMediaLinks = ({ links }) => {
               
         case social === "instagram" :
           
-          return  <li>
+          return  <li
+                    key={i} 
+                  >
                     <a 
                       className="social-link"
                       href= {`https://instagram.com/${links['instagram']}`} 
-                      key={i}
                       data-cy="social-link"
                       aria-label="twitter-link"
                     >

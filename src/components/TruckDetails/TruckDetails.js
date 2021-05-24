@@ -4,8 +4,8 @@ import truckIcon from '../../assets/food-truck.svg';
 import { TiArrowBack } from 'react-icons/ti';
 
 const TruckDetails = ({ truckDetails, history }) => {
-  const paymentTypes = truckDetails.attributes.payment_methods.map(method => {
-    return <p className="truck-details-info">{method.split('_').join(' ')} <span className="divider">|</span></p>
+  const paymentTypes = truckDetails.attributes.payment_methods.map((method, i) => {
+    return <p key={i} className="truck-details-info">{method.split('_').join(' ')} <span className="divider">|</span></p>
   })
   return (
     <section className="truck-details-container">
