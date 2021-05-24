@@ -3,3 +3,8 @@
   flex-direction: $direction;
   #{$align}: $alignValue;
 }
+
+@mixin boxSize($widthSize, $heightSize) {
+  width: $widthSize;
+  height: $heightSize; 
+}

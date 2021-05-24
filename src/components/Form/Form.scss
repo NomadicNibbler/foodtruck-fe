@@ -1,15 +1,13 @@
 form {
     background: $dark-blue-green;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+    @include flexStyle(flex, column, justify-content, center);
     align-items: center;
     align-self: center;
     width: 90%;
+    min-width: 200px;
     min-height: 425px;
     border-radius: 10px;
     margin: 80px;
-    min-width: 200px;
     text-align: center;
     color: white;
 }
@@ -29,8 +27,7 @@ input {
     background: $light-blue-green;
     text-decoration-color: $yellow;
     border-radius: 5px;
-    height: 30px;
-    width: 200px;
+    @include boxSize(200px, 30px);
     font-size: 1.5em;
 }
 

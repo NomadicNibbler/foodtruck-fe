@@ -1,14 +1,12 @@
 .social-link-list {
-  display: flex; 
-  justify-content: space-around;
+  @include flexStyle(flex, row, justify-content, space-around); 
   padding: 0px;  
   list-style-type: none;
 }
 
 .social-media-icon {
+  @include boxSize(35px, 35px); 
   color: $light-blue-green; 
-  height: 35px; 
-  width: 35px; 
 }
 
 .social-link {

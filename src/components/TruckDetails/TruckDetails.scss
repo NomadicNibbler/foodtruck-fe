@@ -1,7 +1,5 @@
 .truck-details-container {
-  display: flex;
-  flex-direction: column; 
-  align-items: center;  
+  @include flexStyle(flex, column, align-items, center);  
 }
 
 .truck-details-card {
@@ -23,8 +21,7 @@
 
 .truck-details-back-icon {
   align-self: flex-start; 
-  width: 35px;
-  height: 35px; 
+  @include boxSize(35px, 35px);  
   margin: 5px; 
   color: $dark-blue-green;  
 }
@@ -61,13 +58,11 @@
   border-top: thin solid $light-blue-green; 
   padding: 5px 0px 0px 5px;
   margin: 0px; 
-  color: $dark-blue-green;
-  font-size: 1.2em; 
+  color: $dark-blue-green; 
   font-weight: 600;  
 }
 
 .truck-details-info {
-  font-size: 1.2em; 
   margin: 0px; 
   padding: 10px;    
 }
@@ -96,9 +91,7 @@
   margin: 23px auto;
   border-radius: 50%;
   text-align: center;
-  font-size: 1.2em;
   font-weight: 900;
-  font-family: arial;
   position: relative;
   color: $dark-blue-green; 
   background: $yellow;
