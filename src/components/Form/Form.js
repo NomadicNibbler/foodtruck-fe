@@ -23,7 +23,7 @@ const Form = ({ createNewUser, loginUser, updateLocation, error }) => {
             clearInputs()
         } else {
             e.preventDefault()
-            setInputError('Please Fill Out All Fields.')
+            setInputError('Please Fill Out All Fields Below.')
         }
     }
 
@@ -140,7 +140,7 @@ const Form = ({ createNewUser, loginUser, updateLocation, error }) => {
 
             {location === '/login' &&
                 <Link to='/newuser'>
-                <button className='button' data-cy='new-user-button'>New User?</button>
+                <button className='button' data-cy='new-user-button' onClick={clearInputs}>New User?</button>
                 </Link>
             }
 
