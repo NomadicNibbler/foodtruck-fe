@@ -20,6 +20,10 @@ class App extends Component {
       error:''
     }
   }
+
+  clearError = () => {
+    this.setState({ error: '' })
+  }
   
   loginUser = (userName) => {
     fetchUserName(userName)
@@ -84,12 +88,12 @@ class App extends Component {
           </Route>
           <Route exact path='/login'>
             <Form 
-              loginUser={this.loginUser} error={this.state.error}
+              loginUser={this.loginUser} error={this.state.error} clearError={this.clearError}
             />
           </Route>
           <Route exact path="/newuser">
             <Form
-              createNewUser={this.createNewUser} error={this.state.error}
+              createNewUser={this.createNewUser} error={this.state.error} 
             />
           </Route>
           <Route exact path="/newlocation">
@@ -107,6 +111,8 @@ class App extends Component {
               trucks={this.state.trucks}
               center={this.state.userLocation}
               showTruckDetails={this.showTruckDetails}
+              error={this.state.error}
+              clearError={this.clearError}
             />
           </Route> 
           <Route  exact path="/trucks/:name" render={({ match, history }) => {

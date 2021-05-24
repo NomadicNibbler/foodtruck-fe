@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 // import { fetchTrucks } from '../../apiCalls';
-const Form = ({ createNewUser, loginUser, updateLocation, error }) => {
+const Form = ({ createNewUser, loginUser, updateLocation, error, clearError }) => {
 
     const location = useLocation().pathname
     const [userName, setUserName] = useState('')
@@ -16,7 +16,7 @@ const Form = ({ createNewUser, loginUser, updateLocation, error }) => {
         if (location === '/newuser' && first && last && address && city && zipAuth(zip) ) {
             createNewUser(userName, first, last, address, city, zip)
             clearInputs()
-        } else if (location === '/login' && userName && !error) {
+        } else if (location === '/login' && userName) {
             loginUser(userName)
             clearInputs()
         } else if (location === '/newlocation' && address && city && zipAuth(zip) ) {
@@ -44,6 +44,7 @@ const Form = ({ createNewUser, loginUser, updateLocation, error }) => {
         setCity('')
         setZip('')
         setInputError('')
+        clearError()
     }
 
     return (
