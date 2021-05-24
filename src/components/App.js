@@ -53,7 +53,7 @@ class App extends Component {
     }
     fetchNewUser(newUser)
     .then(data => console.log('userData', data))
-    .catch(error => console.log(error))
+    .catch(error => this.setState({ error: error.message}))
   }
 
   updateLocation = (address, city, zip) => {

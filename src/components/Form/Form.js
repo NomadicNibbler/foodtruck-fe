@@ -23,7 +23,7 @@ const Form = ({ createNewUser, loginUser, updateLocation, error, clearError }) =
             clearInputs()
         } else {
             e.preventDefault()
-            setInputError('Please Fill Out All Fields Below.')
+            setInputError('Please Correctly Fill Out All Fields Below.')
         }
     }
 
@@ -50,6 +50,7 @@ const Form = ({ createNewUser, loginUser, updateLocation, error, clearError }) =
     return (
         <form>
             {inputError && <h2 className='error'>{inputError}</h2>}
+            {error && <h2>Please Pick A New Username.</h2>}
             {location === '/newuser' &&
             <h2 className='form-prompt' data-cy='newuser-prompt'>Please enter your user information</h2>}
             {location === '/login' &&
