@@ -1,0 +1,10 @@
+@mixin flexStyle($display, $direction, $align, $alignValue) {
+  display: $display;
+  flex-direction: $direction;
+  #{$align}: $alignValue;
+}
+
+@mixin boxSize($widthSize, $heightSize) {
+  width: $widthSize;
+  height: $heightSize; 
+}

@@ -4,15 +4,16 @@ import truckIcon from '../../assets/food-truck.svg';
 import { TiArrowBack } from 'react-icons/ti';
 
 const TruckDetails = ({ truckDetails, history }) => {
-  const paymentTypes = truckDetails.attributes.payment_methods.map(method => {
-    return <p className="truck-details-info">{method.split('_').join(' ')} <span className="divider">|</span></p>
+  const paymentTypes = truckDetails.attributes.payment_methods.map((method, i) => {
+    return <p key={i} className="truck-details-info">{method.split('_').join(' ')} <span className="divider">|</span></p>
   })
   return (
     <section className="truck-details-container">
       <button
-        className="truck-details-back-btn" 
+        className="truck-details-back-btn"
+        name="go-back" 
         onClick={() => history.goBack()} 
-        alt="go-back"
+        aria-label="go-back"
         data-cy="truck-details-back-btn"
       >
         <TiArrowBack className="truck-details-back-icon"/>
@@ -23,6 +24,7 @@ const TruckDetails = ({ truckDetails, history }) => {
           <a 
             href={truckDetails.attributes.website} className="truck-website"
             data-cy="truck-details-website"
+            aria-label="truck-website"
             >
               {truckDetails.attributes.website}
           </a>

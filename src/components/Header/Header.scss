@@ -1,18 +1,35 @@
 .header {
-  padding: 20px;  
-  display: flex;
-  justify-content: space-between; 
+  padding: 20px;
+  @include flexStyle(flex, row, justify-content, space-between);  
   align-items: center;  
   background-color: $dark-blue-green; 
 }
 
+.log-out-icon {
+  width: 17px; 
+  height: 17px; 
+  color: $light-blue-green; 
+}
+
+.log-out-text {
+  display: inline-block;
+  margin: 0px 0px 0px 10px;
+  font-size: 1.4em;  
+  color: $yellow;   
+}
+
+.log-out-link {
+  position: absolute;
+  top: 20px;
+}
+
 .header-title {
   width: 50%; 
-  padding-top: 5px;  
+  padding-top: 25px;  
   margin: 0; 
   color: $yellow; 
   font-family: 'Lakki Reddy', cursive;
-  font-size: 2.6em; 
+  font-size: 2.2em; 
   text-shadow: 1px 1px 2px $light-blue-green;  
 }
 
@@ -28,10 +45,9 @@
 }
 
 .speed-line {
+  @include boxSize(20px, 2px);
   position: absolute;
-  width: 20px;
   border-radius: 10px;
-  height: 2px;
   background: #fff;
   right: 100px;
   animation: speed 3s infinite ease forwards;
@@ -39,16 +55,15 @@
 }
 
 .speed-line.second {
-  top: 12%;
+  top: 10%;
   animation-delay: 0.1s;
 }
 
 .shadow {
+  @include boxSize(115px, 20px); 
   position: absolute; 
-  width: 115px;
   border-radius: 100%;
-  height: 20px;
-  bottom: 82%;
+  top: 113px;
   right: 20px;
   background: rgba(0,0,0,0.1);
   animation: shadow 0.2s infinite ease-in-out forwards alternate;
@@ -81,9 +96,9 @@
   }
 }
 
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 600px) {
   .header-title {
-    font-size: 3.0em;  
+    font-size: 2.8em;  
   }
 
   @keyframes speed {

@@ -12,7 +12,7 @@ const TruckCard = ({ logo, distance, name, description}) => {
                 {logo && <img src={logo} alt='truck logo' className='truck-logo'/>}
                 <h2>{description}</h2>
             </div>
-        </Link>
+         </Link>
     )
 }
 
