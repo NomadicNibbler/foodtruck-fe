@@ -51,7 +51,7 @@ const Form = ({ createNewUser, loginUser, error }) => {
                     type='text'
                     value={userName}
                     onChange={ e => setUserName(e.target.value) }
-                    aria-label="username-input"
+                    aria-label="username input"
                 />
             }
 
@@ -64,6 +64,7 @@ const Form = ({ createNewUser, loginUser, error }) => {
                     type='text'
                     value={first}
                     onChange={ e => setFirst(e.target.value) }
+                    aria-label="first name input"
                 />
             }
 
@@ -75,7 +76,7 @@ const Form = ({ createNewUser, loginUser, error }) => {
                     type='text'
                     value={last}
                     onChange={ e => setLast(e.target.value) }
-
+                    aria-label="last name input" 
                 />
             }
 
@@ -87,6 +88,7 @@ const Form = ({ createNewUser, loginUser, error }) => {
                     type='text'
                     value={address}
                     onChange={ e => setAddress(e.target.value) }
+                    aria-label="address input"
                 />
             }
 
@@ -98,6 +100,7 @@ const Form = ({ createNewUser, loginUser, error }) => {
                     type='text'
                     value={city}
                     onChange={ e => setCity(e.target.value) }
+                    aria-label="city input" 
                 />
             }
 
@@ -109,6 +112,7 @@ const Form = ({ createNewUser, loginUser, error }) => {
                     type='text'
                     value={zip}
                     onChange={ e => setZip(e.target.value) }
+                    aria-label="zip code input"
                 />
             }
 
@@ -136,6 +140,11 @@ const Form = ({ createNewUser, loginUser, error }) => {
             {location === '/newlocation' &&
                 <Link to='/map'>
                     <button className='button' data-cy='lets-eat-button' onClick={handleSubmit}>Let's Eat!</button>
+                </Link>
+            }
+            {location === '/newuser' && 
+                <Link to='/login'>
+                    <p className='back-to-login-link'>back to login</p>
                 </Link>
             }
         </form>

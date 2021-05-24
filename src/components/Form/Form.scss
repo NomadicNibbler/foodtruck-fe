@@ -6,7 +6,6 @@ form {
     align-items: center;
     align-self: center;
     width: 50%;
-    box-shadow: 10px 10px $yellow;
     min-height: 500px;
     border-radius: 10px;
     margin: 80px;
@@ -20,14 +19,9 @@ form {
 }
 
 .form-prompt {
-    // font-family: 'Lakki Reddy', cursive;
-    font-size: 2em;
-    justify-self: start;
-}
-
-.form-prompt {
-    // font-family: 'Lakki Reddy', cursive;
-    font-size: 2em;
+    color: $yellow;
+    font-weight: 500;  
+    font-size: 1.8em;
     justify-self: start;
 }
 
@@ -41,6 +35,10 @@ input {
 }
 
 input::placeholder {
-    // font-family: 'Lakki Reddy', cursive;
     font-size: 1em;
+}
+
+.back-to-login-link {
+    color: $yellow; 
+    font-size: 1.5em;
 }
