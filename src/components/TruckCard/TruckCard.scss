@@ -5,7 +5,7 @@
     background: $dark-blue-green;
     min-height: 200px;
     width: 40%;
-    min-width: 300px;
+    min-width: 250px;
     color: white;
     margin-bottom: 10px;
     border: thick solid $light-blue-green;
@@ -37,4 +37,16 @@
 
 a {
     text-decoration: none;
+}
+
+@media screen and (min-width: 500px) {
+    .truck-card {
+        width: 60%; 
+    }
+}
+
+@media screen and (min-width: 500px) {
+    .truck-card {
+        width: 40%; 
+    }
 }
