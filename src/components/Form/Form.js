@@ -157,7 +157,7 @@ const Form = ({ createNewUser, loginUser, updateLocation, error }) => {
             }
             {location === '/newuser' && 
                 <Link to='/login'>
-                    <p className='go-back-link'>back to login</p>
+                    <p className='go-back-link' onClick={clearInputs}>back to login</p>
                 </Link>
             }
             {location === '/newlocation' && 
