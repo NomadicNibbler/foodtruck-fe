@@ -4,7 +4,7 @@ import TruckDetails from './TruckDetails/TruckDetails';
 import { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import Form from './Form/Form';
-import { fetchUserName, fetchNewUser, fetchTrucks } from '../apiCalls.js';
+import { fetchUserName, fetchNewUser, fetchTrucks, updateUser } from '../apiCalls.js';
 import TruckList from './TruckList/TruckList';
 
 class App extends Component {
@@ -13,8 +13,8 @@ class App extends Component {
     this.state = JSON.parse(localStorage.getItem('state')) 
     ? JSON.parse(localStorage.getItem('state'))
     : {
+      userId: '',
       userLocation: {}, 
-      radius: 5,
       trucks:[],
       error:''
     }
@@ -29,7 +29,7 @@ class App extends Component {
       .then(trucks => {
         // console.log(trucks)
         const sortedTrucks = this.sortByDistance(trucks.data)
-        this.setState({ userLocation: {lat: 42.346251, lng: -71.09817}, trucks: sortedTrucks}, () => {
+        this.setState({userId: id, userLocation: {lat: 42.346251, lng: -71.09817}, trucks: sortedTrucks}, () => {
           localStorage.setItem('state', JSON.stringify(this.state))
         })
       })
@@ -56,6 +56,20 @@ class App extends Component {
     .catch(error => console.log(error))
   }
 
+  updateLocation = (address, city, zip) => {
+    const updatedUser = {
+      id: this.state.userId, 
+      street: address, 
+      city: city, 
+      zip: zip
+    }
+    console.log(updatedUser)
+    updateUser(updatedUser)
+    .then(data => {
+      console.log(data)
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -75,7 +89,10 @@ class App extends Component {
             />
           </Route>
           <Route exact path="/newlocation">
-            <Form error={this.state.error}/>
+            <Form 
+              error={this.state.error}
+              updateLocation={this.updateLocation}
+            />
           </Route>
           <Route exact path="/trucklist">
             <TruckList truckList={this.state.trucks} sortByDistance={this.sortByDistance}/>

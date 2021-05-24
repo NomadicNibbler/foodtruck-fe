@@ -29,3 +29,13 @@ export const fetchTrucks = (id) => {
   return fetch(`https://warm-scrubland-95764.herokuapp.com/api/v1/trucks?id=${id}`)
   .then(response => checkForError(response))
 }
+
+export const updateUser = (updatedUser) => {
+  console.log(updatedUser)
+  return fetch("https://warm-scrubland-95764.herokuapp.com/api/v1/users", {
+    method: "PATCH",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(updatedUser)
+  }) 
+  .then(response => checkForError(response))
+}
