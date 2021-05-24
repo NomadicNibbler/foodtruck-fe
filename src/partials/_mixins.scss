@@ -1,0 +1,5 @@
+@mixin flexStyle($display, $direction, $align, $alignValue) {
+  display: $display;
+  flex-direction: $direction;
+  #{$align}: $alignValue;
+}

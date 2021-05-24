@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
-// import { fetchTrucks } from '../../apiCalls';
+
 const Form = ({ createNewUser, loginUser, error }) => {
 
     const location = useLocation().pathname
@@ -51,6 +51,7 @@ const Form = ({ createNewUser, loginUser, error }) => {
                     type='text'
                     value={userName}
                     onChange={ e => setUserName(e.target.value) }
+                    aria-label="username-input"
                 />
             }
 
