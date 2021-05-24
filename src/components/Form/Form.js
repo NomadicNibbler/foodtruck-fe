@@ -10,6 +10,7 @@ const Form = ({ createNewUser, loginUser, updateLocation, error }) => {
     const [address, setAddress] = useState('')
     const [city, setCity] = useState('')
     const [zip, setZip] = useState('')
+    const [inputError, setInputError] = useState('')
    
     const handleSubmit = e => {
         if (location === '/newuser' && first && last && address && city && zipAuth(zip) ) {
@@ -22,6 +23,7 @@ const Form = ({ createNewUser, loginUser, updateLocation, error }) => {
             clearInputs()
         } else {
             e.preventDefault()
+            setInputError('Please Fill Out All Fields.')
         }
     }
 
@@ -41,10 +43,12 @@ const Form = ({ createNewUser, loginUser, updateLocation, error }) => {
         setAddress('')
         setCity('')
         setZip('')
+        setInputError('')
     }
 
     return (
         <form>
+            {inputError && <h2>{inputError}</h2>}
             {location === '/newuser' &&
             <h2 className='form-prompt' data-cy='newuser-prompt'>Please enter your user information</h2>}
             {location === '/login' &&
