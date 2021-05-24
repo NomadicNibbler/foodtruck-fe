@@ -144,7 +144,12 @@ const Form = ({ createNewUser, loginUser, error }) => {
             }
             {location === '/newuser' && 
                 <Link to='/login'>
-                    <p className='back-to-login-link'>back to login</p>
+                    <p className='go-back-link'>back to login</p>
+                </Link>
+            }
+            {location === '/newlocation' && 
+                <Link to='/map'>
+                    <p className='go-back-link'>back to map</p>
                 </Link>
             }
         </form>
