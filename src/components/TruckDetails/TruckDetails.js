@@ -10,9 +10,10 @@ const TruckDetails = ({ truckDetails, history }) => {
   return (
     <section className="truck-details-container">
       <button
-        className="truck-details-back-btn" 
+        className="truck-details-back-btn"
+        name="go-back" 
         onClick={() => history.goBack()} 
-        alt="go-back"
+        aria-label="go-back"
         data-cy="truck-details-back-btn"
       >
         <TiArrowBack className="truck-details-back-icon"/>
@@ -23,6 +24,7 @@ const TruckDetails = ({ truckDetails, history }) => {
           <a 
             href={truckDetails.attributes.website} className="truck-website"
             data-cy="truck-details-website"
+            aria-label="truck-website"
             >
               {truckDetails.attributes.website}
           </a>

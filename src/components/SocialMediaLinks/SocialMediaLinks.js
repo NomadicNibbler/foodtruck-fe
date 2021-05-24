@@ -9,38 +9,51 @@ const SocialMediaLinks = ({ links }) => {
       
       switch (true) {
         case social === "facebook" :
-          return  <a 
-                    href= {`https://facebook.com/${links['facebook']}`}
-                    key={i} 
-                    data-cy="social-link"
-                    >
-                  <li>
-                    <SiFacebook className="social-media-icon"/>
-                    </li>
-                  </a>
+          return  <li>
+                    <a 
+                      href= {`https://facebook.com/${links['facebook']}`}
+                      key={i} 
+                      data-cy="social-link"
+                      aria-label="facebook-link"
+                      >
+                    
+                      <SiFacebook 
+                        className="social-media-icon"
+                        alt="facebook-icon"/>
+                    </a>
+                  </li>
                 
         case social === "twitter" :
-          return  <a 
-                    href= {`https://twitter.com/${links['twitter']}`} 
-                    key={i}
-                    data-cy="social-link"
-                  >
-                  <li>
-                    <SiTwitter className="social-media-icon"/>
+          return  <li>
+                    <a 
+                      href= {`https://twitter.com/${links['twitter']}`} 
+                      key={i}
+                      data-cy="social-link"
+                      aria-label="twitter-link"
+                    >
+                      <SiTwitter 
+                        className="social-media-icon"
+                        alt="twitter-icon"
+                      />
+                    </a>
                   </li>
-                  </a>
-                
-
+              
         case social === "instagram" :
-          return  <a 
-                    href= {`https://instagram.com/${links['instagram']}`} 
-                    key={i}
-                    data-cy="social-link"
-                  >
-                  <li>
-                    <SiInstagram className="social-media-icon"/>
-                    </li>
-                  </a>
+          
+          return  <li>
+                    <a 
+                      href= {`https://instagram.com/${links['instagram']}`} 
+                      key={i}
+                      data-cy="social-link"
+                      aria-label="twitter-link"
+                    >
+                    
+                      <SiInstagram 
+                        className="social-media-icon"
+                        alt="instagram-icon"
+                      />
+                    </a>
+                  </li>
               
         default :
           return <p>Come visit us today!!</p>
