@@ -8,7 +8,7 @@ const Header = () => {
   return (
     <>
     <header className="header">
-      {location !== "/login" && 
+      {location !== "/login" && location !== '/newuser' && 
       <Link to="/" className="log-out-link">
         <div>
           <FaUser className="log-out-icon" alt="log-out-icon      "/>
