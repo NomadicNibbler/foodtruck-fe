@@ -5,11 +5,11 @@ form {
     flex-direction: column;
     align-items: center;
     align-self: center;
-    width: 50%;
-    min-height: 500px;
+    width: 90%;
+    min-height: 425px;
     border-radius: 10px;
     margin: 80px;
-    min-width: 300px;
+    min-width: 200px;
     text-align: center;
     color: white;
 }
@@ -41,4 +41,16 @@ input::placeholder {
 .back-to-login-link {
     color: $yellow; 
     font-size: 1.5em;
+}
+
+@media screen and(min-width: 500px) {
+    form {
+      width: 60%; 
+    }
+}
+
+@media screen and(min-width: 900px) {
+    form {
+      width: 40%; 
+    }
 }
