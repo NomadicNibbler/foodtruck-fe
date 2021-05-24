@@ -28,8 +28,10 @@ class App extends Component {
       fetchTrucks(id)
       .then(trucks => {
         // console.log(trucks)
+        const lat = data.data.attributes.lat
+        const lng = data.data.attributes.long
         const sortedTrucks = this.sortByDistance(trucks.data)
-        this.setState({userId: id, userLocation: {lat: 42.346251, lng: -71.09817}, trucks: sortedTrucks}, () => {
+        this.setState({userId: id, userLocation: {lat: lat, lng: lng}, trucks: sortedTrucks}, () => {
           localStorage.setItem('state', JSON.stringify(this.state))
         })
       })
