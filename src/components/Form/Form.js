@@ -12,19 +12,27 @@ const Form = ({ createNewUser, loginUser, updateLocation, error }) => {
     const [zip, setZip] = useState('')
    
     const handleSubmit = e => {
-        if (location === '/newuser' && first && last && address && city ) {
+        if (location === '/newuser' && first && last && address && city && zipAuth(zip) ) {
             createNewUser(userName, first, last, address, city, zip)
             clearInputs()
         } else if (location === '/login' && userName && !error) {
             loginUser(userName)
             clearInputs()
-        } else if (location === '/newlocation' && address && city) {
-            updateLocation(address, city, zip)
+        } else if (location === '/newlocation' && address && city && zipAuth(zip) ) {
             clearInputs()
         } else {
             e.preventDefault()
         }
     }
+
+    const zipAuth = zip => {
+        console.log(zip)
+        const canada = /^[ABCEGHJ-NPRSTVXY]\d[ABCEGHJ-NPRSTV-Z][ -]?\d[ABCEGHJ-NPRSTV-Z]\d$/i
+        const us = /^[0-9]{5}(?:-[0-9]{4})?$/
+        console.log((canada.exec(zip) || us.exec(zip)? true : false))
+        return (canada.exec(zip) || us.exec(zip) ? true : false)
+        
+        }
 
     const clearInputs = () => {
         setUserName('')
