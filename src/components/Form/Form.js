@@ -48,7 +48,7 @@ const Form = ({ createNewUser, loginUser, updateLocation, error }) => {
 
     return (
         <form>
-            {inputError && <h2>{inputError}</h2>}
+            {inputError && <h2 className='error'>{inputError}</h2>}
             {location === '/newuser' &&
             <h2 className='form-prompt' data-cy='newuser-prompt'>Please enter your user information</h2>}
             {location === '/login' &&
