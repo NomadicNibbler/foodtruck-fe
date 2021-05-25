@@ -1,4 +1,4 @@
-import { Link, useLocation, Redirect, useHistory } from 'react-router-dom';
+import { Link, useLocation, Redirect } from 'react-router-dom';
 import { useState } from 'react';
 // import { fetchTrucks } from '../../apiCalls';
 const Form = ({ createNewUser, loginUser, updateLocation, error, clearError, newUserError }) => {
