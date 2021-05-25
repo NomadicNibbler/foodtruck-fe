@@ -1,7 +1,7 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, Redirect, useHistory } from 'react-router-dom';
 import { useState } from 'react';
 // import { fetchTrucks } from '../../apiCalls';
-const Form = ({ createNewUser, loginUser, updateLocation, error, clearError }) => {
+const Form = ({ createNewUser, loginUser, updateLocation, error, clearError, newUserError }) => {
 
     const location = useLocation().pathname
     const [userName, setUserName] = useState('')
@@ -23,7 +23,7 @@ const Form = ({ createNewUser, loginUser, updateLocation, error, clearError }) =
             clearInputs()
         } else {
             e.preventDefault()
-            setInputError('Please Correctly Fill Out All Fields Below.')
+            setInputError('Please Complete The Form Below.')
         }
     }
 
@@ -47,10 +47,18 @@ const Form = ({ createNewUser, loginUser, updateLocation, error, clearError }) =
         clearError()
     }
 
+    // const redirectNewUser = e => {
+    //     if (error) {
+    //         return <Redirect to='/newuser' />
+    //     }
+    //     handleSubmit(e)
+    // }
+
     return (
         <form>
             {inputError && <h2 className='error'>{inputError}</h2>}
-            {error && <h2>Please Pick A New Username.</h2>}
+            {(error || newUserError) && <h2>Please Try A Different Username.</h2>}
+            {newUserError && <Redirect to='/newuser'/>}
             {location === '/newuser' &&
             <h2 className='form-prompt' data-cy='newuser-prompt'>Please enter your user information</h2>}
             {location === '/login' &&
@@ -148,7 +156,7 @@ const Form = ({ createNewUser, loginUser, updateLocation, error, clearError }) =
 
             {location === '/newuser' &&
                 <Link to='/login'>
-                <button className='button' data-cy='create-account' onClick={handleSubmit}>Create Account</button>
+                    <button className='button' data-cy='create-account' onClick={handleSubmit}>Create Account</button>
                 </Link>
             }
 

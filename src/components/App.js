@@ -17,12 +17,14 @@ class App extends Component {
       userId: '',
       userLocation: {}, 
       trucks:[],
-      error:''
+      error:'',
+      newUserError: ''
     }
   }
 
   clearError = () => {
     this.setState({ error: '' })
+    this.setState({ newUserError: '' })
   }
   
   loginUser = (userName) => {
@@ -53,7 +55,10 @@ class App extends Component {
     }
     fetchNewUser(newUser)
     .then(data => console.log('userData', data))
-    .catch(error => this.setState({ error: error.message}))
+    .catch(error => {
+      this.setState({ newUserError: error.message})
+      console.log('wow', this.state.newUserError)
+    })
   }
 
   updateLocation = (address, city, zip) => {
@@ -88,12 +93,12 @@ class App extends Component {
           </Route>
           <Route exact path='/login'>
             <Form 
-              loginUser={this.loginUser} error={this.state.error} clearError={this.clearError}
+              loginUser={this.loginUser} error={this.state.error} clearError={this.clearError} newUserError={this.state.newUserError}
             />
           </Route>
           <Route exact path="/newuser">
             <Form
-              createNewUser={this.createNewUser} error={this.state.error} clearError={this.clearError}
+              createNewUser={this.createNewUser} newUserError={this.state.newUserError} clearError={this.clearError}
             />
           </Route>
           <Route exact path="/newlocation">

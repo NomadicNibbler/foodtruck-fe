@@ -2,7 +2,7 @@ import  React from 'react';
 import { useState } from 'react';
 import { createTruckLocation, createKey, createTrucksByRadius } from '../../utility.js';
 import { GoogleMap, LoadScript, MarkerClusterer, Marker, InfoWindow } from '@react-google-maps/api';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import truckIcon from '../../assets/food-truck.svg';
 const apiKey = process.env.REACT_APP_API_KEY;
 
@@ -12,79 +12,74 @@ const MapView = ({ trucks, center, error, clearError }) => {
   const [radius, setRadius] = useState(40);
   const trucksByRadius = createTrucksByRadius(trucks, radius);
 
-//   if(!Object.keys(center).length) {
-//     return (
-//       <h1>Loading...</h1>
-//     )
-// } else {
-
-const loader = () => {
-  if (!Object.keys(center).length) {
-    return <h1>Loading...</h1>
-  } else if (error) {
-    return (
-      <div>
-        <h2>UserName not found. Please try again</h2>
-        <Link to='/login'>
-          <button className='button' onClick={() => clearError()}>Back to Login</button>
-        </Link>
-      </div>
-    )
-  } else {
-    return (
-     <section className="map-container">
-      <LoadScript
-        googleMapsApiKey={apiKey}
-      >
-        <GoogleMap
-          mapContainerClassName="map"
-          center={center}
-          zoom={13}
+  const loader = () => {
+    if (!Object.keys(center).length) {
+      return <h1>Loading...</h1>
+    } else if (error) {
+      return (
+        // <div className='login-error'>
+        //   <h2>UserName Not Found. Please Try Logging In Again</h2>
+        //   <Link to='/login'>
+        //     <button className='button' onClick={() => clearError()}>Back to Login</button>
+        //   </Link>
+        // </div>
+        <Redirect to='/login'/>
+      )
+    } else {
+      return (
+      <section className="map-container">
+        <LoadScript
+          googleMapsApiKey={apiKey}
         >
-          <>
-            <Marker
-              position={center}
-            />
+          <GoogleMap
+            mapContainerClassName="map"
+            center={center}
+            zoom={13}
+          >
+            <>
+              <Marker
+                position={center}
+              />
 
-            {selectedCenter && <InfoWindow
-              onCloseClick={() => {
-                setSelectedCenter(null);
-              }}
-              position={selectedCenter}
-            >
-              <div>
-                <p>See more details about this truck</p>
-                <Link to={`/trucks/${clickedTruck.split(' ').join('_')}`}>
-                  <p>Show me!</p>
-                </Link>
-              </div>
-            </InfoWindow>}
+              {selectedCenter && <InfoWindow
+                onCloseClick={() => {
+                  setSelectedCenter(null);
+                }}
+                position={selectedCenter}
+              >
+                <div>
+                  <p>See more details about this truck</p>
+                  <Link to={`/trucks/${clickedTruck.split(' ').join('_')}`}>
+                    <p>Show me!</p>
+                  </Link>
+                </div>
+              </InfoWindow>}
 
-            <MarkerClusterer>
-              {(clusterer) =>
-                trucksByRadius.map((truck) => (
-                  <Marker
-                    key={createKey(truck)}
-                    title={truck.attributes.name}
-                    position={createTruckLocation(truck)}
-                    clusterer={clusterer}
-                    icon={{
-                      url: truckIcon,
-                      scaledSize: new window.google.maps.Size(40, 40)
-                    }}
+              <MarkerClusterer>
+                {(clusterer) =>
+                  trucksByRadius.map((truck) => (
+                    <Marker
+                      key={createKey(truck)}
+                      title={truck.attributes.name}
+                      position={createTruckLocation(truck)}
+                      clusterer={clusterer}
+                      icon={{
+                        url: truckIcon,
+                        scaledSize: new window.google.maps.Size(40, 40)
+                      }}
 
-                    onClick={() => { setSelectedCenter(createTruckLocation(truck)); setClickedTruck(truck.attributes.name); }}
-                  />
-                ))
-              }
-            </MarkerClusterer>
-          </>
-        </GoogleMap>
-      </LoadScript>
-    </section>
-    )
+                      onClick={() => { setSelectedCenter(createTruckLocation(truck)); setClickedTruck(truck.attributes.name); }}
+                    />
+                  ))
+                }
+              </MarkerClusterer>
+            </>
+          </GoogleMap>
+        </LoadScript>
+      </section>
+      )
+    }
   }
-}
   
 
   return (
@@ -173,12 +168,6 @@ const loader = () => {
             </GoogleMap>
           </LoadScript>
         </section>} */}
-        {/* {error && <div>
-                    <h2>UserName not found. Please try again</h2>
-                    <Link to='/login'>
-                      <button className='button' onClick={() => clearError()}>Back to Login</button>
-                    </Link>
-                  </div>} */}
       </main>
     )
   }
