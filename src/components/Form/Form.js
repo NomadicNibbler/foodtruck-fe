@@ -12,13 +12,13 @@ const Form = ({ createNewUser, loginUser, updateLocation, error }) => {
     const [zip, setZip] = useState('')
    
     const handleSubmit = e => {
-        if (location === '/newuser' && first && last && address && city && zip.length === 5 && !error.length) {
+        if (location === '/newuser' && first && last && address && city ) {
             createNewUser(userName, first, last, address, city, zip)
             clearInputs()
         } else if (location === '/login' && userName && !error) {
             loginUser(userName)
             clearInputs()
-        } else if (location === '/newlocation' && address && city && zip.length === 5 && !error.length) {
+        } else if (location === '/newlocation' && address && city) {
             updateLocation(address, city, zip)
             clearInputs()
         } else {

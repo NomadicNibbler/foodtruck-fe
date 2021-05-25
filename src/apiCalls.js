@@ -26,6 +26,7 @@ export const fetchNewUser = (newUser) => {
 }
 
 export const fetchTrucks = (id) => {
+  console.log(id)
   return fetch(`https://warm-scrubland-95764.herokuapp.com/api/v1/trucks?id=${id}`)
   .then(response => checkForError(response))
 }

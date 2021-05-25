@@ -4,7 +4,8 @@ import TruckDetails from './TruckDetails/TruckDetails';
 import { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import Form from './Form/Form';
-import { fetchUserName, fetchNewUser, fetchTrucks, updateUser } from '../apiCalls.js';
+import { fetchUserName, fetchNewUser, fetchTrucks, updateUser } from '../apiCalls';
+import { setUserData } from '../utility'
 import TruckList from './TruckList/TruckList';
 
 class App extends Component {
@@ -23,25 +24,18 @@ class App extends Component {
   loginUser = (userName) => {
     fetchUserName(userName)
     .then(data => {
-      console.log(data)
+      console.log("user login", data)
       const id = data.data.id
       fetchTrucks(id)
       .then(trucks => {
-        // console.log(trucks)
-        const lat = data.data.attributes.lat
-        const lng = data.data.attributes.long
-        const sortedTrucks = this.sortByDistance(trucks.data)
-        this.setState({userId: id, userLocation: {lat: lat, lng: lng}, trucks: sortedTrucks}, () => {
+        console.log("login trucks", trucks)
+        const formattedData = setUserData(data, trucks)
+        this.setState({userId: id, userLocation: {lat: formattedData.lat, lng: formattedData.lng}, trucks: formattedData.trucks}, () => {
           localStorage.setItem('state', JSON.stringify(this.state))
         })
       })
     })
     .catch(error => this.setState({ error: error.message }))
-  }
-
-  sortByDistance = (trucks) => {
-    const sortedTrucks = trucks.sort((a, b) => a.attributes.distance - b.attributes.distance)
-    return sortedTrucks
   }
 
   createNewUser = (userName, first, last, address, city, zip) => {
@@ -67,7 +61,15 @@ class App extends Component {
     }
     updateUser(updatedUser, this.state.userId)
     .then(data => {
-      console.log(data)
+      console.log("update User", data)
+      fetchTrucks(this.state.userId)
+      .then(trucks => {
+        console.log("updatedTrucks", trucks)
+        const formattedData = setUserData(data, trucks)
+        this.setState({...this.state, userLocation: {lat: formattedData.lat, lng: formattedData.lng}, trucks: formattedData.trucks}, () => {
+          localStorage.setItem('state', JSON.stringify(this.state))
+        })
+      })
     })
   }
 
