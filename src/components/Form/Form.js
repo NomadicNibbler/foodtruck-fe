@@ -57,7 +57,7 @@ const Form = ({ createNewUser, loginUser, updateLocation, error, clearError, new
     return (
         <form>
             {inputError && <h2 className='error'>{inputError}</h2>}
-            {(error || newUserError) && <h2>Please Try A Different Username.</h2>}
+            {(error || newUserError) && <h2 className='error'>Please Try A Different Username.</h2>}
             {newUserError && <Redirect to='/newuser'/>}
             {location === '/newuser' &&
             <h2 className='form-prompt' data-cy='newuser-prompt'>Please enter your user information</h2>}
