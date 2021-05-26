@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
-
-const Form = ({ createNewUser, loginUser, error }) => {
+// import { fetchTrucks } from '../../apiCalls';
+const Form = ({ createNewUser, loginUser, updateLocation, error }) => {
 
     const location = useLocation().pathname
     const [userName, setUserName] = useState('')
@@ -12,13 +12,14 @@ const Form = ({ createNewUser, loginUser, error }) => {
     const [zip, setZip] = useState('')
    
     const handleSubmit = e => {
-        if (location === '/newuser' && first && last && address && city && zip.length === 5 && !error.length) {
+        if (location === '/newuser' && first && last && address && city ) {
             createNewUser(userName, first, last, address, city, zip)
             clearInputs()
         } else if (location === '/login' && userName && !error) {
             loginUser(userName)
             clearInputs()
-        } else if (location === '/newlocation' && address && city && zip.length === 5 && !error.length) {
+        } else if (location === '/newlocation' && address && city) {
+            updateLocation(address, city, zip)
             clearInputs()
         } else {
             e.preventDefault()

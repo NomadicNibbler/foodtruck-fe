@@ -12,3 +12,16 @@ export const createTrucksByRadius = (trucks, radius) => {
   });
   return trucksByRadius
 }
+
+export const setUserData = (userData, trucks) => {
+  const sortedTrucks = trucks.data.sort((a, b) =>  {
+    return a.attributes.distance - b.attributes.distance
+  })
+  const lat = userData.data.attributes.lat
+  const lng = userData.data.attributes.long
+  return {
+    trucks: sortedTrucks,
+    lat: lat, 
+    lng: lng 
+  }
+}

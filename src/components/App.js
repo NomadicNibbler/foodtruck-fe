@@ -4,7 +4,8 @@ import TruckDetails from './TruckDetails/TruckDetails';
 import { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import Form from './Form/Form';
-import { fetchUserName, fetchNewUser, fetchTrucks } from '../apiCalls.js';
+import { fetchUserName, fetchNewUser, fetchTrucks, updateUser } from '../apiCalls';
+import { setUserData } from '../utility'
 import TruckList from './TruckList/TruckList';
 
 class App extends Component {
@@ -13,8 +14,8 @@ class App extends Component {
     this.state = JSON.parse(localStorage.getItem('state')) 
     ? JSON.parse(localStorage.getItem('state'))
     : {
+      userId: '',
       userLocation: {}, 
-      radius: 5,
       trucks:[],
       error:''
     }
@@ -23,23 +24,18 @@ class App extends Component {
   loginUser = (userName) => {
     fetchUserName(userName)
     .then(data => {
-      // console.log(data)
+      console.log("user login", data)
       const id = data.data.id
       fetchTrucks(id)
       .then(trucks => {
-        // console.log(trucks)
-        const sortedTrucks = this.sortByDistance(trucks.data)
-        this.setState({ userLocation: {lat: 42.346251, lng: -71.09817}, trucks: sortedTrucks}, () => {
+        console.log("login trucks", trucks)
+        const formattedData = setUserData(data, trucks)
+        this.setState({userId: id, userLocation: {lat: formattedData.lat, lng: formattedData.lng}, trucks: formattedData.trucks}, () => {
           localStorage.setItem('state', JSON.stringify(this.state))
         })
       })
     })
     .catch(error => this.setState({ error: error.message }))
-  }
-
-  sortByDistance = (trucks) => {
-    const sortedTrucks = trucks.sort((a, b) => a.attributes.distance - b.attributes.distance)
-    return sortedTrucks
   }
 
   createNewUser = (userName, first, last, address, city, zip) => {
@@ -54,6 +50,28 @@ class App extends Component {
     fetchNewUser(newUser)
     .then(data => console.log('userData', data))
     .catch(error => console.log(error))
+  }
+
+  updateLocation = (address, city, zip) => {
+    const updatedUser = {
+      id: this.state.userId, 
+      address: address, 
+      city: city, 
+      zipcode: zip
+    }
+    updateUser(updatedUser, this.state.userId)
+    .then(data => {
+      console.log("update User", data)
+      fetchTrucks(this.state.userId)
+      .then(trucks => {
+        console.log("updatedTrucks", trucks)
+        const formattedData = setUserData(data, trucks)
+        this.setState({...this.state, userLocation: {lat: formattedData.lat, lng: formattedData.lng}, trucks: formattedData.trucks}, () => {
+          localStorage.setItem('state', JSON.stringify(this.state))
+        })
+      })
+      .catch(error => console.log(error))
+    })
   }
 
   render() {
@@ -75,7 +93,10 @@ class App extends Component {
             />
           </Route>
           <Route exact path="/newlocation">
-            <Form error={this.state.error}/>
+            <Form 
+              error={this.state.error}
+              updateLocation={this.updateLocation}
+            />
           </Route>
           <Route exact path="/trucklist">
             <TruckList truckList={this.state.trucks} sortByDistance={this.sortByDistance}/>
