@@ -39,7 +39,10 @@ class App extends Component {
         })
       })
     })
-    .catch(error => this.setState({ error: error.message }))
+    .catch(error => {
+      this.setState({ error: error.message })
+      console.log('meow', error.message)
+    })
   }
 
   createNewUser = (userName, first, last, address, city, zip) => {
@@ -92,7 +95,7 @@ class App extends Component {
           </Route>
           <Route exact path="/newuser">
             <Form
-              createNewUser={this.createNewUser} newUserError={this.state.newUserError} clearError={this.clearError}
+              createNewUser={this.createNewUser} newUserError={this.state.newUserError} clearError={this.clearError} error={this.state.error}
             />
           </Route>
           <Route exact path="/newlocation">
