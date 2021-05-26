@@ -22,7 +22,8 @@ const TruckDetails = ({ truckDetails, history }) => {
         <div className="truck-details-links">
           <h1 className="truck-details-name" data-cy="truck-name">{truckDetails.attributes.name}</h1>
           <a 
-            href={truckDetails.attributes.website} className="truck-website"
+            href={truckDetails.attributes.website} 
+            className="truck-details-website"
             data-cy="truck-details-website"
             aria-label="truck-website"
             >

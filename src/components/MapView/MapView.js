@@ -47,7 +47,7 @@ const MapView = ({ trucks, center }) => {
             </select>
           </div>
         </div>
-      {!Object.keys(center).length? <h1>Loading...</h1> : <section      className="map-container">
+      {!Object.keys(center).length? <h1 className="map-loading-msg">Loading...</h1> : <section className="map-container">
           <LoadScript
             googleMapsApiKey={apiKey}
           >
@@ -70,7 +70,7 @@ const MapView = ({ trucks, center }) => {
                   <div>
                     <p>See more details about this truck</p>
                     <Link to={`/trucks/${clickedTruck.split(' ').join('_')}`}>
-                      <p>Show me!</p>
+                      <p className="info-link">Show me!</p>
                     </Link>
                   </div>
                 </InfoWindow>}

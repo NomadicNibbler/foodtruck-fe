@@ -3,7 +3,7 @@
 }
 
 .truck-details-card {
-  width: 95%; 
+  width: 90%; 
   font-size: 1.4em;
   background-color: #FFF; 
   display: flex;
@@ -11,6 +11,7 @@
   margin: 10px 5px 5px 5px;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5); 
   position: relative; 
+  border: thick solid $light-blue-green;
 }
 
 .truck-details-back-btn {
@@ -40,14 +41,15 @@
 }
 
 .truck-details-name {
+  letter-spacing: 1px; 
   font-size: 1.2em;
-  color: $dark-blue-green;
-  text-shadow: 1px 1px 4px $light-blue-green;   
+  color: $dark-blue-green; 
 }
 
 .truck-details-website {
   color: $dark-blue-green;
-  text-decoration: none;  
+  text-decoration: none;
+  text-shadow: 0px 0px 4px $light-blue-green;    
 }
 
 .truck-details-links {
@@ -86,7 +88,6 @@
 
 .circular-sb {
   width: 60%;
-  border: 5px solid $light-blue-green;
   padding: 20px 20px;
   margin: 23px auto;
   border-radius: 50%;
@@ -94,11 +95,10 @@
   font-weight: 900;
   position: relative;
   color: $dark-blue-green; 
-  background: $yellow;
+  background: $light-blue-green;
 }
 
 .circle1 {
-  border: 5px solid $light-blue-green;
   position: absolute;
   width: 10px;
   padding: 10px;
@@ -115,11 +115,10 @@
   border-radius: 50%;
   right: 0px;
   bottom: 0px;
-  background: $yellow;
+  background: $light-blue-green;
 }
 
 .circle2 {
-  border: 5px solid $light-blue-green;
   position: absolute;
   width: 5px;
   padding: 5px 5px;
@@ -136,7 +135,7 @@
   border-radius: 50%;
   right: 0px;
   bottom: 0px;
-  background: $yellow;
+  background: $light-blue-green;
 }
 
 @media screen and(min-width: 500px) {
