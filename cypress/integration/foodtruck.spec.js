@@ -56,14 +56,18 @@ describe('New user page', () => {
         cy.get('[data-cy=input-error]').contains('Please Complete The Form Below.')
     })
 
-    it('Should allow a new user to enter their information and click the let\'s eat button', () => {
+    it.only('Should allow a new user to enter their information and click the create account', () => {
+        cy.intercept(
+            'POST',
+            "https://warm-scrubland-95764.herokuapp.com/api/v1/users", { fixture: 'user2.json' }
+        )
         cy.get('[data-cy=newuser-prompt]').contains('Please enter your user information')
-        cy.get('[data-cy=username-input]').type('teddybare').should('have.value', 'teddybare')
-        cy.get('[data-cy=first-name-input]').type('tedd').should('have.value', 'tedd')
-        cy.get('[data-cy=last-name-input]').type('barely').should('have.value', 'barely')
-        cy.get('[data-cy=address-input]').type('123 fake street').should('have.value', '123 fake street')
-        cy.get('[data-cy=city-input]').type('nowhere').should('have.value', 'nowhere')
-        cy.get('[data-cy=zip-input]').type('12345').should('have.value', '12345')
+        cy.get('[data-cy=username-input]').type('Beepler').should('have.value', 'Beepler')
+        cy.get('[data-cy=first-name-input]').type('Beep').should('have.value', 'Beep')
+        cy.get('[data-cy=last-name-input]').type('Beeperson').should('have.value', 'Beeperson')
+        cy.get('[data-cy=address-input]').type('4 yawkey way').should('have.value', '4 yawkey way')
+        cy.get('[data-cy=city-input]').type('Boston').should('have.value', 'Boston')
+        cy.get('[data-cy=zip-input]').type('02215').should('have.value', '02215')
         cy.get('[data-cy=create-account]').click().url().should('eq', 'http://localhost:3000/login')
     })
 

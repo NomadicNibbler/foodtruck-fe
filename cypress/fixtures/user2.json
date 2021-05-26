@@ -1,0 +1,16 @@
+{
+    "data": {
+        "attributes": {
+            "address": "4 yawkey way",
+            "city": "Boston",
+            "first_name": "Beep",
+            "last_name": "Beeperson",
+            "lat": "49.346251",
+            "long": "-71.09817",
+            "username": "Beepler",
+            "zipcode": "02215"
+        },
+        "id": "1",
+        "type": "user"
+    }
+}
