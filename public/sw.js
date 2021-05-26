@@ -45,36 +45,150 @@ self.addEventListener('activate', (event) => {
   )
 })
 
-// Cache and return requests
+
 self.addEventListener('fetch', event => {
+  // if (!(event.request.url.indexOf('http') === 0)) return;
+  // if(event.request.method === 'POST') return; 
   event.respondWith(
-    caches.match(event.request)
-    .then(response => {
-      if(response) {
-        return response 
-      }
+    caches.open(cacheName).then(cache => {
+      return cache.match(event.request).then(response => {
+        return (
+          response ||
+          fetch(event.request).then(response => {
+            cache.put(event.request, response.clone());
+            return response;
+          })
+        );
+      });
+    }),
+  );
+});
 
-      const requestToCache = event.request.clone();
 
-      return fetch(event.request)
-      .then(response => {
-        if (!response || response.status !== 200) {
-          return response;
-        }
 
-        const responseToCache = response.clone()
+// // Install a service worker
+// self.addEventListener('install', event => {
+//   //perform install steps
+//   event.waitUntil(
+//     caches.open(cacheName)
+//     .then(cache => {
+//       console.log('Opened cache', urlsToCache)
+//       return cache.addAll(urlsToCache)
+//     })
+//   )
+// })
 
-        caches.open(cacheName)
-        .then(cache => {
-          cache.put(requestToCache, responseToCache)
-        })
 
-        return response
+// self.addEventListener('activate', function (event) {
+//   event.waitUntil(
+//       caches.keys().then(function (cacheNames) {
+//           cacheNames.map(function (cacheName) {
+//               if (cacheName.indexOf(cacheVersion) < 0) {
+//                   return caches.delete(cacheName);
+//                  }
+//               });
+//           });
+//       })
+//   );
+// });
+   
+ 
 
-      })
-    })
-  )
-})
+
+// self.addEventListener('activate', (event) => {
+//   console.log('Service Worker: Activated');
+//   event.waitUntil(
+//     caches.keys().then(cacheName => {
+//       return Promise.all(
+//         cacheName.map(cache => {
+//           if (cache !== cacheName) {
+//             console.log('Service Worker: clearing old cache', cache);
+//             return caches.delete(cache);
+//           }
+//         })
+//       );
+//     })
+//   )
+// })
+
+// self.addEventListener('fetch', function(event) {
+//   event.respondWith(
+//     caches.match(event.request)
+//       .then(function(response) {
+//         // Cache hit - return response
+//         if (response) {
+//           return response;
+//         }
+//         return fetch(event.request);
+//       }
+//     )
+//   );
+// });
+
+
+
+// Cache and return requests
+// self.addEventListener('fetch', event => {
+ 
+//   event.respondWith(
+//     caches.match(event.request)
+//     .then(response => {
+//       if(response) {
+//         return response 
+//       }
+
+//       const requestToCache = event.request.clone();
+
+//       return fetch(event.request)
+//       .then(response => {
+//         if (!response || response.status !== 200) {
+//           return response;
+//         }
+
+//         const responseToCache = response.clone()
+
+//         caches.open(cacheName)
+//         .then(cache => {
+//           cache.put(requestToCache, responseToCache)
+//         })
+
+//         return response
+
+//       })
+//     })
+//   )
+// })
+
+// function fromNetwork(request, timeout) {
+//   console.log("responding with network")
+//   return new Promise((fulfill, reject) => {
+
+//     var timeoutId = setTimeout(reject, timeout);
+ 
+//     fetch(request).then(response => {
+//       // const responseToCache = response.clone()
+//       clearTimeout(timeoutId);
+//       fulfill(response);
+ 
+//     }, reject);
+//   });
+// }
+
+// function fromCache(request) {
+//   console.log("responding with cache")
+//   return caches.open(cacheName).then(cache => {
+//     return cache.match(request).then(matching => {
+//       return matching || Promise.reject('no-match');
+//     });
+//   });
+// }
+
+// self.addEventListener('fetch', evt => {
+//   evt.respondWith(fromNetwork(evt.request, 10000).catch(function () {
+//     return fromCache(evt.request);
+//   }));
+// });
+
 
 // //update a service worker
 // self.addEventListener('activate', event => {

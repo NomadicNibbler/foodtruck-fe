@@ -70,6 +70,7 @@ class App extends Component {
           localStorage.setItem('state', JSON.stringify(this.state))
         })
       })
+      .catch(error => console.log(error))
     })
   }
 
