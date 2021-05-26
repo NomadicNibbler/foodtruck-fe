@@ -17,18 +17,22 @@ class App extends Component {
       userId: '',
       userLocation: {}, 
       trucks:[],
-      error:''
+      error:'',
+      newUserError: ''
     }
+  }
+
+  clearError = () => {
+    this.setState({ error: '' })
+    this.setState({ newUserError: '' })
   }
   
   loginUser = (userName) => {
     fetchUserName(userName)
     .then(data => {
-      console.log("user login", data)
       const id = data.data.id
       fetchTrucks(id)
       .then(trucks => {
-        console.log("login trucks", trucks)
         const formattedData = setUserData(data, trucks)
         this.setState({userId: id, userLocation: {lat: formattedData.lat, lng: formattedData.lng}, trucks: formattedData.trucks}, () => {
           localStorage.setItem('state', JSON.stringify(this.state))
@@ -48,8 +52,9 @@ class App extends Component {
       zipcode: zip
     }
     fetchNewUser(newUser)
-    .then(data => console.log('userData', data))
-    .catch(error => console.log(error))
+    .catch(error => {
+      this.setState({ newUserError: error.message})
+    })
   }
 
   updateLocation = (address, city, zip) => {
@@ -82,18 +87,18 @@ class App extends Component {
           </Route>
           <Route exact path='/login'>
             <Form 
-              loginUser={this.loginUser} error={this.state.error}
+              loginUser={this.loginUser} error={this.state.error} clearError={this.clearError} newUserError={this.state.newUserError}
             />
           </Route>
           <Route exact path="/newuser">
             <Form
-              createNewUser={this.createNewUser} error={this.state.error}
+              createNewUser={this.createNewUser} newUserError={this.state.newUserError} clearError={this.clearError}
             />
           </Route>
           <Route exact path="/newlocation">
             <Form 
               error={this.state.error}
-              updateLocation={this.updateLocation}
+              updateLocation={this.updateLocation} clearError={this.clearError}
             />
           </Route>
           <Route exact path="/trucklist">
@@ -105,6 +110,8 @@ class App extends Component {
               trucks={this.state.trucks}
               center={this.state.userLocation}
               showTruckDetails={this.showTruckDetails}
+              error={this.state.error}
+              clearError={this.clearError}
             />
           </Route> 
           <Route  exact path="/trucks/:name" render={({ match, history }) => {

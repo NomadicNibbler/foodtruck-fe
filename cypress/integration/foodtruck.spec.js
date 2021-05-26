@@ -13,8 +13,18 @@ describe('The Nomadic Nibbler landing page', () => {
 
     it('Should be able to login with your username', () => {
         cy.get('[data-cy=login-prompt]').contains('Please enter your username')
-        cy.get('[data-cy=username-input]').type('Bungalo').should('have.value', 'Bungalo').get('[data-cy=login-button]').click()
+        cy.get('[data-cy=username-input]').type('jackpot').should('have.value', 'jackpot').get('[data-cy=login-button]').click()
         cy.url().should('eq', 'http://localhost:3000/map')
+    })
+
+    it('Should redirect user to login page if username is incorrect', () => {
+        cy.get('[data-cy=login-prompt]').contains('Please enter your username')
+        cy.get('[data-cy=username-input]').type('jackpot').should('have.value', 'jackpot').get('[data-cy=login-button]').click()
+        cy.get('[data-cy=logout-button]').click()
+        cy.get('[data-cy=login-prompt]').contains('Please enter your username')
+        cy.get('[data-cy=username-input]').type('zaptoot').should('have.value', 'zaptoot').get('[data-cy=login-button]').click()
+        cy.url().should('eq', 'http://localhost:3000/login')
+        cy.get('[data-cy=username-error]').contains('Please Try A Different Username.')
     })
 
     it('Should allow user to go to the the new user page', () => {
@@ -35,33 +45,56 @@ describe('New user page', () => {
             });
     })
 
+    it('Should allow a user to go back to the login page', () => {
+        cy.get('[data-cy=back-to-login]').click().url().should('eq', 'http://localhost:3000/login')
+    })
+
     it('Should not allow a user to click the let\'s eat button without entering all of the fields', () => {
         cy.get('[data-cy=title]').contains('The Nomadic Nibbler')
         cy.get('[data-cy=newuser-prompt]').contains('Please enter your user information')
         cy.get('[data-cy=create-account]').click().url().should('eq', 'http://localhost:3000/newuser')
+        cy.get('[data-cy=input-error]').contains('Please Complete The Form Below.')
     })
 
-    it('Should allow a new user to enter their information and click the let\'s eat button', () => {
+    it('Should allow a new user to enter their information and click the create account', () => {
+        cy.intercept(
+            'POST',
+            "https://warm-scrubland-95764.herokuapp.com/api/v1/users", { fixture: 'user2.json' }
+        )
+        cy.get('[data-cy=newuser-prompt]').contains('Please enter your user information')
+        cy.get('[data-cy=username-input]').type('Beepler').should('have.value', 'Beepler')
+        cy.get('[data-cy=first-name-input]').type('Beep').should('have.value', 'Beep')
+        cy.get('[data-cy=last-name-input]').type('Beeperson').should('have.value', 'Beeperson')
+        cy.get('[data-cy=address-input]').type('4 yawkey way').should('have.value', '4 yawkey way')
+        cy.get('[data-cy=city-input]').type('Boston').should('have.value', 'Boston')
+        cy.get('[data-cy=zip-input]').type('02215').should('have.value', '02215')
+        cy.get('[data-cy=create-account]').click().url().should('eq', 'http://localhost:3000/login')
+    })
+
+    it('Should only allow a us or canadian format for zip code', () => {
         cy.get('[data-cy=newuser-prompt]').contains('Please enter your user information')
         cy.get('[data-cy=username-input]').type('teddybare').should('have.value', 'teddybare')
         cy.get('[data-cy=first-name-input]').type('tedd').should('have.value', 'tedd')
         cy.get('[data-cy=last-name-input]').type('barely').should('have.value', 'barely')
         cy.get('[data-cy=address-input]').type('123 fake street').should('have.value', '123 fake street')
         cy.get('[data-cy=city-input]').type('nowhere').should('have.value', 'nowhere')
-        cy.get('[data-cy=zip-input]').type('12345').should('have.value', '12345')
-        cy.get('[data-cy=create-account]').click().url().should('eq', 'http://localhost:3000/login')
+        cy.get('[data-cy=zip-input]').type('1234').should('have.value', '1234')
+        cy.get('[data-cy=create-account]').click().url().should('eq', 'http://localhost:3000/newuser')
+        cy.get('[data-cy=input-error]').contains('Please Complete The Form Below.')
     })
 
-    // it('Should only allow a 5 digit input for zip code', () => {
-    //     cy.get('[data-cy=newuser-prompt]').contains('Please enter your user information')
-    //     cy.get('[data-cy=username-input]').type('teddybare').should('have.value', 'teddybare')
-    //     cy.get('[data-cy=first-name-input]').type('tedd').should('have.value', 'tedd')
-    //     cy.get('[data-cy=last-name-input]').type('barely').should('have.value', 'barely')
-    //     cy.get('[data-cy=address-input]').type('123 fake street').should('have.value', '123 fake street')
-    //     cy.get('[data-cy=city-input]').type('nowhere').should('have.value', 'nowhere')
-    //     cy.get('[data-cy=zip-input]').type('1234').should('have.value', '1234')
-    //     cy.get('[data-cy=create-account]').click().url().should('eq', 'http://localhost:3000/newuser')
-    // })
+    it('Should redirect to new user page if username already exists', () => {
+        cy.get('[data-cy=newuser-prompt]').contains('Please enter your user information')
+        cy.get('[data-cy=username-input]').type('jackpot').should('have.value', 'jackpot')
+        cy.get('[data-cy=first-name-input]').type('jack').should('have.value', 'jack')
+        cy.get('[data-cy=last-name-input]').type('pot').should('have.value', 'pot')
+        cy.get('[data-cy=address-input]').type('345 Robson St').should('have.value', '345 Robson St')
+        cy.get('[data-cy=city-input]').type('Vancouver').should('have.value', 'Vancouver')
+        cy.get('[data-cy=zip-input]').type('v6b6b3').should('have.value', 'v6b6b3')
+        cy.get('[data-cy=create-account]').click().url().should('eq', 'http://localhost:3000/newuser')
+        cy.get('[data-cy=username-error]').contains('Please Try A Different Username')
+    })
+    
 })
 
 describe('Map view', () => {
@@ -84,6 +117,10 @@ describe('Map view', () => {
         cy.wait('@truck-markers');
         cy.get('[data-cy=truck-list-button').click().url().should('eq', 'http://localhost:3000/trucklist')
     });
+
+    it('Should allow a user to logout by clicking the logout button', () => {
+        cy.get('[data-cy=logout-button]').click().url().should('eq', 'http://localhost:3000/login')
+    })
 
     it('Should allow the user to navigate to the change location form', () => {
         cy.wait('@truck-markers');
@@ -109,6 +146,10 @@ describe('New location view', () => {
             });
     })
 
+    it('Should allow the user to go back to the map when they click the back to map button', () => {
+        cy.get('[data-cy=back-to-map]').click().url().should('eq', 'http://localhost:3000/map')
+    })
+
     it('Should allow the user to enter a new location and navigate back to the map page', () => {
         cy.get('[data-cy=location-prompt]').contains('Please enter your desired location')
         cy.get('[data-cy=address-input').type('555 Jimmy Street').should('have.value', '555 Jimmy Street')
@@ -117,13 +158,14 @@ describe('New location view', () => {
         cy.get('[data-cy=lets-eat-button').click().url().should('eq', 'http://localhost:3000/map')
     })
 
-    // it('Should not allow a user to submit their information without entering all fields, and meeting the 5 character zip requirement', () => {
-    //     cy.get('[data-cy=location-prompt]').contains('Please enter your desired location')
-    //     cy.get('[data-cy=address-input').type('555 Jimmy Street').should('have.value', '555 Jimmy Street')
-    //     cy.get('[data-cy=city-input]').type('Barcelona').should('have.value', 'Barcelona')
-    //     cy.get('[data-cy=zip-input]').type('5432').should('have.value', '5432')
-    //     cy.get('[data-cy=lets-eat-button').click().url().should('eq', 'http://localhost:3000/newlocation')
-    // })
+    it('Should not allow a user to submit their information without entering all fields, and meeting the zip requirement', () => {
+        cy.get('[data-cy=location-prompt]').contains('Please enter your desired location')
+        cy.get('[data-cy=address-input').type('555 Jimmy Street').should('have.value', '555 Jimmy Street')
+        cy.get('[data-cy=city-input]').type('Barcelona').should('have.value', 'Barcelona')
+        cy.get('[data-cy=zip-input]').type('5432').should('have.value', '5432')
+        cy.get('[data-cy=lets-eat-button').click().url().should('eq', 'http://localhost:3000/newlocation')
+        cy.get('[data-cy=input-error]').contains('Please Complete The Form Below.')
+    })
 })
 
 describe('truck details', () => {

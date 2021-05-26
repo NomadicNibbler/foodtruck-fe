@@ -18,13 +18,14 @@
   align-self: flex-start;  
   border: none; 
   background: none; 
+  cursor: pointer;
 }
 
 .truck-details-back-icon {
   align-self: flex-start; 
   @include boxSize(35px, 35px);  
   margin: 5px; 
-  color: $dark-blue-green;  
+  color: $dark-blue-green; 
 }
 
 .truck-details-logo {

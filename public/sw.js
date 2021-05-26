@@ -74,7 +74,3 @@ self.addEventListener('fetch', evt => {
   );
   evt.waitUntil(update(evt.request));
 });
-
-
-
-

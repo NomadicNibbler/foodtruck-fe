@@ -1,7 +1,7 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, Redirect } from 'react-router-dom';
 import { useState } from 'react';
 // import { fetchTrucks } from '../../apiCalls';
-const Form = ({ createNewUser, loginUser, updateLocation, error }) => {
+const Form = ({ createNewUser, loginUser, updateLocation, error, clearError, newUserError }) => {
 
     const location = useLocation().pathname
     const [userName, setUserName] = useState('')
@@ -10,21 +10,30 @@ const Form = ({ createNewUser, loginUser, updateLocation, error }) => {
     const [address, setAddress] = useState('')
     const [city, setCity] = useState('')
     const [zip, setZip] = useState('')
+    const [inputError, setInputError] = useState('')
    
     const handleSubmit = e => {
-        if (location === '/newuser' && first && last && address && city ) {
+        if (location === '/newuser' && first && last && address && city && zipAuth(zip) ) {
             createNewUser(userName, first, last, address, city, zip)
             clearInputs()
-        } else if (location === '/login' && userName && !error) {
+        } else if (location === '/login' && userName) {
             loginUser(userName)
             clearInputs()
-        } else if (location === '/newlocation' && address && city) {
+        } else if (location === '/newlocation' && address && city && zipAuth(zip) ) {
             updateLocation(address, city, zip)
             clearInputs()
         } else {
             e.preventDefault()
+            setInputError('Please Complete The Form Below.')
         }
     }
+
+    const zipAuth = zip => {
+        const canada = /^[ABCEGHJ-NPRSTVXY]\d[ABCEGHJ-NPRSTV-Z][ -]?\d[ABCEGHJ-NPRSTV-Z]\d$/i
+        const us = /^[0-9]{5}(?:-[0-9]{4})?$/
+        return (canada.exec(zip) || us.exec(zip) ? true : false)
+        
+        }
 
     const clearInputs = () => {
         setUserName('')
@@ -33,10 +42,15 @@ const Form = ({ createNewUser, loginUser, updateLocation, error }) => {
         setAddress('')
         setCity('')
         setZip('')
+        setInputError('')
+        clearError()
     }
 
     return (
         <form>
+            {inputError && <h2 className='error' data-cy='input-error'>{inputError}</h2>}
+            {(error || newUserError) && <h2 className='error' data-cy='username-error'>Please Try A Different Username.</h2>}
+            {newUserError && <Redirect to='/newuser'/>}
             {location === '/newuser' &&
             <h2 className='form-prompt' data-cy='newuser-prompt'>Please enter your user information</h2>}
             {location === '/login' &&
@@ -128,13 +142,13 @@ const Form = ({ createNewUser, loginUser, updateLocation, error }) => {
 
             {location === '/login' &&
                 <Link to='/newuser'>
-                <button className='button' data-cy='new-user-button'>New User?</button>
+                <button className='button' data-cy='new-user-button' onClick={clearInputs}>New User?</button>
                 </Link>
             }
 
             {location === '/newuser' &&
                 <Link to='/login'>
-                <button className='button' data-cy='create-account' onClick={handleSubmit}>Create Account</button>
+                    <button className='button' data-cy='create-account' onClick={handleSubmit}>Create Account</button>
                 </Link>
             }
 
@@ -145,12 +159,12 @@ const Form = ({ createNewUser, loginUser, updateLocation, error }) => {
             }
             {location === '/newuser' && 
                 <Link to='/login'>
-                    <p className='go-back-link'>back to login</p>
+                    <p className='go-back-link' data-cy='back-to-login' onClick={clearInputs}>back to login</p>
                 </Link>
             }
             {location === '/newlocation' && 
                 <Link to='/map'>
-                    <p className='go-back-link'>back to map</p>
+                    <p className='go-back-link' data-cy='back-to-map'>back to map</p>
                 </Link>
             }
         </form>

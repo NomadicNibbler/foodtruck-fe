@@ -10,7 +10,7 @@ const TruckList = ({ truckList, sortByDistance }) => {
                 <Link to='/map'>
                     <button className='button'>Truck Map</button>
                 </Link>
-                <div className='dropdown button'>
+                {/* <div className='dropdown button'>
                     <p>Filter</p>
                     <div className='dropdown-content button'>
                         <p onClick={() => sortByDistance(truckList)}>Distance</p>
@@ -19,7 +19,7 @@ const TruckList = ({ truckList, sortByDistance }) => {
                         <p onClick={() => console.log('debit')}>Debit</p>
                         <p onClick={() => console.log('apple')}>Apple Pay</p>
                     </div>
-                </div>
+                </div> */}
             </div>
             {truckList.map(truck => {
                 return <TruckCard
