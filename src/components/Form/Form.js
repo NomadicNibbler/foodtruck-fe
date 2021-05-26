@@ -29,10 +29,8 @@ const Form = ({ createNewUser, loginUser, updateLocation, error, clearError, new
     }
 
     const zipAuth = zip => {
-        console.log(zip)
         const canada = /^[ABCEGHJ-NPRSTVXY]\d[ABCEGHJ-NPRSTV-Z][ -]?\d[ABCEGHJ-NPRSTV-Z]\d$/i
         const us = /^[0-9]{5}(?:-[0-9]{4})?$/
-        console.log((canada.exec(zip) || us.exec(zip)? true : false))
         return (canada.exec(zip) || us.exec(zip) ? true : false)
         
         }
