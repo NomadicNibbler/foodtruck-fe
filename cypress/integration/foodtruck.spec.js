@@ -11,7 +11,7 @@ describe('The Nomadic Nibbler landing page', () => {
         cy.get('[data-cy=title]').contains('The Nomadic Nibbler')
     })
 
-    it('Should be able to login with your username', () => {
+    it.only('Should be able to login with your username', () => {
         cy.get('[data-cy=login-prompt]').contains('Please enter your username')
         cy.get('[data-cy=username-input]').type('Bungalo').should('have.value', 'Bungalo').get('[data-cy=login-button]').click()
         cy.url().should('eq', 'http://localhost:3000/map')
@@ -33,6 +33,10 @@ describe('New user page', () => {
                 delete win.navigator.__proto__.serviceWorker
             }
             });
+    })
+
+    it('Should allow a user to go back to the login page', () => {
+        cy.get('[data-cy=back-to-login]').click().url().should('eq', 'http://localhost:3000/login')
     })
 
     it('Should not allow a user to click the let\'s eat button without entering all of the fields', () => {
@@ -88,7 +92,7 @@ describe('Map view', () => {
         cy.get('[data-cy=truck-list-button').click().url().should('eq', 'http://localhost:3000/trucklist')
     });
 
-    it.only('Should allow a user to logout by clicking the logout button', () => {
+    it('Should allow a user to logout by clicking the logout button', () => {
         cy.get('[data-cy=logout-button]').click().url().should('eq', 'http://localhost:3000/login')
     })
 
@@ -116,7 +120,7 @@ describe('New location view', () => {
             });
     })
 
-    it.only('Should allow the user to go back to the map when they click the back to map button', () => {
+    it('Should allow the user to go back to the map when they click the back to map button', () => {
         cy.get('[data-cy=back-to-map]').click().url().should('eq', 'http://localhost:3000/map')
     })
 

@@ -160,7 +160,7 @@ const Form = ({ createNewUser, loginUser, updateLocation, error, clearError, new
             }
             {location === '/newuser' && 
                 <Link to='/login'>
-                    <p className='go-back-link' onClick={clearInputs}>back to login</p>
+                    <p className='go-back-link' data-cy='back-to-login' onClick={clearInputs}>back to login</p>
                 </Link>
             }
             {location === '/newlocation' && 
