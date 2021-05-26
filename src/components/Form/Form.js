@@ -165,7 +165,7 @@ const Form = ({ createNewUser, loginUser, updateLocation, error, clearError, new
             }
             {location === '/newlocation' && 
                 <Link to='/map'>
-                    <p className='go-back-link'>back to map</p>
+                    <p className='go-back-link' data-cy='back-to-map'>back to map</p>
                 </Link>
             }
         </form>

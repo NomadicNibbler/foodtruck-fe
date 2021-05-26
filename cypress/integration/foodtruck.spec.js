@@ -39,6 +39,7 @@ describe('New user page', () => {
         cy.get('[data-cy=title]').contains('The Nomadic Nibbler')
         cy.get('[data-cy=newuser-prompt]').contains('Please enter your user information')
         cy.get('[data-cy=create-account]').click().url().should('eq', 'http://localhost:3000/newuser')
+        cy.get('[data-cy=input-error]').contains('Please Complete The Form Below.')
     })
 
     it('Should allow a new user to enter their information and click the let\'s eat button', () => {
@@ -111,6 +112,10 @@ describe('New location view', () => {
             });
     })
 
+    it.only('Should allow the user to go back to the map when they click the back to map button', () => {
+        cy.get('[data-cy=back-to-map]').click().url().should('eq', 'http://localhost:3000/map')
+    })
+
     it('Should allow the user to enter a new location and navigate back to the map page', () => {
         cy.get('[data-cy=location-prompt]').contains('Please enter your desired location')
         cy.get('[data-cy=address-input').type('555 Jimmy Street').should('have.value', '555 Jimmy Street')
@@ -119,13 +124,14 @@ describe('New location view', () => {
         cy.get('[data-cy=lets-eat-button').click().url().should('eq', 'http://localhost:3000/map')
     })
 
-    // it('Should not allow a user to submit their information without entering all fields, and meeting the 5 character zip requirement', () => {
-    //     cy.get('[data-cy=location-prompt]').contains('Please enter your desired location')
-    //     cy.get('[data-cy=address-input').type('555 Jimmy Street').should('have.value', '555 Jimmy Street')
-    //     cy.get('[data-cy=city-input]').type('Barcelona').should('have.value', 'Barcelona')
-    //     cy.get('[data-cy=zip-input]').type('5432').should('have.value', '5432')
-    //     cy.get('[data-cy=lets-eat-button').click().url().should('eq', 'http://localhost:3000/newlocation')
-    // })
+    it('Should not allow a user to submit their information without entering all fields, and meeting the zip requirement', () => {
+        cy.get('[data-cy=location-prompt]').contains('Please enter your desired location')
+        cy.get('[data-cy=address-input').type('555 Jimmy Street').should('have.value', '555 Jimmy Street')
+        cy.get('[data-cy=city-input]').type('Barcelona').should('have.value', 'Barcelona')
+        cy.get('[data-cy=zip-input]').type('5432').should('have.value', '5432')
+        cy.get('[data-cy=lets-eat-button').click().url().should('eq', 'http://localhost:3000/newlocation')
+        cy.get('[data-cy=input-error]').contains('Please Complete The Form Below.')
+    })
 })
 
 describe('truck details', () => {
