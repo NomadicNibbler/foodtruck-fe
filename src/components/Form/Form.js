@@ -49,7 +49,7 @@ const Form = ({ createNewUser, loginUser, updateLocation, error, clearError, new
 
     return (
         <form>
-            {inputError && <h2 className='error'>{inputError}</h2>}
+            {inputError && <h2 className='error' data-cy='input-error'>{inputError}</h2>}
             {(error || newUserError) && <h2 className='error'>Please Try A Different Username.</h2>}
             {newUserError && <Redirect to='/newuser'/>}
             {location === '/newuser' &&
