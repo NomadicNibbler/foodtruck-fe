@@ -11,7 +11,7 @@ describe('The Nomadic Nibbler landing page', () => {
         cy.get('[data-cy=title]').contains('The Nomadic Nibbler')
     })
 
-    it.only('Should be able to login with your username', () => {
+    it('Should be able to login with your username', () => {
         cy.get('[data-cy=login-prompt]').contains('Please enter your username')
         cy.get('[data-cy=username-input]').type('Bungalo').should('have.value', 'Bungalo').get('[data-cy=login-button]').click()
         cy.url().should('eq', 'http://localhost:3000/map')
@@ -33,6 +33,7 @@ describe('New user page', () => {
                 delete win.navigator.__proto__.serviceWorker
             }
             });
+        // cy.intercept("https://warm-scrubland-95764.herokuapp.com/api/v1/sessions", { fixture: 'user.json' })
     })
 
     it('Should allow a user to go back to the login page', () => {
@@ -67,6 +68,18 @@ describe('New user page', () => {
         cy.get('[data-cy=zip-input]').type('1234').should('have.value', '1234')
         cy.get('[data-cy=create-account]').click().url().should('eq', 'http://localhost:3000/newuser')
         cy.get('[data-cy=input-error]').contains('Please Complete The Form Below.')
+    })
+
+    it.only('Should redirect to new user page if username already exists', () => {
+        cy.get('[data-cy=newuser-prompt]').contains('Please enter your user information')
+        cy.get('[data-cy=username-input]').type('jackpot').should('have.value', 'jackpot')
+        cy.get('[data-cy=first-name-input]').type('jack').should('have.value', 'jack')
+        cy.get('[data-cy=last-name-input]').type('pot').should('have.value', 'pot')
+        cy.get('[data-cy=address-input]').type('345 Robson St').should('have.value', '345 Robson St')
+        cy.get('[data-cy=city-input]').type('Vancouver').should('have.value', 'Vancouver')
+        cy.get('[data-cy=zip-input]').type('v6b6b3').should('have.value', 'v6b6b3')
+        cy.get('[data-cy=create-account]').click().url().should('eq', 'http://localhost:3000/newuser')
+        cy.get('[data-cy=username-error]').contains('Please Try A Different Username')
     })
     
 })
