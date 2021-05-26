@@ -30,11 +30,9 @@ class App extends Component {
   loginUser = (userName) => {
     fetchUserName(userName)
     .then(data => {
-      console.log("user login", data)
       const id = data.data.id
       fetchTrucks(id)
       .then(trucks => {
-        console.log("login trucks", trucks)
         const formattedData = setUserData(data, trucks)
         this.setState({userId: id, userLocation: {lat: formattedData.lat, lng: formattedData.lng}, trucks: formattedData.trucks}, () => {
           localStorage.setItem('state', JSON.stringify(this.state))
@@ -54,10 +52,8 @@ class App extends Component {
       zipcode: zip
     }
     fetchNewUser(newUser)
-    .then(data => console.log('userData', data))
     .catch(error => {
       this.setState({ newUserError: error.message})
-      console.log('wow', this.state.newUserError)
     })
   }
 
