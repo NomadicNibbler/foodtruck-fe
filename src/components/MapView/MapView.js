@@ -6,7 +6,7 @@ import { Link, Redirect } from 'react-router-dom';
 import truckIcon from '../../assets/food-truck.svg';
 const apiKey = process.env.REACT_APP_API_KEY;
 
-const MapView = ({ trucks, center, error, clearError }) => {
+const MapView = ({ trucks, center, error }) => {
   const [selectedCenter, setSelectedCenter] = useState(null);
   const [clickedTruck, setClickedTruck] = useState('');
   const [radius, setRadius] = useState(40);
@@ -17,12 +17,6 @@ const MapView = ({ trucks, center, error, clearError }) => {
       return <h1>Loading...</h1>
     } else if (error) {
       return (
-        // <div className='login-error'>
-        //   <h2>UserName Not Found. Please Try Logging In Again</h2>
-        //   <Link to='/login'>
-        //     <button className='button' onClick={() => clearError()}>Back to Login</button>
-        //   </Link>
-        // </div>
         <Redirect to='/login'/>
       )
     } else {

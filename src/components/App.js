@@ -104,7 +104,7 @@ class App extends Component {
           <Route exact path="/newlocation">
             <Form 
               error={this.state.error}
-              updateLocation={this.updateLocation}
+              updateLocation={this.updateLocation} clearError={this.clearError}
             />
           </Route>
           <Route exact path="/trucklist">

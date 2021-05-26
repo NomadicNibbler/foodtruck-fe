@@ -47,13 +47,6 @@ const Form = ({ createNewUser, loginUser, updateLocation, error, clearError, new
         clearError()
     }
 
-    // const redirectNewUser = e => {
-    //     if (error) {
-    //         return <Redirect to='/newuser' />
-    //     }
-    //     handleSubmit(e)
-    // }
-
     return (
         <form>
             {inputError && <h2 className='error'>{inputError}</h2>}
