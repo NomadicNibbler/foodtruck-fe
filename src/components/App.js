@@ -70,16 +70,14 @@ class App extends Component {
     }
     updateUser(updatedUser, this.state.userId)
     .then(data => {
-      console.log("update User", data)
       fetchTrucks(this.state.userId)
       .then(trucks => {
-        console.log("updatedTrucks", trucks)
         const formattedData = setUserData(data, trucks)
         this.setState({...this.state, userLocation: {lat: formattedData.lat, lng: formattedData.lng}, trucks: formattedData.trucks}, () => {
           localStorage.setItem('state', JSON.stringify(this.state))
         })
       })
-      .catch(error => console.log(error))
+      .catch(error => this.setState({error: error.message}))
     })
   }
 
