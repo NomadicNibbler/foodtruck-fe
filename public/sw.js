@@ -20,11 +20,10 @@ const urlsToCache = [
   '/map',
 ];
 
-
-// on activation we clean up the previously registered service workers
-self.addEventListener('activate', evt =>
-  evt.waitUntil(
-    caches.keys().then(cacheNames => {
+self.addEventListener('activate', (event) => {
+  console.log('Service Worker: Activated');
+  event.waitUntil(
+    caches.keys().then(cacheName => {
       return Promise.all(
         cacheNames.map(cacheName => {
           if (cacheName !== CURRENT_CACHE) {
@@ -229,9 +228,37 @@ self.addEventListener('fetch', evt => {
 
 
 
+// Install a service worker
+self.addEventListener('install', event => {
+  //perform install steps
+  event.waitUntil(
+    caches.open(cacheName)
+    .then(cache => {
+      console.log('Opened cache')
+      return cache.addAll(urlsToCache)
+    })
+  )
+})
+
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.open(cacheName).then(cache => {
+      return cache.match(event.request).then(response => {
+        return (
+          response ||
+          fetch(event.request).then(response => {
+            cache.put(event.request, response.clone());
+            return response;
+          })
+        );
+      });
+    }),
+  );
+});
+
+
 // Cache and return requests
 // self.addEventListener('fetch', event => {
- 
 //   event.respondWith(
 //     caches.match(event.request)
 //     .then(response => {
