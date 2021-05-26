@@ -88,6 +88,10 @@ describe('Map view', () => {
         cy.get('[data-cy=truck-list-button').click().url().should('eq', 'http://localhost:3000/trucklist')
     });
 
+    it.only('Should allow a user to logout by clicking the logout button', () => {
+        cy.get('[data-cy=logout-button]').click().url().should('eq', 'http://localhost:3000/login')
+    })
+
     it('Should allow the user to navigate to the change location form', () => {
         cy.wait('@truck-markers');
         cy.get('[data-cy=change-location-button]').click().url().should('eq', 'http://localhost:3000/newlocation')

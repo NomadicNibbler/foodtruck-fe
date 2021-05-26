@@ -9,7 +9,7 @@ const Header = () => {
     <>
     <header className="header">
       {location !== "/login" && location !== '/newuser' && 
-      <Link to="/" className="log-out-link">
+      <Link to="/" className="log-out-link" data-cy='logout-button'>
         <div>
           <FaUser className="log-out-icon" alt="log-out-icon      "/>
           <p className="log-out-text">Log Out</p>
