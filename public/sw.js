@@ -23,7 +23,7 @@ const urlsToCache = [
 self.addEventListener('activate', (event) => {
   console.log('Service Worker: Activated');
   event.waitUntil(
-    caches.keys().then(cacheName => {
+    caches.keys().then(cacheNames => {
       return Promise.all(
         cacheNames.map(cacheName => {
           if (cacheName !== CURRENT_CACHE) {
@@ -33,7 +33,7 @@ self.addEventListener('activate', (event) => {
       );
     })
   )
-);
+});
 
 // on install we download the routes we want to cache for offline
 self.addEventListener('install', evt =>
@@ -229,32 +229,32 @@ self.addEventListener('fetch', evt => {
 
 
 // Install a service worker
-self.addEventListener('install', event => {
-  //perform install steps
-  event.waitUntil(
-    caches.open(cacheName)
-    .then(cache => {
-      console.log('Opened cache')
-      return cache.addAll(urlsToCache)
-    })
-  )
-})
+// self.addEventListener('install', event => {
+//   //perform install steps
+//   event.waitUntil(
+//     caches.open(cacheName)
+//     .then(cache => {
+//       console.log('Opened cache')
+//       return cache.addAll(urlsToCache)
+//     })
+//   )
+// })
 
-self.addEventListener('fetch', event => {
-  event.respondWith(
-    caches.open(cacheName).then(cache => {
-      return cache.match(event.request).then(response => {
-        return (
-          response ||
-          fetch(event.request).then(response => {
-            cache.put(event.request, response.clone());
-            return response;
-          })
-        );
-      });
-    }),
-  );
-});
+// self.addEventListener('fetch', event => {
+//   event.respondWith(
+//     caches.open(cacheName).then(cache => {
+//       return cache.match(event.request).then(response => {
+//         return (
+//           response ||
+//           fetch(event.request).then(response => {
+//             cache.put(event.request, response.clone());
+//             return response;
+//           })
+//         );
+//       });
+//     }),
+//   );
+// });
 
 
 // Cache and return requests

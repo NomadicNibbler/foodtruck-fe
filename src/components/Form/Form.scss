@@ -12,6 +12,10 @@ form {
     color: white;
 }
 
+.error {
+    color: red;
+}
+
 .filler-text {
     font-size: 1.5em;
 }
@@ -50,7 +54,4 @@ input::placeholder {
     form {
       width: 40%; 
     }
-    
-.error {
-    color: red;
 }
