@@ -15,7 +15,7 @@ const MapView = ({ trucks, center, error }) => {
   const loader = () => {
     if (!Object.keys(center).length) {
       return <h1>Loading...</h1>
-    } else if (error) {
+    } else if (error.includes('4')) {
       return (
         <Redirect to='/login'/>
       )
