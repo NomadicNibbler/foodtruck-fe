@@ -56,7 +56,7 @@ describe('New user page', () => {
         cy.get('[data-cy=input-error]').contains('Please Complete The Form Below.')
     })
 
-    it.only('Should allow a new user to enter their information and click the create account', () => {
+    it('Should allow a new user to enter their information and click the create account', () => {
         cy.intercept(
             'POST',
             "https://warm-scrubland-95764.herokuapp.com/api/v1/users", { fixture: 'user2.json' }
