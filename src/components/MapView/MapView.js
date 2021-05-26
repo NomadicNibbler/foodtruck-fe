@@ -78,7 +78,7 @@ const MapView = ({ trucks, center, error }) => {
 
   return (
       <main>
-        {!error && <div className="map-buttons-container">
+        {!error.includes('4') && <div className="map-buttons-container">
           <div>
             <Link to="/trucklist">
               <button className="button" data-cy='truck-list-button'>Truck List</button>
