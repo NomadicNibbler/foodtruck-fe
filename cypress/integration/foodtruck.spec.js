@@ -13,8 +13,18 @@ describe('The Nomadic Nibbler landing page', () => {
 
     it('Should be able to login with your username', () => {
         cy.get('[data-cy=login-prompt]').contains('Please enter your username')
-        cy.get('[data-cy=username-input]').type('Bungalo').should('have.value', 'Bungalo').get('[data-cy=login-button]').click()
+        cy.get('[data-cy=username-input]').type('jackpot').should('have.value', 'jackpot').get('[data-cy=login-button]').click()
         cy.url().should('eq', 'http://localhost:3000/map')
+    })
+
+    it('Should redirect user to login page if username is incorrect', () => {
+        cy.get('[data-cy=login-prompt]').contains('Please enter your username')
+        cy.get('[data-cy=username-input]').type('jackpot').should('have.value', 'jackpot').get('[data-cy=login-button]').click()
+        cy.get('[data-cy=logout-button]').click()
+        cy.get('[data-cy=login-prompt]').contains('Please enter your username')
+        cy.get('[data-cy=username-input]').type('zaptoot').should('have.value', 'zaptoot').get('[data-cy=login-button]').click()
+        cy.url().should('eq', 'http://localhost:3000/login')
+        cy.get('[data-cy=username-error]').contains('Please Try A Different Username.')
     })
 
     it('Should allow user to go to the the new user page', () => {
@@ -33,7 +43,6 @@ describe('New user page', () => {
                 delete win.navigator.__proto__.serviceWorker
             }
             });
-        // cy.intercept("https://warm-scrubland-95764.herokuapp.com/api/v1/sessions", { fixture: 'user.json' })
     })
 
     it('Should allow a user to go back to the login page', () => {
@@ -70,7 +79,7 @@ describe('New user page', () => {
         cy.get('[data-cy=input-error]').contains('Please Complete The Form Below.')
     })
 
-    it.only('Should redirect to new user page if username already exists', () => {
+    it('Should redirect to new user page if username already exists', () => {
         cy.get('[data-cy=newuser-prompt]').contains('Please enter your user information')
         cy.get('[data-cy=username-input]').type('jackpot').should('have.value', 'jackpot')
         cy.get('[data-cy=first-name-input]').type('jack').should('have.value', 'jack')
