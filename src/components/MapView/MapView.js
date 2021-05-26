@@ -112,56 +112,6 @@ const MapView = ({ trucks, center, error }) => {
           </div>
         </div>}
         {loader()}
-      {/* {!Object.keys(center).length? <h1>Loading...</h1> : <section className="map-container">
-          <LoadScript
-            googleMapsApiKey={apiKey}
-          >
-            <GoogleMap
-              mapContainerClassName="map"
-              center={center}
-              zoom={13}
-            >
-              <>
-                <Marker
-                  position={center}
-                />
-                
-                { selectedCenter && <InfoWindow
-                  onCloseClick={() => {
-                      setSelectedCenter(null);
-                  }}
-                  position={selectedCenter}
-                >
-                  <div>
-                    <p>See more details about this truck</p>
-                    <Link to={`/trucks/${clickedTruck.split(' ').join('_')}`}>
-                      <p>Show me!</p>
-                    </Link>
-                  </div>
-                </InfoWindow>}
-            
-                <MarkerClusterer>
-                  {(clusterer) =>
-                  trucksByRadius.map((truck) => (
-                    <Marker 
-                      key={createKey(truck)}
-                      title={truck.attributes.name}
-                      position={createTruckLocation(truck)} 
-                      clusterer={clusterer}
-                      icon={{
-                        url: truckIcon,
-                        scaledSize: new window.google.maps.Size(40, 40)
-                      }} 
-
-                      onClick={() => {setSelectedCenter(createTruckLocation(truck)); setClickedTruck(truck.attributes.name);}}
-                    /> 
-                  ))
-                  }
-                </MarkerClusterer>
-              </>
-            </GoogleMap>
-          </LoadScript>
-        </section>} */}
       </main>
     )
   }
