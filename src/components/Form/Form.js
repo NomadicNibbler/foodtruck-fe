@@ -20,6 +20,7 @@ const Form = ({ createNewUser, loginUser, updateLocation, error, clearError, new
             loginUser(userName)
             clearInputs()
         } else if (location === '/newlocation' && address && city && zipAuth(zip) ) {
+            updateLocation(address, city, zip)
             clearInputs()
         } else {
             e.preventDefault()
