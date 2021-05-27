@@ -19,6 +19,8 @@ const MapView = ({ trucks, center, error }) => {
       return (
         <Redirect to='/login'/>
       )
+    } else if(error === "Location invalid, please enter another location") {
+        return <Redirect to='/newlocation'/>
     } else {
       return (
       <section className="map-container">
