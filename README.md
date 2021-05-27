@@ -1,6 +1,6 @@
-# Gearfull
+# The Nomadic Nibbler
 
-This is a Mod 4 Project by [Elizabeth Hahn](https://github.com/elizhahn), [Joel Thomas]()
+This is a Mod 4 Project by [Elizabeth Hahn](https://github.com/elizhahn), [Joel Thomas](), Wil McCauley(), Tommy Nieuwenhuis(https://github.com/tsnieuwen), Kyle Shultz(https://github.com/kylejschulz)
 
 ### Deployed App: [The Nomadic Nibbler](https://the-nomadic-nibbler.herokuapp.com/)
 
@@ -19,9 +19,7 @@ This is a Mod 4 Project by [Elizabeth Hahn](https://github.com/elizhahn), [Joel 
 
 ## Project Overview
 
-
-The goal of this project was to confirm my skills using React, React-Router, Asynchronous Javascript, and Cypress to build an application that solves a problem for a small niche audience. Github project board was utilized to organzize user stories, personas, wireframes, and acceptance criteria.  
-
+The goal of this project was to work with an integrated backend and frontend team to design and build an application from the ground up. We were tasked to include 2 new technologies never used before on both the frontend and backend of the project to further our learning.  
 
 ## App Overview
 
@@ -29,7 +27,7 @@ The Nomadic Nibbler is a mobile first food truck application that allows users t
  
 ## Learning Goals
  
- - Implementing a PWA to design a mobile first application that behaves like a native app
+ - Implementing a progressive web app to design a mobile first application that behaves like a native app
  - Working with a backend team to design appropriate data structures for MVP features
   
 ## Tech Stack
@@ -102,8 +100,10 @@ The Nomadic Nibbler is a mobile first food truck application that allows users t
 
 ## Future Iterations
 
-
-
+- Using location validation on the frontend to prevent invalid addresses from being saved to the user's profile
+- Using Geolocation to allow a user to opt in to allow the application to record their location using gps
+- A favorites option for the user to save food trucks
+- Push notifications that are sent to user to alert them when a food truck is within 1-5 miles of them
 
 ## Project Reflections
 
@@ -111,8 +111,12 @@ The Nomadic Nibbler is a mobile first food truck application that allows users t
 
   -Implementing a PWA hosted many hurdles
      - keeping the cache up to date and using a network first approach. The service worker needed to be setup to use the network first to prevent it from returning old locations a user used earlier in their session. In addition the cache needed to be activated and cleared
+  - location validation proved challenging and will need continued development
      
 
 ### Wins
 
-
+- Implementing a service worker that caches all static files and reqeusts for a session. 
+- Managing the cache api to return the correct responses for a user's last visited location
+- Using a google map to dynamically render the trucks for a user
+- Using the power of react components to create one form that was reused throughout the application
