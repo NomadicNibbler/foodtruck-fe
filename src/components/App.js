@@ -33,6 +33,10 @@ class App extends Component {
       const id = data.data.id
       fetchTrucks(id)
       .then(trucks => {
+        if(trucks.data.error) {
+          this.setState({userId: id, error: trucks.data.error})
+          return;
+        }
         const formattedData = setUserData(data, trucks)
         this.setState({userId: id, userLocation: {lat: formattedData.lat, lng: formattedData.lng}, trucks: formattedData.trucks}, () => {
           localStorage.setItem('state', JSON.stringify(this.state))

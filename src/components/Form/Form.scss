@@ -1,5 +1,5 @@
 form {
-    background: $dark-blue-green;
+    background-color: rgba(1,89,91, .8);
     @include flexStyle(flex, column, justify-content, center);
     align-items: center;
     align-self: center;
