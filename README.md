@@ -47,38 +47,26 @@ The Nomadic Nibbler is a mobile first food truck application that allows users t
 
 ## Features
 
-### Login
+### Login and Address Change
 
-![]()
-
-
-### New User
-
-![]()
-
-### Map
-
-![]()
-
-### Truck List
-
-![]()
-
-### Truck Details
-
-![]()
+<img src='./src/assets/login-address-change.gif' alt='login and address change'/>
 
 
-### Responsive Design
+### 
 
-![]()
+<img src='./src/assets/create-new-user.gif' alt='create new user'/>
+
+###
+
+<img src='./src/assets/map-and-radius.gif' alt='map and radius'/>
+
+###
+
+<img src='./src/assets/trucklist-and-logout.gif' alt='trucklist and logout'/>
 
 ### Accessibility
 
-![]()
-
-### Offline ability
-
+<img src='src/assets/lighthouse-audit.png' alt=''/>
 
 ## Instructions for Installation
    - Can visit the deployed app [here](https://the-nomadic-nibbler.herokuapp.com/)
