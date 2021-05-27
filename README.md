@@ -52,15 +52,15 @@ The Nomadic Nibbler is a mobile first food truck application that allows users t
 <img src='./src/assets/login-address-change.gif' alt='login and address change'/>
 
 
-### 
+### Create a New User
 
 <img src='./src/assets/create-new-user.gif' alt='create new user'/>
 
-###
+### Map and Radius Change
 
 <img src='./src/assets/map-and-radius.gif' alt='map and radius'/>
 
-###
+### Truck List, Truck Info, and Logout
 
 <img src='./src/assets/trucklist-and-logout.gif' alt='trucklist and logout'/>
 
