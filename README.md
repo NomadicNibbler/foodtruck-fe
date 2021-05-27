@@ -1,6 +1,6 @@
 # The Nomadic Nibbler
 
-This is a Mod 4 Project by [Elizabeth Hahn](https://github.com/elizhahn), [Joel Thomas](https://github.com/Shakikka), [Wil McCaule]y(), [Tommy Nieuwenhuis](https://github.com/tsnieuwen), [Kyle Shultz](https://github.com/kylejschulz)
+This is a Mod 4 Project by [Elizabeth Hahn](https://github.com/elizhahn), [Joel Thomas](https://github.com/Shakikka), [Wil McCauley](https://github.com/wil-mcc), [Tommy Nieuwenhuis](https://github.com/tsnieuwen), [Kyle Shultz](https://github.com/kylejschulz)
 
 ### Deployed App: [The Nomadic Nibbler](https://the-nomadic-nibbler.herokuapp.com/)
 
