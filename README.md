@@ -1,70 +1,118 @@
-# Getting Started with Create React App
+# Gearfull
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a Mod 4 Project by [Elizabeth Hahn](https://github.com/elizhahn), [Joel Thomas]()
 
-## Available Scripts
+### Deployed App: [The Nomadic Nibbler](https://the-nomadic-nibbler.herokuapp.com/)
 
-In the project directory, you can run:
 
-### `npm start`
+## Outline
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. [Project Overview](#project-overview)
+2. [App Overview](#app-overview)
+3. [Learning Goals](#learning-goals)
+4. [Tech Stack](#tech-stack)
+5. [Features](#features)
+6. [Instructions for Installation](#instructions-for-installation)
+7. [Future Iterations](#future-iterations)
+8. [Project Reflections](#project-reflections)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
+## Project Overview
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+The goal of this project was to confirm my skills using React, React-Router, Asynchronous Javascript, and Cypress to build an application that solves a problem for a small niche audience. Github project board was utilized to organzize user stories, personas, wireframes, and acceptance criteria.  
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## App Overview
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The Nomadic Nibbler is a mobile first food truck application that allows users to set a location and view food trucks in their immediate area. Users can see their location on a map, view a list of available trucks, and get detailed information about each truck. Location can be changed if you have a new destination and the map will update. This app was converted to a progressive web app (PWA) and allows the user download the application to their phone's homescreen and access their recent session when offline or the internet is spotty.  
+ 
+## Learning Goals
+ 
+ - Implementing a PWA to design a mobile first application that behaves like a native app
+ - Working with a backend team to design appropriate data structures for MVP features
+  
+## Tech Stack
 
-### `npm run eject`
+### Front-End:
+- JavaScript ECMA6
+  - React (create-react-app)
+  - React Router
+- HTML5
+- CSS3
+  - SASS / SCSS
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Testing:
+- Cypress
+  - Mocha
+  - Chai
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Features
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Login
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+![]()
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### New User
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![]()
 
-### Code Splitting
+### Map
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+![]()
 
-### Analyzing the Bundle Size
+### Truck List
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+![]()
 
-### Making a Progressive Web App
+### Truck Details
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+![]()
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Responsive Design
 
-### Deployment
+![]()
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Accessibility
 
-### `npm run build` fails to minify
+![]()
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Offline ability
+
+
+## Instructions for Installation
+   - Can visit the deployed app [here](https://the-nomadic-nibbler.herokuapp.com/)
+   
+ OR
+ 
+  - To run this application on your local machine, clone down the 
+         - [frontend repo](https://github.com/NomadicNibbler/foodtruck-fe) 
+   
+  - change into the root directory from the command line, and run `npm install`. 
+    
+  - Then run `npm   start` to open the application locally. If you aren't taken there, visit `http://localhost:3000/`
+    
+  - To run the test suite locally, you will also need to run the command `npm i -D cypress` from the command line.
+    
+  - Once it  has installed, run `npx cypress open`, then select the `app_spec.js` test file. 
+    
+  - Note: you will need to run the application locally (start the server with `npm start` from the root directory on the command line) in order to run the automated tests.
+
+## Future Iterations
+
+
+
+
+## Project Reflections
+
+### Challenges
+
+  -Implementing a PWA hosted many hurdles
+     - keeping the cache up to date and using a network first approach. The service worker needed to be setup to use the network first to prevent it from returning old locations a user used earlier in their session. In addition the cache needed to be activated and cleared
+     
+
+### Wins
+
+
