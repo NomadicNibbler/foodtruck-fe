@@ -13,7 +13,7 @@ const MapView = ({ trucks, center, error }) => {
   const trucksByRadius = createTrucksByRadius(trucks, radius);
 
   const loader = () => {
-    if (!Object.keys(center).length) {
+    if (!Object.keys(center).length && !error) {
       return <h1>Loading...</h1>
     } else if (error.includes('4')) {
       return (
