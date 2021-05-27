@@ -1,6 +1,5 @@
 import { Link, useLocation, Redirect } from 'react-router-dom';
 import { useState } from 'react';
-// import { fetchTrucks } from '../../apiCalls';
 const Form = ({ createNewUser, loginUser, updateLocation, error, clearError, newUserError }) => {
 
     const location = useLocation().pathname
@@ -132,8 +131,8 @@ const Form = ({ createNewUser, loginUser, updateLocation, error, clearError, new
             }
 
             {location === '/login' &&
-                <Link to='/map'>
-                <button className="button" data-cy='login-button' onClick={handleSubmit}>Login</button>
+                <Link to='/map' onClick={handleSubmit}>
+                <button className="button" data-cy='login-button'>Login</button>
                 </Link>
             }
 
@@ -141,25 +140,25 @@ const Form = ({ createNewUser, loginUser, updateLocation, error, clearError, new
             <p className='filler-text'>or are you a</p>}
 
             {location === '/login' &&
-                <Link to='/newuser'>
-                <button className='button' data-cy='new-user-button' onClick={clearInputs}>New User?</button>
+                <Link to='/newuser' onClick={clearInputs}>
+                <button className='button' data-cy='new-user-button'>New User?</button>
                 </Link>
             }
 
             {location === '/newuser' &&
-                <Link to='/login'>
-                    <button className='button' data-cy='create-account' onClick={handleSubmit}>Create Account</button>
+                <Link to='/login' onClick={handleSubmit}>
+                    <button className='button' data-cy='create-account'>Create Account</button>
                 </Link>
             }
 
             {location === '/newlocation' &&
-                <Link to='/map'>
-                    <button className='button' data-cy='lets-eat-button' onClick={handleSubmit}>Let's Eat!</button>
+                <Link to='/map' onClick={handleSubmit}>
+                    <button className='button' data-cy='lets-eat-button'>Let's Eat!</button>
                 </Link>
             }
             {location === '/newuser' && 
-                <Link to='/login'>
-                    <p className='go-back-link' data-cy='back-to-login' onClick={clearInputs}>back to login</p>
+                <Link to='/login' onClick={clearInputs}>
+                    <p className='go-back-link' data-cy='back-to-login'>back to login</p>
                 </Link>
             }
             {location === '/newlocation' && 
